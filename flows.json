@@ -1,0 +1,1251 @@
+[
+    {
+        "id": "e12b29f77bd12dd8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d3e8251c2f05a30e",
+        "type": "modbus-client",
+        "name": "NodeRedModbusSerMaster",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": true,
+        "queueLogEnabled": true,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyAMA5",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "19200",
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": "1000",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 43,
+        "commandDelay": 10,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": false,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "c2b3dd79366cad0c",
+        "type": "serial-port",
+        "name": "tusb",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "9600",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "1fd0bebe415c9229",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "b423e96545d4ae28",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "8aa6d6140cfde471",
+        "type": "ui-page",
+        "name": "My Process Control",
+        "ui": "1fd0bebe415c9229",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "b423e96545d4ae28",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "c34f777b31ff0d3e",
+        "type": "ui-group",
+        "name": "PlantSide1",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "6cf2ef424cfcf0b9",
+        "type": "ui-group",
+        "name": "PanstSide2",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "e79cdc10eb89d8a8",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "Switch OFF Relay 4 - Bank 2",
+        "props": [
+            {
+                "p": "payload.dynamic1",
+                "v": "{ \"dynamic1\": 111, \"dynamic2\": 2 }",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 400,
+        "y": 1300,
+        "wires": [
+            [
+                "499c15469dfa9383",
+                "10a0d264c5c521c8"
+            ]
+        ]
+    },
+    {
+        "id": "499c15469dfa9383",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 1",
+        "func": "const fixedBytes = [0xAA, 0x03, 0xFE];\n\n// Get dynamic bytes from msg or fallback defaults\nconst dynamic1 = (typeof msg.dynamic1 === 'number') ? msg.dynamic1 : 0x6F;\nconst dynamic2 = (typeof msg.dynamic2 === 'number') ? msg.dynamic2 : 0x02;\n\nconst messageBytes = [...fixedBytes, dynamic1, dynamic2];\n\n// Calculate checksum modulo 256\nconst checksum = messageBytes.reduce((sum, b) => sum + b, 0) % 256;\n\nmessageBytes.push(checksum);\n\nmsg.payload = Buffer.from(messageBytes);\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1300,
+        "wires": [
+            [
+                "6ea78caf9b8dda1e"
+            ]
+        ]
+    },
+    {
+        "id": "6ea78caf9b8dda1e",
+        "type": "serial out",
+        "z": "e12b29f77bd12dd8",
+        "name": "ttyUSB",
+        "serial": "c2b3dd79366cad0c",
+        "x": 940,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "f1bc8bc129d479c4",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "5c0a15183d0e9f2f",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{ \"dynamic1\": 111, \"dynamic2\": 2 }",
+        "payloadType": "json",
+        "x": 350,
+        "y": 1180,
+        "wires": [
+            [
+                "499c15469dfa9383",
+                "10a0d264c5c521c8"
+            ]
+        ]
+    },
+    {
+        "id": "10a0d264c5c521c8",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 2",
+        "func": "// Log raw incoming values\nnode.warn(\"Raw msg.dynamic1: \" + msg.dynamic1);\nnode.warn(\"Raw msg.dynamic2: \" + msg.dynamic2);\n\n// Use default if value is missing or not a number\nconst dynamic1 = (typeof msg.dynamic1 === 'number') ? msg.dynamic1 : 0x67;\nconst dynamic2 = (typeof msg.dynamic2 === 'number') ? msg.dynamic2 : 0x03;\n\nnode.warn(\"Parsed dynamic1: \" + dynamic1);\nnode.warn(\"Parsed dynamic2: \" + dynamic2);\n\n// Add parsed values to output for inspection\nmsg.dynamic1_parsed = dynamic1;\nmsg.dynamic2_parsed = dynamic2;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2cbecf0d0f45be7f",
+        "type": "modbus-flex-getter",
+        "z": "e12b29f77bd12dd8",
+        "name": "Modbus Flex Getter",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": false,
+        "logIOActivities": false,
+        "server": "d3e8251c2f05a30e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": true,
+        "keepMsgProperties": true,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 530,
+        "y": 80,
+        "wires": [
+            [
+                "8813ef3973a0af74",
+                "eb25bce8f6c1cef0",
+                "a6f2b4fa5b77580b",
+                "705fab38a5e6a041"
+            ],
+            [
+                "494fa91aa4de0c82",
+                "46cc605b23d840fc"
+            ]
+        ]
+    },
+    {
+        "id": "13b3747ee42ce3b2",
+        "type": "change",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28805406b5806715",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "238",
+        "func": "msg.payload = \n{ value: msg.payload, \n'fc': 4, 'unitid': 238, \n'address': 4031 , \n'quantity': 2 } \nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "2cbecf0d0f45be7f"
+            ]
+        ]
+    },
+    {
+        "id": "f436f4129f37e35b",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 80,
+        "wires": [
+            [
+                "28805406b5806715"
+            ]
+        ]
+    },
+    {
+        "id": "1ffb43fdfd549a3e",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "43",
+        "func": "msg.payload = \n{ value: msg.payload, \n'fc': 4, 'unitid': 43, \n'address': 9 , \n'quantity': 8 } \nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "2cbecf0d0f45be7f"
+            ]
+        ]
+    },
+    {
+        "id": "8ee9c73b04bb9feb",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "1ffb43fdfd549a3e"
+            ]
+        ]
+    },
+    {
+        "id": "8813ef3973a0af74",
+        "type": "modbus-response",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 990,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "494fa91aa4de0c82",
+        "type": "modbus-response",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 770,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9108c457792f22b8",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 3",
+        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    { tag: \"Tag3\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    { tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x4BA, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 260,
+        "wires": [
+            [
+                "050a5f5ab80f6fe2"
+            ]
+        ]
+    },
+    {
+        "id": "59c665780d6deca2",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "9108c457792f22b8"
+            ]
+        ]
+    },
+    {
+        "id": "720edfd00f12a971",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 4",
+        "func": "\n//msg.payload = global.get(\"addrInfo\")[global.get(\"index\")];\n//msg.topic = global.get(\"addrInfo\")[global.get(\"index\")].tag;\n//global.set(\"index\", global.get(\"index\") == 2 ? 0 : global.get(\"index\") + 1);\n//return msg;\n\nlet addrInfo = global.get(\"addrInfo\");\nlet index = global.get(\"index\") || 0;\n\n// Safety check\nif (!Array.isArray(addrInfo) || addrInfo.length === 0) {\n    node.error(\"addrInfo is not set or empty\", msg);\n    return null;\n}\n\nmsg.payload = addrInfo[index];\nmsg.topic = addrInfo[index].tag;\n\n// Increment index with wrap-around\nglobal.set(\"index\", (index + 1) % addrInfo.length);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "2cbecf0d0f45be7f"
+            ]
+        ]
+    },
+    {
+        "id": "050a5f5ab80f6fe2",
+        "type": "delay",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 400,
+        "wires": [
+            [
+                "720edfd00f12a971"
+            ]
+        ]
+    },
+    {
+        "id": "eb25bce8f6c1cef0",
+        "type": "delay",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 580,
+        "wires": [
+            [
+                "720edfd00f12a971"
+            ]
+        ]
+    },
+    {
+        "id": "a6f2b4fa5b77580b",
+        "type": "switch",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "S238Name",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S44Name",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Tag3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Tag4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Tag5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Tag6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Tag7",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 650,
+        "y": 420,
+        "wires": [
+            [
+                "805925f14f1566f4"
+            ],
+            [
+                "8a855ede8208b82f"
+            ],
+            [
+                "a5a30c720eb36274",
+                "1e1c66ff03de7db5"
+            ],
+            [
+                "b5228078ead7e436",
+                "f707eb47c9571783"
+            ],
+            [
+                "0fce9078dca3ebf7",
+                "45dd83a27cae6866"
+            ],
+            [
+                "5dc4017a9c404b09",
+                "58e4c98f78c4e6a9"
+            ],
+            [
+                "92adb35145275e3f"
+            ]
+        ]
+    },
+    {
+        "id": "805925f14f1566f4",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "8a855ede8208b82f",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3215e2534364999f",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "d2462d81b7229f45",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "cf76c889a15f72a6",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "cb045b6573b6a5c3",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "7df747ffe0cf903c",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ba7a8932676963bb",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 5",
+        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\nmsg.payload = value;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1020,
+        "wires": [
+            [
+                "7df747ffe0cf903c"
+            ]
+        ]
+    },
+    {
+        "id": "88f8b1528d3a7c71",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[5119, 16163]",
+        "payloadType": "json",
+        "x": 210,
+        "y": 1020,
+        "wires": [
+            [
+                "ba7a8932676963bb"
+            ]
+        ]
+    },
+    {
+        "id": "a5a30c720eb36274",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 6",
+        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// Trim to 3 decimal places and convert back to number\nmsg.payload = Number(value.toFixed(2));\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 440,
+        "wires": [
+            [
+                "3215e2534364999f",
+                "515a07b9bd9bd0d9"
+            ]
+        ]
+    },
+    {
+        "id": "b5228078ead7e436",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 13",
+        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// Trim to 3 decimal places and convert back to number\nmsg.payload = Number(value.toFixed(2));\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 540,
+        "wires": [
+            [
+                "d2462d81b7229f45"
+            ]
+        ]
+    },
+    {
+        "id": "0fce9078dca3ebf7",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 14",
+        "func": "if (!Array.isArray(msg.payload) || msg.payload.length < 2) {\n    node.warn(\"Invalid payload\");\n    return [ { payload: null }, { payload: false } ]; // null to clear gauge, 0 = error\n}\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// If invalid float, send error\nif (!isFinite(value)) {\n    node.warn(\"Invalid float value\");\n    return [ { payload: null }, { payload: 0 } ];\n}\n\n// Trim to 2 decimal places\nlet finalValue = Number(value.toFixed(2));\n\n// Send value to gauge, and OK flag to second output\nreturn [ { payload: finalValue }, { payload: true } ];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 620,
+        "wires": [
+            [
+                "cf76c889a15f72a6",
+                "1cf767f2b361fc4c"
+            ]
+        ]
+    },
+    {
+        "id": "5dc4017a9c404b09",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 15",
+        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// Trim to 3 decimal places and convert back to number\nmsg.payload = Number(value.toFixed(2));\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 700,
+        "wires": [
+            [
+                "cb045b6573b6a5c3"
+            ]
+        ]
+    },
+    {
+        "id": "1e1c66ff03de7db5",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f707eb47c9571783",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 11",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "45dd83a27cae6866",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "58e4c98f78c4e6a9",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "515a07b9bd9bd0d9",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "c34f777b31ff0d3e",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "MB 238 A ox424",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "mm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "400",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "700",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": "16",
+        "sizeGap": 4,
+        "sizeKeyThickness": "8",
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1040,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1cf767f2b361fc4c",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "c34f777b31ff0d3e",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "gauge",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.5",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1010,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "705fab38a5e6a041",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "46cc605b23d840fc",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "bc25559705c92bef",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "92adb35145275e3f",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 16",
+        "func": "// Output array: [gaugeValue, errorFlag]\n\nif (!Array.isArray(msg.payload) || msg.payload.length < 2) {\n    node.warn(\"Invalid payload\");\n    return [ { payload: null }, { payload: false } ]; // null to clear gauge, 0 = error\n}\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// If invalid float, send error\nif (!isFinite(value)) {\n    node.warn(\"Invalid float value\");\n    return [ { payload: null }, { payload: 0 } ];\n}\n\n// Trim to 2 decimal places\nlet finalValue = Number(value.toFixed(2));\n\n// Send value to gauge, and OK flag to second output\nreturn [ { payload: finalValue }, { payload: true } ];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 560,
+        "wires": [
+            [
+                "bc25559705c92bef",
+                "ad7553de8090392a"
+            ],
+            [
+                "c1578a53e2b5658e",
+                "590c03d2cb31b246"
+            ]
+        ]
+    },
+    {
+        "id": "ad7553de8090392a",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "c34f777b31ff0d3e",
+        "order": 4,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "gauge",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "500",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "900",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 810,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "590c03d2cb31b246",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "c34f777b31ff0d3e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 810,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c1578a53e2b5658e",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 17",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 720,
+        "wires": []
+    }
+]
