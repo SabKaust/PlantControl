@@ -82,8 +82,8 @@
         "type": "ui-theme",
         "name": "Default Theme",
         "colors": {
-            "surface": "#ffffff",
-            "primary": "#0094CE",
+            "surface": "#68ee71",
+            "primary": "#0094ce",
             "bgPage": "#eeeeee",
             "groupBg": "#ffffff",
             "groupOutline": "#cccccc"
@@ -129,13 +129,13 @@
         ],
         "order": 1,
         "className": "",
-        "visible": true,
-        "disabled": false
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "c34f777b31ff0d3e",
         "type": "ui-group",
-        "name": "PlantSide1",
+        "name": "Plant - Left",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -149,7 +149,7 @@
     {
         "id": "6cf2ef424cfcf0b9",
         "type": "ui-group",
-        "name": "PanstSide2",
+        "name": "Plant - Right",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -177,8 +177,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 400,
-        "y": 1300,
+        "x": 500,
+        "y": 1780,
         "wires": [
             [
                 "499c15469dfa9383",
@@ -198,8 +198,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 1300,
+        "x": 740,
+        "y": 1780,
         "wires": [
             [
                 "6ea78caf9b8dda1e"
@@ -212,8 +212,8 @@
         "z": "e12b29f77bd12dd8",
         "name": "ttyUSB",
         "serial": "c2b3dd79366cad0c",
-        "x": 940,
-        "y": 1320,
+        "x": 1040,
+        "y": 1800,
         "wires": []
     },
     {
@@ -228,8 +228,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 940,
-        "y": 1400,
+        "x": 1040,
+        "y": 1880,
         "wires": []
     },
     {
@@ -249,8 +249,8 @@
         "topic": "",
         "payload": "{ \"dynamic1\": 111, \"dynamic2\": 2 }",
         "payloadType": "json",
-        "x": 350,
-        "y": 1180,
+        "x": 450,
+        "y": 1660,
         "wires": [
             [
                 "499c15469dfa9383",
@@ -270,8 +270,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 1580,
+        "x": 740,
+        "y": 2060,
         "wires": [
             []
         ]
@@ -327,8 +327,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 220,
-        "y": 1400,
+        "x": 320,
+        "y": 1880,
         "wires": [
             []
         ]
@@ -762,8 +762,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
-        "y": 1020,
+        "x": 660,
+        "y": 1500,
         "wires": []
     },
     {
@@ -778,8 +778,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 1020,
+        "x": 500,
+        "y": 1500,
         "wires": [
             [
                 "7df747ffe0cf903c"
@@ -803,8 +803,8 @@
         "topic": "",
         "payload": "[5119, 16163]",
         "payloadType": "json",
-        "x": 210,
-        "y": 1020,
+        "x": 310,
+        "y": 1500,
         "wires": [
             [
                 "ba7a8932676963bb"
@@ -967,7 +967,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "",
         "group": "c34f777b31ff0d3e",
-        "order": 2,
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1021,7 +1021,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "",
         "group": "c34f777b31ff0d3e",
-        "order": 3,
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1136,100 +1136,12 @@
         "y": 560,
         "wires": [
             [
-                "bc25559705c92bef",
-                "ad7553de8090392a"
+                "bc25559705c92bef"
             ],
             [
-                "c1578a53e2b5658e",
-                "590c03d2cb31b246"
+                "c1578a53e2b5658e"
             ]
         ]
-    },
-    {
-        "id": "ad7553de8090392a",
-        "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "group": "c34f777b31ff0d3e",
-        "order": 4,
-        "value": "payload",
-        "valueType": "msg",
-        "width": "3",
-        "height": "3",
-        "gtype": "gauge-half",
-        "gstyle": "needle",
-        "title": "gauge",
-        "alwaysShowTitle": false,
-        "floatingTitlePosition": "top-left",
-        "units": "units",
-        "icon": "",
-        "prefix": "",
-        "suffix": "",
-        "segments": [
-            {
-                "from": "0",
-                "color": "#5cd65c",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "500",
-                "color": "#ffc800",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "900",
-                "color": "#ea5353",
-                "text": "",
-                "textType": "label"
-            }
-        ],
-        "min": 0,
-        "max": "1000",
-        "sizeThickness": 16,
-        "sizeGap": 4,
-        "sizeKeyThickness": 8,
-        "styleRounded": true,
-        "styleGlow": false,
-        "className": "",
-        "x": 810,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "590c03d2cb31b246",
-        "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "group": "c34f777b31ff0d3e",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "states": [
-            {
-                "value": "false",
-                "valueType": "bool",
-                "color": "#ff0000"
-            },
-            {
-                "value": "true",
-                "valueType": "bool",
-                "color": "#00ff00"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showBorder": true,
-        "showGlow": true,
-        "x": 810,
-        "y": 860,
-        "wires": []
     },
     {
         "id": "c1578a53e2b5658e",
@@ -1246,6 +1158,446 @@
         "statusType": "auto",
         "x": 480,
         "y": 720,
+        "wires": []
+    },
+    {
+        "id": "73cd99e4da1ab123",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 1 - ON",
+        "label": "B2 Relay 1 - ON",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "green",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 140,
+        "y": 800,
+        "wires": [
+            [
+                "81b31ead98cd6be7"
+            ]
+        ]
+    },
+    {
+        "id": "8d3bc7ce2946c9f6",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 1 - OFF",
+        "label": "B2 Relay 1 - OFF",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "red",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 840,
+        "wires": [
+            [
+                "81b31ead98cd6be7"
+            ]
+        ]
+    },
+    {
+        "id": "81b31ead98cd6be7",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "R1Led",
+        "group": "6cf2ef424cfcf0b9",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "label": "R1 Status",
+        "labelPlacement": "left",
+        "labelAlignment": "flex-end",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 350,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b2f1ac14bacd1b51",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 2 - ON",
+        "label": "B2 Relay 2 - ON",
+        "order": 4,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "green",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 140,
+        "y": 900,
+        "wires": [
+            [
+                "9cb5b15f8762f26b"
+            ]
+        ]
+    },
+    {
+        "id": "0c4b5b86399f70d7",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 2 - OFF",
+        "label": "B2 Relay 2 - OFF",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "red",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 940,
+        "wires": [
+            [
+                "9cb5b15f8762f26b"
+            ]
+        ]
+    },
+    {
+        "id": "9cb5b15f8762f26b",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "R2Led",
+        "group": "6cf2ef424cfcf0b9",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "label": "R2 Status",
+        "labelPlacement": "left",
+        "labelAlignment": "flex-end",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 350,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "93b988ed246edf9d",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 3 - ON",
+        "label": "B2 Relay 3 - ON",
+        "order": 7,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "green",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 140,
+        "y": 1020,
+        "wires": [
+            [
+                "60e67d7197b0dec3"
+            ]
+        ]
+    },
+    {
+        "id": "ca985eca6eb74119",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 3 - OFF",
+        "label": "B2 Relay 3 - OFF",
+        "order": 8,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "red",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 1060,
+        "wires": [
+            [
+                "60e67d7197b0dec3"
+            ]
+        ]
+    },
+    {
+        "id": "60e67d7197b0dec3",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "R3Led",
+        "group": "6cf2ef424cfcf0b9",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "label": "R3 Status",
+        "labelPlacement": "left",
+        "labelAlignment": "flex-end",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 350,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "3de45f15355e6c91",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 4 - ON",
+        "label": "B2 Relay 4 - ON",
+        "order": 10,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "green",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 120,
+        "y": 1140,
+        "wires": [
+            [
+                "e4d0b7e69e851a63"
+            ]
+        ]
+    },
+    {
+        "id": "4d466404d944c7dc",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "6cf2ef424cfcf0b9",
+        "name": "B2 Relay 4 - OFF",
+        "label": "B2 Relay 4 - OFF",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "red",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 110,
+        "y": 1180,
+        "wires": [
+            [
+                "e4d0b7e69e851a63"
+            ]
+        ]
+    },
+    {
+        "id": "e4d0b7e69e851a63",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "R4Led",
+        "group": "6cf2ef424cfcf0b9",
+        "order": 12,
+        "width": "2",
+        "height": "1",
+        "label": "R4 Status",
+        "labelPlacement": "left",
+        "labelAlignment": "flex-end",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 350,
+        "y": 1160,
         "wires": []
     }
 ]
