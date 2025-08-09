@@ -161,59 +161,13 @@
         "groupType": "default"
     },
     {
-        "id": "e79cdc10eb89d8a8",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "Switch OFF Relay 4 - Bank 2",
-        "props": [
-            {
-                "p": "payload.dynamic1",
-                "v": "{ \"dynamic1\": 111, \"dynamic2\": 2 }",
-                "vt": "json"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 500,
-        "y": 1780,
-        "wires": [
-            [
-                "499c15469dfa9383",
-                "10a0d264c5c521c8"
-            ]
-        ]
-    },
-    {
-        "id": "499c15469dfa9383",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 1",
-        "func": "const fixedBytes = [0xAA, 0x03, 0xFE];\n\n// Get dynamic bytes from msg or fallback defaults\nconst dynamic1 = (typeof msg.dynamic1 === 'number') ? msg.dynamic1 : 0x6F;\nconst dynamic2 = (typeof msg.dynamic2 === 'number') ? msg.dynamic2 : 0x02;\n\nconst messageBytes = [...fixedBytes, dynamic1, dynamic2];\n\n// Calculate checksum modulo 256\nconst checksum = messageBytes.reduce((sum, b) => sum + b, 0) % 256;\n\nmessageBytes.push(checksum);\n\nmsg.payload = Buffer.from(messageBytes);\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 1780,
-        "wires": [
-            [
-                "6ea78caf9b8dda1e"
-            ]
-        ]
-    },
-    {
         "id": "6ea78caf9b8dda1e",
         "type": "serial out",
         "z": "e12b29f77bd12dd8",
         "name": "ttyUSB",
         "serial": "c2b3dd79366cad0c",
         "x": 1040,
-        "y": 1800,
+        "y": 1100,
         "wires": []
     },
     {
@@ -225,56 +179,13 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 1040,
-        "y": 1880,
+        "y": 1140,
         "wires": []
-    },
-    {
-        "id": "5c0a15183d0e9f2f",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{ \"dynamic1\": 111, \"dynamic2\": 2 }",
-        "payloadType": "json",
-        "x": 450,
-        "y": 1660,
-        "wires": [
-            [
-                "499c15469dfa9383",
-                "10a0d264c5c521c8"
-            ]
-        ]
-    },
-    {
-        "id": "10a0d264c5c521c8",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 2",
-        "func": "// Log raw incoming values\nnode.warn(\"Raw msg.dynamic1: \" + msg.dynamic1);\nnode.warn(\"Raw msg.dynamic2: \" + msg.dynamic2);\n\n// Use default if value is missing or not a number\nconst dynamic1 = (typeof msg.dynamic1 === 'number') ? msg.dynamic1 : 0x67;\nconst dynamic2 = (typeof msg.dynamic2 === 'number') ? msg.dynamic2 : 0x03;\n\nnode.warn(\"Parsed dynamic1: \" + dynamic1);\nnode.warn(\"Parsed dynamic2: \" + dynamic2);\n\n// Add parsed values to output for inspection\nmsg.dynamic1_parsed = dynamic1;\nmsg.dynamic2_parsed = dynamic2;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 2060,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "2cbecf0d0f45be7f",
@@ -306,31 +217,6 @@
                 "494fa91aa4de0c82",
                 "46cc605b23d840fc"
             ]
-        ]
-    },
-    {
-        "id": "13b3747ee42ce3b2",
-        "type": "change",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
-        "y": 1880,
-        "wires": [
-            []
         ]
     },
     {
@@ -487,12 +373,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
+        "x": 120,
         "y": 260,
         "wires": [
             [
@@ -686,7 +572,7 @@
         "type": "debug",
         "z": "e12b29f77bd12dd8",
         "name": "debug 5",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -720,7 +606,7 @@
         "type": "debug",
         "z": "e12b29f77bd12dd8",
         "name": "debug 7",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -748,68 +634,6 @@
         "x": 1020,
         "y": 700,
         "wires": []
-    },
-    {
-        "id": "7df747ffe0cf903c",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 9",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "ba7a8932676963bb",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 5",
-        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\nmsg.payload = value;\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 1500,
-        "wires": [
-            [
-                "7df747ffe0cf903c"
-            ]
-        ]
-    },
-    {
-        "id": "88f8b1528d3a7c71",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "[5119, 16163]",
-        "payloadType": "json",
-        "x": 310,
-        "y": 1500,
-        "wires": [
-            [
-                "ba7a8932676963bb"
-            ]
-        ]
     },
     {
         "id": "a5a30c720eb36274",
@@ -1599,5 +1423,88 @@
         "x": 350,
         "y": 1160,
         "wires": []
+    },
+    {
+        "id": "e79cdc10eb89d8a8",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "B1 R1 ON",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[108, 1]",
+        "payloadType": "json",
+        "x": 660,
+        "y": 1120,
+        "wires": [
+            [
+                "499c15469dfa9383"
+            ]
+        ]
+    },
+    {
+        "id": "499c15469dfa9383",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 1",
+        "func": "\nconst fixedBytes = [0xAA, 0x03, 0xFE];\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\n// Optional: validate inputs are numbers within byte range (0-255)\nif (\n    typeof reg0 !== 'number' || reg0 < 0 || reg0 > 255 ||\n    typeof reg1 !== 'number' || reg1 < 0 || reg1 > 255\n) {\n    node.error(\"Invalid input bytes; expected numbers 0-255\");\n    return null;  // Stop processing\n}\n\nconst messageBytes = [...fixedBytes, reg0, reg1];\n\n// Calculate checksum modulo 256\nconst checksum = messageBytes.reduce((sum, b) => sum + b, 0) % 256;\n\nmessageBytes.push(checksum);\n\nmsg.payload = Buffer.from(messageBytes);\n\nreturn msg;\n\n/*\n// Assuming msg.payload is an array with two numbers\nlet num1 = msg.payload[0];\nlet num2 = msg.payload[1];\n\nmsg.payload = {\n    firstNumber: num1,\n    secondNumber: num2\n};\n\nreturn msg;\n*/",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 1120,
+        "wires": [
+            [
+                "f1bc8bc129d479c4",
+                "6ea78caf9b8dda1e"
+            ]
+        ]
+    },
+    {
+        "id": "45263db0ab9474f0",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "B1 R1 OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[100, 1]",
+        "payloadType": "json",
+        "x": 650,
+        "y": 1180,
+        "wires": [
+            [
+                "499c15469dfa9383"
+            ]
+        ]
+    },
+    {
+        "id": "1f6db9fb0fee0faf",
+        "type": "serial in",
+        "z": "e12b29f77bd12dd8",
+        "name": "ttyUSB",
+        "serial": "c2b3dd79366cad0c",
+        "x": 630,
+        "y": 1260,
+        "wires": [
+            []
+        ]
     }
 ]
