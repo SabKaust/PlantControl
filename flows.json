@@ -46,14 +46,14 @@
         "databits": 8,
         "parity": "none",
         "stopbits": 1,
-        "waitfor": "",
+        "waitfor": "0xAA",
         "dtr": "none",
         "rts": "none",
         "cts": "none",
         "dsr": "none",
-        "newline": "\\n",
-        "bin": "false",
-        "out": "char",
+        "newline": "4",
+        "bin": "bin",
+        "out": "count",
         "addchar": "",
         "responsetimeout": 10000
     },
@@ -167,7 +167,7 @@
         "name": "ttyUSB",
         "serial": "c2b3dd79366cad0c",
         "x": 1040,
-        "y": 1100,
+        "y": 1040,
         "wires": []
     },
     {
@@ -175,7 +175,7 @@
         "type": "debug",
         "z": "e12b29f77bd12dd8",
         "name": "debug 3",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -184,7 +184,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1040,
-        "y": 1140,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1441,8 +1441,8 @@
         "topic": "",
         "payload": "[108, 1]",
         "payloadType": "json",
-        "x": 660,
-        "y": 1120,
+        "x": 620,
+        "y": 1260,
         "wires": [
             [
                 "499c15469dfa9383"
@@ -1454,7 +1454,7 @@
         "type": "function",
         "z": "e12b29f77bd12dd8",
         "name": "function 1",
-        "func": "\nconst fixedBytes = [0xAA, 0x03, 0xFE];\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\n// Optional: validate inputs are numbers within byte range (0-255)\nif (\n    typeof reg0 !== 'number' || reg0 < 0 || reg0 > 255 ||\n    typeof reg1 !== 'number' || reg1 < 0 || reg1 > 255\n) {\n    node.error(\"Invalid input bytes; expected numbers 0-255\");\n    return null;  // Stop processing\n}\n\nconst messageBytes = [...fixedBytes, reg0, reg1];\n\n// Calculate checksum modulo 256\nconst checksum = messageBytes.reduce((sum, b) => sum + b, 0) % 256;\n\nmessageBytes.push(checksum);\n\nmsg.payload = Buffer.from(messageBytes);\n\nreturn msg;\n\n/*\n// Assuming msg.payload is an array with two numbers\nlet num1 = msg.payload[0];\nlet num2 = msg.payload[1];\n\nmsg.payload = {\n    firstNumber: num1,\n    secondNumber: num2\n};\n\nreturn msg;\n*/",
+        "func": "\nconst fixedBytes = [0xAA, 0x03, 0xFE];\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\n// Optional: validate inputs are numbers within byte range (0-255)\nif (\n    typeof reg0 !== 'number' || reg0 < 0 || reg0 > 255 ||\n    typeof reg1 !== 'number' || reg1 < 0 || reg1 > 255\n) {\n    node.error(\"Invalid input bytes; expected numbers 0-255\");\n    return null;  // Stop processing\n}\n\nconst messageBytes = [...fixedBytes, reg0, reg1];\n\n// Calculate checksum modulo 256\nconst checksum = messageBytes.reduce((sum, b) => sum + b, 0) % 256;\n\nmessageBytes.push(checksum);\n\nmsg.payload = Buffer.from(messageBytes);\n\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1487,8 +1487,8 @@
         "topic": "",
         "payload": "[100, 1]",
         "payloadType": "json",
-        "x": 650,
-        "y": 1180,
+        "x": 610,
+        "y": 1300,
         "wires": [
             [
                 "499c15469dfa9383"
@@ -1501,10 +1501,293 @@
         "z": "e12b29f77bd12dd8",
         "name": "ttyUSB",
         "serial": "c2b3dd79366cad0c",
-        "x": 630,
-        "y": 1260,
+        "x": 650,
+        "y": 1460,
         "wires": [
-            []
+            [
+                "8506c8eec2368a7d",
+                "09614d3e5c159dda"
+            ]
         ]
+    },
+    {
+        "id": "8506c8eec2368a7d",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "99d8a2978611e657",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "B1 R1 Status",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[116, 1]",
+        "payloadType": "json",
+        "x": 630,
+        "y": 1060,
+        "wires": [
+            [
+                "499c15469dfa9383"
+            ]
+        ]
+    },
+    {
+        "id": "3596e2672586f250",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "B1 Status",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[124, 1]",
+        "payloadType": "json",
+        "x": 640,
+        "y": 1000,
+        "wires": [
+            [
+                "499c15469dfa9383"
+            ]
+        ]
+    },
+    {
+        "id": "09614d3e5c159dda",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 2",
+        "func": "// msg.payload is a Buffer from serial node\nlet bytes = msg.payload;\n\n// Check length\nif (bytes.length !== 4) {\n    node.error(\"Invalid packet length\", msg);\n    return null;\n}\n\nconst header1 = bytes[0];\nconst header2 = bytes[1];\nconst statusByte = bytes[2];\nconst checksum = bytes[3];\n\n// Check header\nif (header1 !== 0xAA || header2 !== 0x01) {\n    node.error(\"Invalid header\", msg);\n    return null;\n}\n\n// Check checksum (first 3 bytes)\nconst calcChecksum = bytes.slice(0, 3).reduce((sum, b) => sum + b, 0) % 256;\nif (calcChecksum !== checksum) {\n    node.error(`Checksum mismatch. Got ${checksum}, expected ${calcChecksum}`, msg);\n    return null;\n}\n\n// Build array of 4 messages (one per relay)\nlet msgs = [];\nfor (let i = 0; i < 4; i++) {\n    msgs.push({\n        //topic: `relay${i + 1}`,\n        //payload: (statusByte >> i) & 1\n        payload: !!((statusByte >> i) & 1)      // boolean message\n    });\n}\n\n// Return array of 4 messages for 4 outputs\nreturn msgs;\n",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1540,
+        "wires": [
+            [
+                "04a5e31c328ef9d0",
+                "cec50b74894936fb"
+            ],
+            [
+                "af94f56bc75126c0",
+                "96bf6e0b80798a06"
+            ],
+            [
+                "521e3e9ceeadd7a5"
+            ],
+            [
+                "fefac00941ebd39f"
+            ]
+        ]
+    },
+    {
+        "id": "04a5e31c328ef9d0",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "af94f56bc75126c0",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "521e3e9ceeadd7a5",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "ea9f337132e8deee",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "B1 R2 ON",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[109, 1]",
+        "payloadType": "json",
+        "x": 620,
+        "y": 1360,
+        "wires": [
+            [
+                "499c15469dfa9383"
+            ]
+        ]
+    },
+    {
+        "id": "bf5abc14dec5cfc0",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "B1 R2 OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[101, 1]",
+        "payloadType": "json",
+        "x": 610,
+        "y": 1400,
+        "wires": [
+            [
+                "499c15469dfa9383"
+            ]
+        ]
+    },
+    {
+        "id": "fefac00941ebd39f",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "cec50b74894936fb",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "6cf2ef424cfcf0b9",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 1050,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "96bf6e0b80798a06",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "6cf2ef424cfcf0b9",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 1050,
+        "y": 1760,
+        "wires": []
     }
 ]
