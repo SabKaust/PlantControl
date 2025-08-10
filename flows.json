@@ -177,8 +177,8 @@
         "keepMsgProperties": true,
         "delayOnStart": false,
         "startDelayTime": "",
-        "x": 530,
-        "y": 80,
+        "x": 850,
+        "y": 180,
         "wires": [
             [
                 "8813ef3973a0af74",
@@ -186,108 +186,7 @@
                 "705fab38a5e6a041",
                 "31febcb925966737"
             ],
-            [
-                "494fa91aa4de0c82",
-                "46cc605b23d840fc"
-            ]
-        ]
-    },
-    {
-        "id": "28805406b5806715",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "238",
-        "func": "msg.payload = \n{ value: msg.payload, \n'fc': 4, 'unitid': 238, \n'address': 4031 , \n'quantity': 2 } \nreturn msg\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 80,
-        "wires": [
-            [
-                "2cbecf0d0f45be7f"
-            ]
-        ]
-    },
-    {
-        "id": "f436f4129f37e35b",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 80,
-        "wires": [
-            [
-                "28805406b5806715"
-            ]
-        ]
-    },
-    {
-        "id": "1ffb43fdfd549a3e",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "43",
-        "func": "msg.payload = \n{ value: msg.payload, \n'fc': 4, 'unitid': 43, \n'address': 9 , \n'quantity': 8 } \nreturn msg\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 140,
-        "wires": [
-            [
-                "2cbecf0d0f45be7f"
-            ]
-        ]
-    },
-    {
-        "id": "8ee9c73b04bb9feb",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 140,
-        "wires": [
-            [
-                "1ffb43fdfd549a3e"
-            ]
+            []
         ]
     },
     {
@@ -296,18 +195,8 @@
         "z": "e12b29f77bd12dd8",
         "name": "",
         "registerShowMax": 20,
-        "x": 990,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "494fa91aa4de0c82",
-        "type": "modbus-response",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "registerShowMax": 20,
-        "x": 770,
-        "y": 220,
+        "x": 1050,
+        "y": 120,
         "wires": []
     },
     {
@@ -315,15 +204,15 @@
         "type": "function",
         "z": "e12b29f77bd12dd8",
         "name": "function 3",
-        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    { tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    { tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    { tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x4BA, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
+        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    { tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    { tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    { tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 42, fc: 4, address: 0x4BA, quantity: 2 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 260,
+        "x": 300,
+        "y": 180,
         "wires": [
             [
                 "050a5f5ab80f6fe2"
@@ -334,7 +223,7 @@
         "id": "59c665780d6deca2",
         "type": "inject",
         "z": "e12b29f77bd12dd8",
-        "name": "",
+        "name": "Auto Inject Once",
         "props": [
             {
                 "p": "payload"
@@ -352,7 +241,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 260,
+        "y": 180,
         "wires": [
             [
                 "9108c457792f22b8"
@@ -371,8 +260,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
-        "y": 360,
+        "x": 660,
+        "y": 180,
         "wires": [
             [
                 "2cbecf0d0f45be7f"
@@ -396,8 +285,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 280,
-        "y": 400,
+        "x": 480,
+        "y": 180,
         "wires": [
             [
                 "720edfd00f12a971"
@@ -410,7 +299,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1000",
+        "timeout": "2000",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -421,8 +310,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 300,
-        "y": 580,
+        "x": 740,
+        "y": 100,
         "wires": [
             [
                 "720edfd00f12a971"
@@ -442,25 +331,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 980,
+        "x": 1040,
         "y": 60,
-        "wires": []
-    },
-    {
-        "id": "46cc605b23d840fc",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 15",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 960,
-        "y": 160,
         "wires": []
     },
     {
@@ -1532,31 +1404,35 @@
         "type": "function",
         "z": "e12b29f77bd12dd8",
         "name": "Switch Function",
-        "func": "// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\"];\n\n// Merge for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers (supports both Modbus formats: array or {data:[]})\nlet registers = Array.isArray(msg.payload) ? msg.payload : msg.payload.data;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\nif (registers.length < 2) {\n    node.error(\"Register array too short\", msg);\n    return null;\n}\n\nlet reg0 = registers[0];\nlet reg1 = registers[1];\n\nif (typeof reg0 !== \"number\" || typeof reg1 !== \"number\") {\n    node.error(\"Register values are not numbers\", msg);\n    return null;\n}\n\n// Buffer handling\nlet buf = Buffer.alloc(4);\nif (noSwapTags.includes(msg.topic)) {\n    // No swap\n    buf.writeUInt16BE(reg0, 0);\n    buf.writeUInt16BE(reg1, 2);\n} else if (swapTags.includes(msg.topic)) {\n    // Swap\n    buf.writeUInt16BE(reg1, 0);\n    buf.writeUInt16BE(reg0, 2);\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nlet value = buf.readFloatBE(0);\n\n// Apply per-tag math\nlet adjustedValue;\nswitch (msg.topic) {\n    case \"LEE872avg\":\n        adjustedValue = value / 1;\n        break;\n    case \"LEE872raw\":\n        adjustedValue = value / 3;\n        break;\n    case \"LEE872P\":\n        adjustedValue = value / 5;\n        break;\n    case \"LEE872T\":\n        adjustedValue = value;\n        break;\n    case \"LEE872RH\":\n        adjustedValue = value / 10;\n        break;\n    case \"tag9\":\n        adjustedValue = value * 10; // Example no-swap\n        break;\n    case \"tag8\":\n        adjustedValue = value - 100; // Example no-swap\n        break;\n    default:\n        adjustedValue = value;\n}\n\n// Send to correct output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = Number(adjustedValue.toFixed(2));\noutputs[index] = msg;\nreturn outputs;\n\n\n\n/*\nconst tags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nlet outputs = tags.map(() => null);\n\nconst registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\nif (registers.length < 2) {\n    node.error(\"Register array too short\", msg);\n    return null;\n}\nconst reg0 = registers[0];\nconst reg1 = registers[1];\n\nif (typeof reg0 !== \"number\" || typeof reg1 !== \"number\") {\n    node.error(\"Register values are not numbers\", msg);\n    return null;\n}\n\nconst buf = Buffer.alloc(4);\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\nconst value = buf.readFloatBE(0);\n\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nlet adjustedValue;\nswitch (msg.topic) {\n    case \"LEE872avg\":\n        adjustedValue = value / 2;\n        break;\n    case \"LEE872raw\":\n        adjustedValue = value / 3;\n        break;\n    case \"LEE872P\":\n        adjustedValue = value / 5;\n        break;\n    case \"LEE872T\":\n        adjustedValue = value;\n        break;\n    case \"LEE872RH\":\n        adjustedValue = value / 1;\n        break;\n    default:\n        adjustedValue = value;\n}\n\nmsg.payload = Number(adjustedValue.toFixed(2));\noutputs[index] = msg;\n\nreturn outputs;\n*/",
+        "func": "\n// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\"];\n\n// Merge for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers (only array format supported now)\nlet registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\nif (registers.length < 2) {\n    node.error(\"Register array too short\", msg);\n    return null;\n}\n\nlet reg0 = registers[0];\nlet reg1 = registers[1];\n\nif (typeof reg0 !== \"number\" || typeof reg1 !== \"number\") {\n    node.error(\"Register values are not numbers\", msg);\n    return null;\n}\n\n// Buffer handling\nlet buf = Buffer.alloc(4);\nif (noSwapTags.includes(msg.topic)) {\n    // No swap\n    buf.writeUInt16BE(reg0, 0);\n    buf.writeUInt16BE(reg1, 2);\n} else if (swapTags.includes(msg.topic)) {\n    // Swap\n    buf.writeUInt16BE(reg1, 0);\n    buf.writeUInt16BE(reg0, 2);\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nlet value = buf.readFloatBE(0);\n\n// Apply per-tag math\nlet adjustedValue;\nswitch (msg.topic) {\n    case \"LEE872avg\":\n        adjustedValue = value / 2;\n        break;\n    case \"LEE872raw\":\n        adjustedValue = value / 3;\n        break;\n    case \"LEE872P\":\n        adjustedValue = value / 5;\n        break;\n    case \"LEE872T\":\n        adjustedValue = value;\n        break;\n    case \"LEE872RH\":\n        adjustedValue = value / 1;\n        break;\n    case \"tag9\":\n        adjustedValue = value * 10; // Example no-swap\n        break;\n    case \"tag8\":\n        adjustedValue = value - 100; // Example no-swap\n        break;\n    default:\n        adjustedValue = value;\n}\n\n// Send to correct output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = Number(adjustedValue.toFixed(2));\noutputs[index] = msg;\nreturn outputs;\n\n",
         "outputs": 5,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 400,
+        "x": 200,
+        "y": 440,
         "wires": [
             [
                 "ad74ab306b726a6c",
-                "92fd9f5e23f4ca55"
+                "92fd9f5e23f4ca55",
+                "c5c7d678919fa382"
             ],
             [
-                "af7fa7834f7821dc"
+                "af7fa7834f7821dc",
+                "8279e48f3427a27c"
             ],
             [
-                "92ad87f221132c54"
+                "92ad87f221132c54",
+                "68706f72109f942f"
             ],
             [
                 "a0aada964dbe28a2"
             ],
             [
-                "2821acf17bf05f99"
+                "2821acf17bf05f99",
+                "097904b8986cfa90"
             ]
         ]
     },
@@ -1566,7 +1442,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "L CO2 Avg",
         "group": "c34f777b31ff0d3e",
-        "order": 14,
+        "order": 18,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1603,13 +1479,13 @@
         "min": 0,
         "max": "1000",
         "sizeThickness": 16,
-        "sizeGap": 4,
+        "sizeGap": "4",
         "sizeKeyThickness": 8,
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 990,
-        "y": 400,
+        "x": 970,
+        "y": 520,
         "wires": [
             []
         ]
@@ -1620,7 +1496,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "L CO2 raw",
         "group": "c34f777b31ff0d3e",
-        "order": 14,
+        "order": 17,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1662,8 +1538,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 990,
-        "y": 440,
+        "x": 970,
+        "y": 560,
         "wires": [
             []
         ]
@@ -1674,7 +1550,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "L CO2 Pressure",
         "group": "c34f777b31ff0d3e",
-        "order": 14,
+        "order": 16,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1716,8 +1592,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1000,
-        "y": 480,
+        "x": 980,
+        "y": 600,
         "wires": [
             []
         ]
@@ -1728,7 +1604,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "L CO2 Temp",
         "group": "c34f777b31ff0d3e",
-        "order": 14,
+        "order": 15,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1770,11 +1646,68 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 990,
-        "y": 520,
+        "x": 970,
+        "y": 640,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "92fd9f5e23f4ca55",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "68054c6765550f9e",
+        "type": "comment",
+        "z": "e12b29f77bd12dd8",
+        "name": "Delay between each Modbus Command",
+        "info": "",
+        "x": 750,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "a06c89b7fcbb408c",
+        "type": "comment",
+        "z": "e12b29f77bd12dd8",
+        "name": "Start Delay",
+        "info": "",
+        "x": 500,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b9432469db3c3a02",
+        "type": "comment",
+        "z": "e12b29f77bd12dd8",
+        "name": "Modbus Registers",
+        "info": "",
+        "x": 290,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "68d0c063e449ea2b",
+        "type": "comment",
+        "z": "e12b29f77bd12dd8",
+        "name": "Separate based on Tags",
+        "info": "",
+        "x": 210,
+        "y": 500,
+        "wires": []
     },
     {
         "id": "2821acf17bf05f99",
@@ -1824,27 +1757,190 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 990,
-        "y": 560,
+        "x": 970,
+        "y": 680,
         "wires": [
             []
         ]
     },
     {
-        "id": "92fd9f5e23f4ca55",
-        "type": "debug",
+        "id": "097904b8986cfa90",
+        "type": "ui-gauge",
         "z": "e12b29f77bd12dd8",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 980,
-        "y": 360,
-        "wires": []
+        "name": "L CO2 RH",
+        "group": "c34f777b31ff0d3e",
+        "order": 13,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Relative Humidity",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Percentage (%)",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 970,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5c7d678919fa382",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 Avg T",
+        "group": "c34f777b31ff0d3e",
+        "order": 21,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "CO2 Avg - ppm",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "ppm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#24b5e5",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": "4",
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 970,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8279e48f3427a27c",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 raw T",
+        "group": "c34f777b31ff0d3e",
+        "order": 20,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "CO2 raw - ppm",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "ppm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#24b5e5",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 970,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68706f72109f942f",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 Pressure T",
+        "group": "c34f777b31ff0d3e",
+        "order": 19,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "CO2 Pressure - mbar",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "mbar",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#24b5e5",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": 0,
+        "max": "2000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 990,
+        "y": 380,
+        "wires": [
+            []
+        ]
     }
 ]
