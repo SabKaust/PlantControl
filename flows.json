@@ -165,9 +165,9 @@
         "type": "modbus-flex-getter",
         "z": "e12b29f77bd12dd8",
         "name": "Modbus Flex Getter",
-        "showStatusActivities": false,
-        "showErrors": false,
-        "showWarnings": false,
+        "showStatusActivities": true,
+        "showErrors": true,
+        "showWarnings": true,
         "logIOActivities": false,
         "server": "d3e8251c2f05a30e",
         "useIOFile": false,
@@ -183,8 +183,8 @@
             [
                 "8813ef3973a0af74",
                 "eb25bce8f6c1cef0",
-                "a6f2b4fa5b77580b",
-                "705fab38a5e6a041"
+                "705fab38a5e6a041",
+                "31febcb925966737"
             ],
             [
                 "494fa91aa4de0c82",
@@ -315,7 +315,7 @@
         "type": "function",
         "z": "e12b29f77bd12dd8",
         "name": "function 3",
-        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    { tag: \"Tag3\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    { tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x4BA, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
+        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    { tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    { tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    { tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x4BA, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -346,12 +346,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
+        "x": 130,
         "y": 260,
         "wires": [
             [
@@ -410,7 +410,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "2000",
+        "timeout": "1000",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -430,448 +430,11 @@
         ]
     },
     {
-        "id": "a6f2b4fa5b77580b",
-        "type": "switch",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "S238Name",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "S44Name",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Tag3",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Tag4",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Tag5",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Tag6",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Tag7",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 7,
-        "x": 650,
-        "y": 420,
-        "wires": [
-            [
-                "805925f14f1566f4"
-            ],
-            [
-                "8a855ede8208b82f"
-            ],
-            [
-                "a5a30c720eb36274",
-                "1e1c66ff03de7db5"
-            ],
-            [
-                "b5228078ead7e436",
-                "f707eb47c9571783"
-            ],
-            [
-                "0fce9078dca3ebf7",
-                "45dd83a27cae6866"
-            ],
-            [
-                "5dc4017a9c404b09",
-                "58e4c98f78c4e6a9"
-            ],
-            [
-                "92adb35145275e3f"
-            ]
-        ]
-    },
-    {
-        "id": "805925f14f1566f4",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "8a855ede8208b82f",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "3215e2534364999f",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 5",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "d2462d81b7229f45",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 6",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "cf76c889a15f72a6",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 7",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "cb045b6573b6a5c3",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 8",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "a5a30c720eb36274",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 6",
-        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// Trim to 3 decimal places and convert back to number\nmsg.payload = Number(value.toFixed(2));\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 440,
-        "wires": [
-            [
-                "3215e2534364999f",
-                "515a07b9bd9bd0d9"
-            ]
-        ]
-    },
-    {
-        "id": "b5228078ead7e436",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 13",
-        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// Trim to 3 decimal places and convert back to number\nmsg.payload = Number(value.toFixed(2));\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 540,
-        "wires": [
-            [
-                "d2462d81b7229f45"
-            ]
-        ]
-    },
-    {
-        "id": "0fce9078dca3ebf7",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 14",
-        "func": "if (!Array.isArray(msg.payload) || msg.payload.length < 2) {\n    node.warn(\"Invalid payload\");\n    return [ { payload: null }, { payload: false } ]; // null to clear gauge, 0 = error\n}\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// If invalid float, send error\nif (!isFinite(value)) {\n    node.warn(\"Invalid float value\");\n    return [ { payload: null }, { payload: 0 } ];\n}\n\n// Trim to 2 decimal places\nlet finalValue = Number(value.toFixed(2));\n\n// Send value to gauge, and OK flag to second output\nreturn [ { payload: finalValue }, { payload: true } ];",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 620,
-        "wires": [
-            [
-                "cf76c889a15f72a6",
-                "1cf767f2b361fc4c"
-            ]
-        ]
-    },
-    {
-        "id": "5dc4017a9c404b09",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 15",
-        "func": "// msg.payload = [0x13FF, 0x3F23]\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// Trim to 3 decimal places and convert back to number\nmsg.payload = Number(value.toFixed(2));\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 700,
-        "wires": [
-            [
-                "cb045b6573b6a5c3"
-            ]
-        ]
-    },
-    {
-        "id": "1e1c66ff03de7db5",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 10",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "f707eb47c9571783",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 11",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "45dd83a27cae6866",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 12",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "58e4c98f78c4e6a9",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 13",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1020,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "515a07b9bd9bd0d9",
-        "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "group": "c34f777b31ff0d3e",
-        "order": 13,
-        "value": "payload",
-        "valueType": "msg",
-        "width": "3",
-        "height": "3",
-        "gtype": "gauge-half",
-        "gstyle": "needle",
-        "title": "MB 238 A ox424",
-        "alwaysShowTitle": false,
-        "floatingTitlePosition": "top-left",
-        "units": "mm",
-        "icon": "",
-        "prefix": "",
-        "suffix": "",
-        "segments": [
-            {
-                "from": "0",
-                "color": "#5cd65c",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "400",
-                "color": "#ffc800",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "700",
-                "color": "#ea5353",
-                "text": "",
-                "textType": "label"
-            }
-        ],
-        "min": 0,
-        "max": "1000",
-        "sizeThickness": "16",
-        "sizeGap": 4,
-        "sizeKeyThickness": "8",
-        "styleRounded": true,
-        "styleGlow": false,
-        "className": "",
-        "x": 1040,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1cf767f2b361fc4c",
-        "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "group": "c34f777b31ff0d3e",
-        "order": 14,
-        "value": "payload",
-        "valueType": "msg",
-        "width": "3",
-        "height": "3",
-        "gtype": "gauge-34",
-        "gstyle": "rounded",
-        "title": "gauge",
-        "alwaysShowTitle": false,
-        "floatingTitlePosition": "top-left",
-        "units": "units",
-        "icon": "",
-        "prefix": "",
-        "suffix": "",
-        "segments": [
-            {
-                "from": "0",
-                "color": "#5cd65c",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "0.5",
-                "color": "#ffc800",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "1",
-                "color": "#ea5353",
-                "text": "",
-                "textType": "label"
-            }
-        ],
-        "min": 0,
-        "max": "1",
-        "sizeThickness": 16,
-        "sizeGap": 4,
-        "sizeKeyThickness": 8,
-        "styleRounded": true,
-        "styleGlow": false,
-        "className": "",
-        "x": 1010,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "705fab38a5e6a041",
         "type": "debug",
         "z": "e12b29f77bd12dd8",
         "name": "debug 14",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -898,63 +461,6 @@
         "statusType": "auto",
         "x": 960,
         "y": 160,
-        "wires": []
-    },
-    {
-        "id": "bc25559705c92bef",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 16",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "92adb35145275e3f",
-        "type": "function",
-        "z": "e12b29f77bd12dd8",
-        "name": "function 16",
-        "func": "// Output array: [gaugeValue, errorFlag]\n\nif (!Array.isArray(msg.payload) || msg.payload.length < 2) {\n    node.warn(\"Invalid payload\");\n    return [ { payload: null }, { payload: false } ]; // null to clear gauge, 0 = error\n}\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\nlet buf = Buffer.alloc(4);\n\n// Write second register first (high word), then first register (low word)\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\n// Now read as 32-bit float\nlet value = buf.readFloatBE(0);\n\n// If invalid float, send error\nif (!isFinite(value)) {\n    node.warn(\"Invalid float value\");\n    return [ { payload: null }, { payload: 0 } ];\n}\n\n// Trim to 2 decimal places\nlet finalValue = Number(value.toFixed(2));\n\n// Send value to gauge, and OK flag to second output\nreturn [ { payload: finalValue }, { payload: true } ];",
-        "outputs": 2,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 560,
-        "wires": [
-            [
-                "bc25559705c92bef"
-            ],
-            [
-                "c1578a53e2b5658e"
-            ]
-        ]
-    },
-    {
-        "id": "c1578a53e2b5658e",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 17",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 720,
         "wires": []
     },
     {
@@ -2019,6 +1525,326 @@
         "info": "",
         "x": 640,
         "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "31febcb925966737",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "Switch Function",
+        "func": "const tags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nlet outputs = tags.map(() => null);\n\nconst registers = msg.payload;\n\n/*\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\nif (registers.length < 2) {\n    node.error(\"Register array too short\", msg);\n    return null;\n}\n*/\nconst reg0 = registers[0];\nconst reg1 = registers[1];\n\n/*\nif (typeof reg0 !== \"number\" || typeof reg1 !== \"number\") {\n    node.error(\"Register values are not numbers\", msg);\n    return null;\n}\n*/\nconst buf = Buffer.alloc(4);\nbuf.writeUInt16BE(reg1, 0);\nbuf.writeUInt16BE(reg0, 2);\n\nconst value = buf.readFloatBE(0);\n\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nlet adjustedValue;\nswitch (msg.topic) {\n    case \"LEE872avg\":\n        adjustedValue = value / 2;\n        break;\n    case \"LEE872raw\":\n        adjustedValue = value / 3;\n        break;\n    case \"LEE872P\":\n        adjustedValue = value / 5;\n        break;\n    case \"LEE872T\":\n        adjustedValue = value;\n        break;\n    case \"LEE872RH\":\n        adjustedValue = value / 1;\n        break;\n    default:\n        adjustedValue = value;\n}\n\nmsg.payload = Number(adjustedValue.toFixed(2));\noutputs[index] = msg;\n\nreturn outputs;\n",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 400,
+        "wires": [
+            [
+                "ad74ab306b726a6c",
+                "92fd9f5e23f4ca55"
+            ],
+            [
+                "af7fa7834f7821dc"
+            ],
+            [
+                "92ad87f221132c54"
+            ],
+            [
+                "a0aada964dbe28a2"
+            ],
+            [
+                "2821acf17bf05f99"
+            ]
+        ]
+    },
+    {
+        "id": "ad74ab306b726a6c",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 Avg",
+        "group": "c34f777b31ff0d3e",
+        "order": 14,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CO2 Avg",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "ppm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "400",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "900",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 990,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af7fa7834f7821dc",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 raw",
+        "group": "c34f777b31ff0d3e",
+        "order": 14,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CO2 raw",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "ppm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "400",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "900",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 990,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92ad87f221132c54",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 Pressure",
+        "group": "c34f777b31ff0d3e",
+        "order": 14,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CO2 Pressure",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "mbar",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "900",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "2000",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "2000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1000,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a0aada964dbe28a2",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 Temp",
+        "group": "c34f777b31ff0d3e",
+        "order": 14,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CO2 Temperature",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Celsius (°C)",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "30",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "70",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 990,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2821acf17bf05f99",
+        "type": "ui-gauge",
+        "z": "e12b29f77bd12dd8",
+        "name": "L CO2 RH",
+        "group": "c34f777b31ff0d3e",
+        "order": 14,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Relative Humidity",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Percentage (%)",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 990,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92fd9f5e23f4ca55",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 360,
         "wires": []
     }
 ]
