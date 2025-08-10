@@ -161,33 +161,6 @@
         "groupType": "default"
     },
     {
-        "id": "6ea78caf9b8dda1e",
-        "type": "serial out",
-        "z": "e12b29f77bd12dd8",
-        "name": "ttyUSB",
-        "serial": "c2b3dd79366cad0c",
-        "x": 1040,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "f1bc8bc129d479c4",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 3",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1040,
-        "y": 1160,
-        "wires": []
-    },
-    {
         "id": "2cbecf0d0f45be7f",
         "type": "modbus-flex-getter",
         "z": "e12b29f77bd12dd8",
@@ -1425,59 +1398,69 @@
         "wires": []
     },
     {
-        "id": "e79cdc10eb89d8a8",
-        "type": "inject",
+        "id": "b6428b2dbbc5401d",
+        "type": "serial request",
         "z": "e12b29f77bd12dd8",
-        "name": "B1 R1 ON",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "[108, 1]",
-        "payloadType": "json",
-        "x": 620,
-        "y": 1260,
+        "name": "",
+        "serial": "c2b3dd79366cad0c",
+        "x": 530,
+        "y": 1620,
         "wires": [
             [
-                "499c15469dfa9383"
+                "ebe18d7b778cf9dc",
+                "3ff00e71ce801674"
             ]
         ]
     },
     {
-        "id": "499c15469dfa9383",
+        "id": "ebe18d7b778cf9dc",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "e7f025e71380f24f",
         "type": "function",
         "z": "e12b29f77bd12dd8",
-        "name": "function 1",
-        "func": "\nconst fixedBytes = [0xAA, 0x03, 0xFE];\n\nlet reg0 = msg.payload[0];\nlet reg1 = msg.payload[1];\n\n// Optional: validate inputs are numbers within byte range (0-255)\nif (\n    typeof reg0 !== 'number' || reg0 < 0 || reg0 > 255 ||\n    typeof reg1 !== 'number' || reg1 < 0 || reg1 > 255\n) {\n    node.error(\"Invalid input bytes; expected numbers 0-255\");\n    return null;  // Stop processing\n}\n\nconst messageBytes = [...fixedBytes, reg0, reg1];\n\n// Calculate checksum modulo 256\nconst checksum = messageBytes.reduce((sum, b) => sum + b, 0) % 256;\n\nmessageBytes.push(checksum);\n\nmsg.payload = Buffer.from(messageBytes);\n\nreturn msg;\n\n",
+        "name": "function 5",
+        "func": "// Inputs:\n// msg.payload = { relay: N, state: \"ON\" or \"OFF\", bankByte: <number> }\n\nconst relayNum = msg.payload.relay;\nconst state = msg.payload.state.toUpperCase();\nconst bankByte = msg.payload.bankByte;\n\nif (relayNum < 1 || relayNum > 8) {\n    node.error(\"Relay number must be 1 to 8\", msg);\n    return null;\n}\n\nif (typeof bankByte !== 'number') {\n    node.error(\"bankByte must be a number\", msg);\n    return null;\n}\n\nconst header = 0xAA;\nconst cmd1 = 0x03;\nconst cmd2 = 0xFE;\n\nlet relayByte;\nif (state === \"ON\") {\n    relayByte = 108 + (relayNum - 1);\n} else if (state === \"OFF\") {\n    relayByte = 100 + (relayNum - 1);\n} else {\n    node.error(\"State must be ON or OFF\", msg);\n    return null;\n}\n\nconst command = [header, cmd1, cmd2, relayByte, bankByte];\nconst checksum = command.reduce((sum, b) => sum + b, 0) % 256;\ncommand.push(checksum);\n\nmsg.payload = Buffer.from(command);\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
-        "y": 1120,
+        "x": 360,
+        "y": 1620,
         "wires": [
             [
-                "f1bc8bc129d479c4",
-                "6ea78caf9b8dda1e"
+                "b6428b2dbbc5401d"
             ]
         ]
     },
     {
-        "id": "45263db0ab9474f0",
+        "id": "a54bf9aa36c7cdf2",
         "type": "inject",
         "z": "e12b29f77bd12dd8",
-        "name": "B1 R1 OFF",
+        "name": "1 ON",
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             }
         ],
         "repeat": "",
@@ -1485,56 +1468,28 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "[100, 1]",
+        "payload": "{ \"relay\": 1, \"state\": \"ON\", \"bankByte\": 1 }",
         "payloadType": "json",
-        "x": 610,
-        "y": 1300,
+        "x": 150,
+        "y": 1520,
         "wires": [
             [
-                "499c15469dfa9383"
+                "e7f025e71380f24f"
             ]
         ]
     },
     {
-        "id": "1f6db9fb0fee0faf",
-        "type": "serial in",
-        "z": "e12b29f77bd12dd8",
-        "name": "ttyUSB",
-        "serial": "c2b3dd79366cad0c",
-        "x": 650,
-        "y": 1460,
-        "wires": [
-            [
-                "8506c8eec2368a7d",
-                "09614d3e5c159dda"
-            ]
-        ]
-    },
-    {
-        "id": "8506c8eec2368a7d",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "99d8a2978611e657",
+        "id": "ec7c817bc049eeff",
         "type": "inject",
         "z": "e12b29f77bd12dd8",
-        "name": "B1 R1 Status",
+        "name": "1 OFF",
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             }
         ],
         "repeat": "",
@@ -1542,131 +1497,109 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "[116, 1]",
+        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
         "payloadType": "json",
-        "x": 630,
-        "y": 1060,
+        "x": 150,
+        "y": 1480,
         "wires": [
             [
-                "499c15469dfa9383"
+                "e7f025e71380f24f"
             ]
         ]
     },
     {
-        "id": "3596e2672586f250",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "B1 Status",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "[124, 1]",
-        "payloadType": "json",
-        "x": 640,
-        "y": 1000,
-        "wires": [
-            [
-                "499c15469dfa9383"
-            ]
-        ]
-    },
-    {
-        "id": "09614d3e5c159dda",
+        "id": "3ff00e71ce801674",
         "type": "function",
         "z": "e12b29f77bd12dd8",
-        "name": "function 2",
-        "func": "// msg.payload is a Buffer from serial node\nlet bytes = msg.payload;\n\n// Check length\nif (bytes.length !== 4) {\n    node.error(\"Invalid packet length\", msg);\n    return null;\n}\n\nconst header1 = bytes[0];\nconst header2 = bytes[1];\nconst statusByte = bytes[2];\nconst checksum = bytes[3];\n\n// Check header\nif (header1 !== 0xAA || header2 !== 0x01) {\n    node.error(\"Invalid header\", msg);\n    return null;\n}\n\n// Check checksum (first 3 bytes)\nconst calcChecksum = bytes.slice(0, 3).reduce((sum, b) => sum + b, 0) % 256;\nif (calcChecksum !== checksum) {\n    node.error(`Checksum mismatch. Got ${checksum}, expected ${calcChecksum}`, msg);\n    return null;\n}\n\n// Build array of 4 messages (one per relay)\nlet msgs = [];\nfor (let i = 0; i < 4; i++) {\n    msgs.push({\n        //topic: `relay${i + 1}`,\n        //payload: (statusByte >> i) & 1\n        payload: !!((statusByte >> i) & 1)      // boolean message\n    });\n}\n\n// Return array of 4 messages for 4 outputs\nreturn msgs;\n",
-        "outputs": 4,
+        "name": "function 7",
+        "func": "let bytes = msg.payload;\n\nif (!Buffer.isBuffer(bytes)) {\n    node.error(\"Payload is not a Buffer\", msg);\n    return null;\n}\n\nif (bytes.length !== 4) {\n    node.error(\"Invalid response length\", msg);\n    return null;\n}\n\nconst header1 = bytes[0];\nconst header2 = bytes[1];\nconst dataByte = bytes[2];\nconst checksum = bytes[3];\n\n// Validate headers\nif (header1 !== 0xAA || header2 !== 0x01) {\n    node.error(\"Invalid response header\", msg);\n    return null;\n}\n\n// Calculate expected checksum\nconst calcChecksum = (header1 + header2 + dataByte) % 256;\nif (calcChecksum !== checksum) {\n    node.error(`Checksum mismatch. Got ${checksum}, expected ${calcChecksum}`, msg);\n    return null;\n}\n\nif (checksum === 0x00) {\n    // On/off response - just send null on all outputs to keep ui-leds unchanged\n    return [null, null, null, null, null, null, null, null];\n} else {\n    // Status response - send relay states on outputs 1-8\n    let msgs = [];\n    for (let i = 0; i < 8; i++) {\n        msgs.push({\n            topic: `relay${i + 1}`,\n            payload: !!((dataByte >> i) & 1)\n        });\n    }\n    return msgs;\n}\n",
+        "outputs": 8,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 1540,
+        "x": 660,
+        "y": 1740,
         "wires": [
             [
-                "04a5e31c328ef9d0",
-                "cec50b74894936fb"
+                "3e5411bb87223f43",
+                "3850545d757cb2a6"
             ],
             [
-                "af94f56bc75126c0",
-                "96bf6e0b80798a06"
+                "a9bd8255d07d1bba"
             ],
+            [],
+            [],
+            [],
+            [],
             [
-                "521e3e9ceeadd7a5"
+                "68e7742d0fc8a078"
             ],
+            []
+        ]
+    },
+    {
+        "id": "11354f94d918a3dd",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 8",
+        "func": "const command = [0xAA, 0x03, 0xFE, 0x7C, 0x01];\nconst checksum = command.reduce((sum, b) => sum + b, 0) % 256;\ncommand.push(checksum);\n\nmsg.payload = Buffer.from(command);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1760,
+        "wires": [
             [
-                "fefac00941ebd39f"
+                "b6428b2dbbc5401d"
             ]
         ]
     },
     {
-        "id": "04a5e31c328ef9d0",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 9",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 1540,
-        "wires": []
-    },
-    {
-        "id": "af94f56bc75126c0",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 18",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 1580,
-        "wires": []
-    },
-    {
-        "id": "521e3e9ceeadd7a5",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 19",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 1620,
-        "wires": []
-    },
-    {
-        "id": "ea9f337132e8deee",
+        "id": "2cae27dbcd74c5eb",
         "type": "inject",
         "z": "e12b29f77bd12dd8",
-        "name": "B1 R2 ON",
+        "name": "Check Status - Auto 1s",
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 1720,
+        "wires": [
+            [
+                "11354f94d918a3dd"
+            ]
+        ]
+    },
+    {
+        "id": "01e5a8b0e413d878",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "7 OFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             }
         ],
         "repeat": "",
@@ -1674,24 +1607,28 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "[109, 1]",
+        "payload": "{ \"relay\": 7, \"state\": \"OFF\", \"bankByte\": 1 }",
         "payloadType": "json",
-        "x": 620,
-        "y": 1360,
+        "x": 170,
+        "y": 1380,
         "wires": [
             [
-                "499c15469dfa9383"
+                "e7f025e71380f24f"
             ]
         ]
     },
     {
-        "id": "bf5abc14dec5cfc0",
+        "id": "ea1cfe55aa083825",
         "type": "inject",
         "z": "e12b29f77bd12dd8",
-        "name": "B1 R2 OFF",
+        "name": "7 ON",
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             }
         ],
         "repeat": "",
@@ -1699,39 +1636,22 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "[101, 1]",
+        "payload": "{ \"relay\": 7, \"state\": \"ON\", \"bankByte\": 1 }",
         "payloadType": "json",
-        "x": 610,
-        "y": 1400,
+        "x": 170,
+        "y": 1420,
         "wires": [
             [
-                "499c15469dfa9383"
+                "e7f025e71380f24f"
             ]
         ]
     },
     {
-        "id": "fefac00941ebd39f",
-        "type": "debug",
-        "z": "e12b29f77bd12dd8",
-        "name": "debug 20",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 1660,
-        "wires": []
-    },
-    {
-        "id": "cec50b74894936fb",
+        "id": "3e5411bb87223f43",
         "type": "ui-led",
         "z": "e12b29f77bd12dd8",
         "name": "",
-        "group": "6cf2ef424cfcf0b9",
+        "group": "c34f777b31ff0d3e",
         "order": -1,
         "width": 0,
         "height": 0,
@@ -1754,40 +1674,167 @@
         "shape": "circle",
         "showBorder": true,
         "showGlow": true,
-        "x": 1050,
+        "x": 890,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "a9bd8255d07d1bba",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "c34f777b31ff0d3e",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 890,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "68e7742d0fc8a078",
+        "type": "ui-led",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "group": "c34f777b31ff0d3e",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 890,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "3850545d757cb2a6",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
         "y": 1700,
         "wires": []
     },
     {
-        "id": "96bf6e0b80798a06",
-        "type": "ui-led",
+        "id": "faa11bfa1a88dbff",
+        "type": "ui-button",
         "z": "e12b29f77bd12dd8",
-        "name": "",
-        "group": "6cf2ef424cfcf0b9",
-        "order": -1,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "states": [
-            {
-                "value": "false",
-                "valueType": "bool",
-                "color": "#ff0000"
-            },
-            {
-                "value": "true",
-                "valueType": "bool",
-                "color": "#00ff00"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showBorder": true,
-        "showGlow": true,
-        "x": 1050,
-        "y": 1760,
-        "wires": []
+        "group": "c34f777b31ff0d3e",
+        "name": "Relay 1 ON",
+        "label": "Relay 1 ON",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "{ \"relay\": 1, \"state\": \"ON\", \"bankByte\": 1 }",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "green",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 1600,
+        "wires": [
+            [
+                "e7f025e71380f24f"
+            ]
+        ]
+    },
+    {
+        "id": "ecdce4d9e8e55554",
+        "type": "ui-button",
+        "z": "e12b29f77bd12dd8",
+        "group": "c34f777b31ff0d3e",
+        "name": "Relay 1 OFF",
+        "label": "Relay 1 OFF",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "red",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 1560,
+        "wires": [
+            [
+                "e7f025e71380f24f"
+            ]
+        ]
     }
 ]
