@@ -299,7 +299,7 @@
         "z": "e12b29f77bd12dd8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "2000",
+        "timeout": "8000",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -1942,5 +1942,128 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "367021becd7ef343",
+        "type": "modbus-flex-write",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "d3e8251c2f05a30e",
+        "emptyMsgOnFail": true,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 490,
+        "y": 820,
+        "wires": [
+            [
+                "aa58df6d01fcd4e3",
+                "6315269d8f07955b"
+            ],
+            [
+                "8f9f5fcff3ab6bbe"
+            ]
+        ]
+    },
+    {
+        "id": "aa58df6d01fcd4e3",
+        "type": "modbus-response",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 750,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "8f9f5fcff3ab6bbe",
+        "type": "modbus-response",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 750,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "716355a554f119d2",
+        "type": "function",
+        "z": "e12b29f77bd12dd8",
+        "name": "function 1",
+        "func": "// Expecting Inject payload like: { \"address\": 100, \"value\": 1234 }\nlet addr = msg.payload.address;\nlet val  = msg.payload.value;\n\n// Build Modbus Flex Write payload\nmsg.payload = {\n    fc: 6,                // Function Code 0x06 - Write Single Register\n    unitid: 1,            // Modbus slave ID\n    address: addr,        // Register address (zero-based)\n    quantity: 1,          // Always 1 for FC=6\n    value: [val]          // Value must be in array format\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 820,
+        "wires": [
+            [
+                "367021becd7ef343",
+                "1f9e8860346896f0"
+            ]
+        ]
+    },
+    {
+        "id": "751581320bb88478",
+        "type": "inject",
+        "z": "e12b29f77bd12dd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{   \"address\": 100,   \"value\": 1234 }",
+        "payloadType": "json",
+        "x": 110,
+        "y": 820,
+        "wires": [
+            [
+                "716355a554f119d2"
+            ]
+        ]
+    },
+    {
+        "id": "1f9e8860346896f0",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "6315269d8f07955b",
+        "type": "debug",
+        "z": "e12b29f77bd12dd8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 900,
+        "wires": []
     }
 ]
