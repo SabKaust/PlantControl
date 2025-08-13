@@ -135,7 +135,7 @@
     {
         "id": "c34f777b31ff0d3e",
         "type": "ui-group",
-        "name": "Plant - Left",
+        "name": "Plant Relays - Left",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -149,7 +149,7 @@
     {
         "id": "6cf2ef424cfcf0b9",
         "type": "ui-group",
-        "name": "Plant - Right",
+        "name": "Plant Relays - Right",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -163,7 +163,7 @@
     {
         "id": "b135539d7634acf8",
         "type": "ui-group",
-        "name": "Plant left Drive",
+        "name": "Plant Drive - Left",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -177,11 +177,39 @@
     {
         "id": "13816c2f51c27294",
         "type": "ui-group",
-        "name": "Plant Right Drive",
+        "name": "Plant Drive - Right",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
         "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "44de1c430cbb5601",
+        "type": "ui-group",
+        "name": "Plant Sensors - Left",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "dcc0565feb8882f8",
+        "type": "ui-group",
+        "name": "Plant Sensors - Right",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 6,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -1456,9 +1484,10 @@
             ],
             [],
             [],
-            [],
             [
-                "8344121ff9b5388d",
+                "477223d0432c445c"
+            ],
+            [
                 "6a43d69ea6db31aa"
             ]
         ]
@@ -1468,8 +1497,8 @@
         "type": "ui-gauge",
         "z": "f00a2f75f92239ad",
         "name": "L CO2 Temp",
-        "group": "6cf2ef424cfcf0b9",
-        "order": 13,
+        "group": "44de1c430cbb5601",
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -1530,8 +1559,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 420,
-        "y": 260,
+        "x": 300,
+        "y": 240,
         "wires": []
     },
     {
@@ -1570,8 +1599,8 @@
         "z": "f00a2f75f92239ad",
         "name": "Separate based on Tags",
         "info": "",
-        "x": 210,
-        "y": 520,
+        "x": 150,
+        "y": 400,
         "wires": []
     },
     {
@@ -1579,8 +1608,8 @@
         "type": "ui-gauge",
         "z": "f00a2f75f92239ad",
         "name": "R CO2 Avg T",
-        "group": "6cf2ef424cfcf0b9",
-        "order": 14,
+        "group": "dcc0565feb8882f8",
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "2",
@@ -1621,8 +1650,8 @@
         "type": "ui-gauge",
         "z": "f00a2f75f92239ad",
         "name": "R CO2 raw T",
-        "group": "c34f777b31ff0d3e",
-        "order": 14,
+        "group": "dcc0565feb8882f8",
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": "2",
@@ -1671,8 +1700,8 @@
         "keepMsgProperties": false,
         "delayOnStart": false,
         "startDelayTime": "",
-        "x": 730,
-        "y": 680,
+        "x": 470,
+        "y": 940,
         "wires": [
             [
                 "4f54d83faca9465d"
@@ -1688,8 +1717,8 @@
         "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
-        "x": 950,
-        "y": 660,
+        "x": 690,
+        "y": 900,
         "wires": []
     },
     {
@@ -1698,29 +1727,9 @@
         "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
-        "x": 950,
-        "y": 700,
+        "x": 690,
+        "y": 960,
         "wires": []
-    },
-    {
-        "id": "f565f5459bf5d4ae",
-        "type": "function",
-        "z": "f00a2f75f92239ad",
-        "name": "function 1",
-        "func": "// Expecting Inject payload like: { \"address\": 100, \"value\": 1234, \"unitid\": 5 }\nlet addr = msg.payload.address;\nlet val  = msg.payload.value;\nlet uid  = msg.payload.unitid;  // Get unitid from incoming payload\n\n// Build Modus Flex Write payload\nmsg.payload = {\n    fc: 6,                // Function Code 0x06 - Write Single Register\n    unitid: uid,          // Modbus slave ID from payload\n    address: addr,        // Register address (zero-based)\n    quantity: 1,          // Always 1 for FC=6\n    value: [val]          // Value must be in array format\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 680,
-        "wires": [
-            [
-                "b9cc117f0400f21f"
-            ]
-        ]
     },
     {
         "id": "5e610a5d3514f1d5",
@@ -1784,8 +1793,8 @@
         "colorTrack": "",
         "colorThumb": "",
         "showTextField": true,
-        "x": 770,
-        "y": 1160,
+        "x": 790,
+        "y": 1180,
         "wires": [
             [
                 "0f8a862fb77327b1"
@@ -1824,10 +1833,10 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 120,
-        "y": 1240,
+        "y": 1220,
         "wires": [
             [
-                "f565f5459bf5d4ae"
+                "4845b64f7363a36b"
             ]
         ]
     },
@@ -1863,10 +1872,10 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 340,
-        "y": 1240,
+        "y": 1220,
         "wires": [
             [
-                "f565f5459bf5d4ae"
+                "4845b64f7363a36b"
             ]
         ]
     },
@@ -1899,7 +1908,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 340,
-        "y": 1280,
+        "y": 1260,
         "wires": []
     },
     {
@@ -1937,7 +1946,7 @@
         "y": 1220,
         "wires": [
             [
-                "f565f5459bf5d4ae"
+                "8e34a38308520df9"
             ]
         ]
     },
@@ -1972,11 +1981,11 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 1010,
+        "x": 1030,
         "y": 1220,
         "wires": [
             [
-                "f565f5459bf5d4ae"
+                "8e34a38308520df9"
             ]
         ]
     },
@@ -2060,8 +2069,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 760,
-        "y": 420,
+        "x": 480,
+        "y": 480,
         "wires": [
             []
         ]
@@ -2103,7 +2112,7 @@
         "styleGlow": false,
         "className": "",
         "x": 130,
-        "y": 1280,
+        "y": 1260,
         "wires": [
             []
         ]
@@ -2144,8 +2153,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 750,
-        "y": 500,
+        "x": 470,
+        "y": 560,
         "wires": [
             []
         ]
@@ -2187,7 +2196,7 @@
         "styleGlow": false,
         "className": "",
         "x": 130,
-        "y": 1320,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -2228,8 +2237,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 750,
-        "y": 540,
+        "x": 470,
+        "y": 600,
         "wires": [
             []
         ]
@@ -2271,7 +2280,7 @@
         "styleGlow": false,
         "className": "",
         "x": 130,
-        "y": 1360,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -2312,8 +2321,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 750,
-        "y": 460,
+        "x": 470,
+        "y": 520,
         "wires": [
             []
         ]
@@ -2366,8 +2375,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1090,
-        "y": 440,
+        "x": 490,
+        "y": 660,
         "wires": [
             []
         ]
@@ -2450,8 +2459,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1070,
-        "y": 520,
+        "x": 470,
+        "y": 740,
         "wires": [
             []
         ]
@@ -2534,8 +2543,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1070,
-        "y": 560,
+        "x": 470,
+        "y": 780,
         "wires": [
             []
         ]
@@ -2618,8 +2627,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1070,
-        "y": 480,
+        "x": 470,
+        "y": 700,
         "wires": [
             []
         ]
@@ -2694,8 +2703,8 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 980,
-        "y": 1160,
+        "x": 1020,
+        "y": 1180,
         "wires": [
             [
                 "8e34a38308520df9"
@@ -2737,8 +2746,8 @@
         "type": "ui-gauge",
         "z": "f00a2f75f92239ad",
         "name": "L CO2 Temp",
-        "group": "c34f777b31ff0d3e",
-        "order": 13,
+        "group": "44de1c430cbb5601",
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -2787,35 +2796,18 @@
         ]
     },
     {
-        "id": "8344121ff9b5388d",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 440,
-        "y": 440,
-        "wires": []
-    },
-    {
         "id": "210f32d5557c3e2b",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "function 2",
-        "func": "// Store the current slider value in flow.leftSliderValue\nflow.set(\"leftSliderValue\", msg.payload);\n\n// Optional warning for debugging\nnode.warn(\"Slider value stored in flow context: \" + msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
+        "name": "Store Slider Val Globally",
+        "func": "// Store the current slider value in flow.leftSliderValue\nflow.set(\"leftSliderValue\", msg.payload);\n\n// Optional warning for debugging\nnode.warn(\"Slider left value stored in flow context: \" + msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
+        "x": 170,
         "y": 1100,
         "wires": [
             []
@@ -2825,16 +2817,16 @@
         "id": "0f8a862fb77327b1",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "function 6",
-        "func": "// Store the current slider value in flow.leftSliderValue\nflow.set(\"rightSliderValue\", msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
+        "name": "Store Slider Val Globally",
+        "func": "// Store the current slider value in flow.leftSliderValue\nflow.set(\"rightSliderValue\", msg.payload);\n\n// Optional warning for debugging\nnode.warn(\"Slider Right value stored in flow context: \" + msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 1120,
+        "x": 810,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -2843,19 +2835,20 @@
         "id": "4845b64f7363a36b",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "function 9",
-        "func": "// Only process messages coming from button\nif (msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n    // Get slider value stored in flow variable\n    let val = flow.get(\"leftSliderValue\");\n\n\n        // Multiply the slider value by 100\n    val = val * 100;\n    \n    let addr = msg.payload.address;\n    let uid  = msg.payload.unitid;\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,           // Function Code 0x06 - Write Single Register\n        unitid: uid,     // from button\n        address: addr,   // from button\n        quantity: 1,     \n        value: [val]     // value from slider\n    };\n\n    return msg;\n}\n\n// Ignore messages that are not from button\nreturn null;\n",
+        "name": "Mb Packet",
+        "func": "if (msg.payload && msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n\n    let val;\n\n    // If value is provided in the payload, use it\n    if (msg.payload.value !== undefined) {\n        val = Number(msg.payload.value);\n    }\n    // Otherwise, get it from the stored slider value\n    else {\n        val = flow.get(\"leftSliderValue\");\n        if (val === undefined || isNaN(val)) {\n            node.warn(\"Slider value not set or invalid, defaulting to 0\");\n            val = 0;\n        }\n        val = Number(val) * 100;\n    }\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,                               // Write Single Register\n        unitid: Number(msg.payload.unitid),  // From button\n        address: Number(msg.payload.address),// From button\n        quantity: 1,\n        value: [val]                         // From slider or fixed button value\n    };\n\n    return msg;\n}\n\n// Ignore other messages\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
+        "x": 410,
         "y": 1100,
         "wires": [
             [
-                "b9cc117f0400f21f"
+                "b9cc117f0400f21f",
+                "66c1da7ac63b8f0e"
             ]
         ]
     },
@@ -2863,19 +2856,20 @@
         "id": "8e34a38308520df9",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "function 10",
-        "func": "// Only process messages coming from button\nif (msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n    // Get slider value stored in flow variable\n    let val  = flow.get(\"rightSliderValue\");\n\n        // Multiply the slider value by 100\n    val = val * 100;\n    \n    let addr = msg.payload.address;\n    let uid  = msg.payload.unitid;\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,           // Function Code 0x06 - Write Single Register\n        unitid: uid,     // from button\n        address: addr,   // from button\n        quantity: 1,     \n        value: [val]     // value from slider\n    };\n\n    return msg;\n}\n\n// Ignore messages that are not from button\nreturn null;\n",
+        "name": "Mb Packet",
+        "func": "if (msg.payload && msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n\n    let val;\n\n    // If value is provided in the payload, use it\n    if (msg.payload.value !== undefined) {\n        val = Number(msg.payload.value);\n    }\n    // Otherwise, get it from the stored slider value\n    else {\n        val = flow.get(\"rightSliderValue\");\n        if (val === undefined || isNaN(val)) {\n            node.warn(\"Slider value not set or invalid, defaulting to 0\");\n            val = 0;\n        }\n        val = Number(val) * 100;\n    }\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,                               // Write Single Register\n        unitid: Number(msg.payload.unitid),  // From button\n        address: Number(msg.payload.address),// From button\n        quantity: 1,\n        value: [val]                         // From slider or fixed button value\n    };\n\n    return msg;\n}\n\n// Ignore other messages\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 1050,
         "y": 1100,
         "wires": [
             [
-                "b9cc117f0400f21f"
+                "b9cc117f0400f21f",
+                "2f97ab33a7fde799"
             ]
         ]
     },
@@ -2883,7 +2877,7 @@
         "id": "6a43d69ea6db31aa",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "split drive",
+        "name": "split left drive",
         "func": "// Expect input: msg.payload = [frequency, power, current, voltage]\nif (!Array.isArray(msg.payload) || msg.payload.length < 4) {\n    node.error(\"Expected an array of 4 values from TagX\", msg);\n    return null;\n}\n\nlet [frequency, power, current, voltage] = msg.payload;\n\n// Send each to its own output for gauges\nreturn [\n    { payload: frequency / 100},  // Output 1 - Frequency\n    { payload: power / 100 },      // Output 2 - Power\n    { payload: current / 100},    // Output 3 - Current\n    { payload: voltage / 10}     // Output 4 - Voltage\n];\n",
         "outputs": 4,
         "timeout": 0,
@@ -2891,8 +2885,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 380,
+        "x": 210,
+        "y": 540,
         "wires": [
             [
                 "5bb2a9b09e7166fc"
@@ -2929,13 +2923,74 @@
         "topic": "",
         "payload": "30",
         "payloadType": "num",
-        "x": 665,
-        "y": 1160,
+        "x": 675,
+        "y": 1180,
         "wires": [
             [
                 "ba54712547851fb4"
             ]
         ],
         "l": false
+    },
+    {
+        "id": "66c1da7ac63b8f0e",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "2f97ab33a7fde799",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "477223d0432c445c",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "split right drive",
+        "func": "// Expect input: msg.payload = [frequency, power, current, voltage]\nif (!Array.isArray(msg.payload) || msg.payload.length < 4) {\n    node.error(\"Expected an array of 4 values from TagX\", msg);\n    return null;\n}\n\nlet [frequency, power, current, voltage] = msg.payload;\n\n// Send each to its own output for gauges\nreturn [\n    { payload: frequency / 100},  // Output 1 - Frequency\n    { payload: power / 100 },      // Output 2 - Power\n    { payload: current / 100},    // Output 3 - Current\n    { payload: voltage / 10}     // Output 4 - Voltage\n];\n",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 720,
+        "wires": [
+            [
+                "75c4a8a767510f4b"
+            ],
+            [
+                "4851a488b4f784e9"
+            ],
+            [
+                "968e4595331163e6"
+            ],
+            [
+                "2c674a6743ed4a73"
+            ]
+        ]
     }
 ]
