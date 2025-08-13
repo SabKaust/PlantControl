@@ -1,6 +1,6 @@
 [
     {
-        "id": "e12b29f77bd12dd8",
+        "id": "f00a2f75f92239ad",
         "type": "tab",
         "label": "Flow 1",
         "disabled": false,
@@ -161,7 +161,7 @@
         "groupType": "default"
     },
     {
-        "id": "5135f8101ed29455",
+        "id": "b135539d7634acf8",
         "type": "ui-group",
         "name": "Plant left Drive",
         "page": "8aa6d6140cfde471",
@@ -175,7 +175,7 @@
         "groupType": "default"
     },
     {
-        "id": "6b4d45e12e6ec865",
+        "id": "13816c2f51c27294",
         "type": "ui-group",
         "name": "Plant Right Drive",
         "page": "8aa6d6140cfde471",
@@ -189,9 +189,9 @@
         "groupType": "default"
     },
     {
-        "id": "2cbecf0d0f45be7f",
+        "id": "969f5026bd873d72",
         "type": "modbus-flex-getter",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Modbus Flex Getter",
         "showStatusActivities": true,
         "showErrors": true,
@@ -209,18 +209,18 @@
         "y": 180,
         "wires": [
             [
-                "8813ef3973a0af74",
-                "eb25bce8f6c1cef0",
-                "705fab38a5e6a041",
-                "31febcb925966737"
+                "6be932af4beeb0ec",
+                "a2ee2948cd4e9836",
+                "6456e84130ac57de",
+                "6ce06a5efee4dd46"
             ],
             []
         ]
     },
     {
-        "id": "8813ef3973a0af74",
+        "id": "6be932af4beeb0ec",
         "type": "modbus-response",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
         "x": 1050,
@@ -228,11 +228,11 @@
         "wires": []
     },
     {
-        "id": "9108c457792f22b8",
+        "id": "fa541910922f8b81",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "function 3",
-        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    { tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    { tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    { tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 42, fc: 4, address: 0x4BA, quantity: 2 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
+        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    //{ tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    //{ tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    //{ tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 1, fc: 3, address: 2057, quantity: 4 },\n    { tag: \"TagX2\", unitid: 2, fc: 3, address: 2057, quantity: 4 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -243,14 +243,14 @@
         "y": 180,
         "wires": [
             [
-                "050a5f5ab80f6fe2"
+                "99a1f55a3c57d3d0"
             ]
         ]
     },
     {
-        "id": "59c665780d6deca2",
+        "id": "cbc1deafab050cd9",
         "type": "inject",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Auto Inject Once",
         "props": [
             {
@@ -272,14 +272,14 @@
         "y": 180,
         "wires": [
             [
-                "9108c457792f22b8"
+                "fa541910922f8b81"
             ]
         ]
     },
     {
-        "id": "720edfd00f12a971",
+        "id": "6984c3f189f81103",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "function 4",
         "func": "\n//msg.payload = global.get(\"addrInfo\")[global.get(\"index\")];\n//msg.topic = global.get(\"addrInfo\")[global.get(\"index\")].tag;\n//global.set(\"index\", global.get(\"index\") == 2 ? 0 : global.get(\"index\") + 1);\n//return msg;\n\nlet addrInfo = global.get(\"addrInfo\");\nlet index = global.get(\"index\") || 0;\n\n// Safety check\nif (!Array.isArray(addrInfo) || addrInfo.length === 0) {\n    node.error(\"addrInfo is not set or empty\", msg);\n    return null;\n}\n\nmsg.payload = addrInfo[index];\nmsg.topic = addrInfo[index].tag;\n\n// Increment index with wrap-around\nglobal.set(\"index\", (index + 1) % addrInfo.length);\n\nreturn msg;",
         "outputs": 1,
@@ -292,14 +292,14 @@
         "y": 180,
         "wires": [
             [
-                "2cbecf0d0f45be7f"
+                "969f5026bd873d72"
             ]
         ]
     },
     {
-        "id": "050a5f5ab80f6fe2",
+        "id": "99a1f55a3c57d3d0",
         "type": "delay",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "pauseType": "delay",
         "timeout": "1000",
@@ -317,17 +317,17 @@
         "y": 180,
         "wires": [
             [
-                "720edfd00f12a971"
+                "6984c3f189f81103"
             ]
         ]
     },
     {
-        "id": "eb25bce8f6c1cef0",
+        "id": "a2ee2948cd4e9836",
         "type": "delay",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "pauseType": "delay",
-        "timeout": "8000",
+        "timeout": "1000",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -342,14 +342,14 @@
         "y": 100,
         "wires": [
             [
-                "720edfd00f12a971"
+                "6984c3f189f81103"
             ]
         ]
     },
     {
-        "id": "705fab38a5e6a041",
+        "id": "6456e84130ac57de",
         "type": "debug",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "debug 14",
         "active": true,
         "tosidebar": true,
@@ -364,23 +364,23 @@
         "wires": []
     },
     {
-        "id": "b6428b2dbbc5401d",
+        "id": "c6b5f852d287c501",
         "type": "serial request",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "serial": "c2b3dd79366cad0c",
         "x": 570,
         "y": 1660,
         "wires": [
             [
-                "3ff00e71ce801674"
+                "43fc782794b73c3a"
             ]
         ]
     },
     {
-        "id": "e7f025e71380f24f",
+        "id": "eb8387c9a439f60f",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "function 5",
         "func": "// Inputs:\n// msg.payload = { relay: N, state: \"ON\" or \"OFF\", bankByte: <number> }\n\nconst relayNum = msg.payload.relay;\nconst state = msg.payload.state.toUpperCase();\nconst bankByte = msg.payload.bankByte;\n\nif (relayNum < 1 || relayNum > 8) {\n    node.error(\"Relay number must be 1 to 8\", msg);\n    return null;\n}\n\nif (typeof bankByte !== 'number') {\n    node.error(\"bankByte must be a number\", msg);\n    return null;\n}\n\nconst header = 0xAA;\nconst cmd1 = 0x03;\nconst cmd2 = 0xFE;\n\nlet relayByte;\nif (state === \"ON\") {\n    relayByte = 108 + (relayNum - 1);\n} else if (state === \"OFF\") {\n    relayByte = 100 + (relayNum - 1);\n} else {\n    node.error(\"State must be ON or OFF\", msg);\n    return null;\n}\n\nconst command = [header, cmd1, cmd2, relayByte, bankByte];\nconst checksum = command.reduce((sum, b) => sum + b, 0) % 256;\ncommand.push(checksum);\n\nmsg.payload = Buffer.from(command);\nreturn msg;\n",
         "outputs": 1,
@@ -393,14 +393,14 @@
         "y": 1720,
         "wires": [
             [
-                "b6428b2dbbc5401d"
+                "c6b5f852d287c501"
             ]
         ]
     },
     {
-        "id": "3ff00e71ce801674",
+        "id": "43fc782794b73c3a",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "function 7",
         "func": "let bytes = msg.payload;\n\nif (!Buffer.isBuffer(bytes)) {\n    node.error(\"Payload is not a Buffer\", msg);\n    return null;\n}\n\nif (bytes.length !== 4) {\n    node.error(\"Invalid response length\", msg);\n    return null;\n}\n\nconst header1 = bytes[0];\nconst header2 = bytes[1];\nconst dataByte = bytes[2];\nconst checksum = bytes[3];\n\n// Validate headers\nif (header1 !== 0xAA || header2 !== 0x01) {\n    node.error(\"Invalid response header\", msg);\n    return null;\n}\n\n// Calculate expected checksum\nconst calcChecksum = (header1 + header2 + dataByte) % 256;\nif (calcChecksum !== checksum) {\n    node.error(`Checksum mismatch. Got ${checksum}, expected ${calcChecksum}`, msg);\n    return null;\n}\n\nif (checksum === 0x00) {\n    // On/off response - just send null on all outputs to keep ui-leds unchanged\n    return [null, null, null, null, null, null, null, null];\n} else {\n    // Status response - send relay states on outputs 1-8\n    let msgs = [];\n    for (let i = 0; i < 8; i++) {\n        msgs.push({\n            topic: `relay${i + 1}`,\n            payload: !!((dataByte >> i) & 1)\n        });\n    }\n    return msgs;\n}\n",
         "outputs": 8,
@@ -413,35 +413,35 @@
         "y": 1660,
         "wires": [
             [
-                "45e6a21e332c56de"
+                "45e468ba6b869995"
             ],
             [
-                "f6f1ac038735a428"
+                "858ea52935d837df"
             ],
             [
-                "789629d03eb746e5"
+                "fdff1ecd523b1f5a"
             ],
             [
-                "3e8992db0afa2d10"
+                "427b48bf67b4ed6f"
             ],
             [
-                "d719829eb07f3a64"
+                "dd26e86f8dd8cd81"
             ],
             [
-                "d780a8d2d57664c8"
+                "6e0875f350c8debb"
             ],
             [
-                "8b56084e3c930843"
+                "e7b859555fcf071a"
             ],
             [
-                "b43e3b3567202f37"
+                "72b06eb5e1f83b43"
             ]
         ]
     },
     {
-        "id": "11354f94d918a3dd",
+        "id": "d5a333c1f54b5b5a",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "function 8",
         "func": "const command = [0xAA, 0x03, 0xFE, 0x7C, 0x01];\nconst checksum = command.reduce((sum, b) => sum + b, 0) % 256;\ncommand.push(checksum);\n\nmsg.payload = Buffer.from(command);\nreturn msg;",
         "outputs": 1,
@@ -454,14 +454,14 @@
         "y": 1740,
         "wires": [
             [
-                "b6428b2dbbc5401d"
+                "c6b5f852d287c501"
             ]
         ]
     },
     {
-        "id": "2cae27dbcd74c5eb",
+        "id": "574be7c1bf105790",
         "type": "inject",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Check Status - Auto 1s",
         "props": [
             {
@@ -472,25 +472,25 @@
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 610,
+        "x": 600,
         "y": 1800,
         "wires": [
             [
-                "11354f94d918a3dd"
+                "d5a333c1f54b5b5a"
             ]
         ]
     },
     {
-        "id": "faa11bfa1a88dbff",
+        "id": "49f1e36d6a5b6783",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 1 ON",
         "label": "Relay 1 ON",
@@ -522,14 +522,14 @@
         "y": 1520,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "ecdce4d9e8e55554",
+        "id": "a6e0cab4f9239864",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 1 OFF",
         "label": "Relay 1 OFF",
@@ -561,14 +561,14 @@
         "y": 1520,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "5de00d32269a228e",
+        "id": "272fe7a3b50ad420",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Side (Relay 5 to 8)",
         "info": "",
         "x": 1030,
@@ -576,9 +576,9 @@
         "wires": []
     },
     {
-        "id": "45e6a21e332c56de",
+        "id": "45e468ba6b869995",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R1LedLeft",
         "group": "c34f777b31ff0d3e",
         "order": 3,
@@ -608,9 +608,9 @@
         "wires": []
     },
     {
-        "id": "f6f1ac038735a428",
+        "id": "858ea52935d837df",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R2LedLeft",
         "group": "c34f777b31ff0d3e",
         "order": 6,
@@ -640,9 +640,9 @@
         "wires": []
     },
     {
-        "id": "789629d03eb746e5",
+        "id": "fdff1ecd523b1f5a",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R3LedLeft",
         "group": "c34f777b31ff0d3e",
         "order": 9,
@@ -672,9 +672,9 @@
         "wires": []
     },
     {
-        "id": "3e8992db0afa2d10",
+        "id": "427b48bf67b4ed6f",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R4LedLeft",
         "group": "c34f777b31ff0d3e",
         "order": 12,
@@ -704,9 +704,9 @@
         "wires": []
     },
     {
-        "id": "d719829eb07f3a64",
+        "id": "dd26e86f8dd8cd81",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R1LedRight",
         "group": "6cf2ef424cfcf0b9",
         "order": 3,
@@ -736,9 +736,9 @@
         "wires": []
     },
     {
-        "id": "d780a8d2d57664c8",
+        "id": "6e0875f350c8debb",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R2LedRight",
         "group": "6cf2ef424cfcf0b9",
         "order": 6,
@@ -768,9 +768,9 @@
         "wires": []
     },
     {
-        "id": "8b56084e3c930843",
+        "id": "e7b859555fcf071a",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R3LedRight",
         "group": "6cf2ef424cfcf0b9",
         "order": 9,
@@ -800,9 +800,9 @@
         "wires": []
     },
     {
-        "id": "b43e3b3567202f37",
+        "id": "72b06eb5e1f83b43",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R4LedRight",
         "group": "6cf2ef424cfcf0b9",
         "order": 12,
@@ -832,9 +832,9 @@
         "wires": []
     },
     {
-        "id": "637ac55d4e47c06d",
+        "id": "55dd6db62264e56a",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left side (Relay 1 to 4)",
         "info": "",
         "x": 1020,
@@ -842,9 +842,9 @@
         "wires": []
     },
     {
-        "id": "552e455a01204f03",
+        "id": "92c749c85a5600e5",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Side (Relay 1 to 4)",
         "info": "",
         "x": 160,
@@ -852,9 +852,9 @@
         "wires": []
     },
     {
-        "id": "628f83ba03212505",
+        "id": "9b9794a83cc37abb",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 2 ON",
         "label": "Relay 2 ON",
@@ -886,14 +886,14 @@
         "y": 1560,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "d1a5f0df5bd4222b",
+        "id": "338233abd1b035ff",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 2 OFF",
         "label": "Relay 2 OFF",
@@ -925,14 +925,14 @@
         "y": 1560,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "7cc092f9d285c4db",
+        "id": "860c1c44085243bd",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 3 ON",
         "label": "Relay 3 ON",
@@ -964,14 +964,14 @@
         "y": 1600,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "905a5bddff096e00",
+        "id": "b7d82d7a78078858",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 3 OFF",
         "label": "Relay 3 OFF",
@@ -1003,14 +1003,14 @@
         "y": 1600,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "9a584a202d8bafc8",
+        "id": "8a07da72fb3c2077",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 4 ON",
         "label": "Relay 4 ON",
@@ -1042,14 +1042,14 @@
         "y": 1640,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "d34d3337b197f40f",
+        "id": "7fb185b3fefc096d",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "c34f777b31ff0d3e",
         "name": "Relay 4 OFF",
         "label": "Relay 4 OFF",
@@ -1081,14 +1081,14 @@
         "y": 1640,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "13781ce17441b3e2",
+        "id": "e80bc007032541ef",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 1 ON",
         "label": "Relay 1 ON",
@@ -1120,14 +1120,14 @@
         "y": 1860,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "63782134a1022346",
+        "id": "e75ec752761d5c9e",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 1 OFF",
         "label": "Relay 1 OFF",
@@ -1159,14 +1159,14 @@
         "y": 1860,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "62d4af3121dd9254",
+        "id": "9a02bf3fe5103534",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Side (Relay 5 to 8)",
         "info": "",
         "x": 170,
@@ -1174,9 +1174,9 @@
         "wires": []
     },
     {
-        "id": "8b604957b7e4ae8b",
+        "id": "8dc3327c32962c0f",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 2 ON",
         "label": "Relay 2 ON",
@@ -1208,14 +1208,14 @@
         "y": 1900,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "cd24391e08359fe2",
+        "id": "f7a63a4920654c9a",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 2 OFF",
         "label": "Relay 2 OFF",
@@ -1247,14 +1247,14 @@
         "y": 1900,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "955004e373860e1d",
+        "id": "c2bd616a94191e04",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 3 ON",
         "label": "Relay 3 ON",
@@ -1286,14 +1286,14 @@
         "y": 1940,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "3c1a7c63a94bad06",
+        "id": "061c043e2004d0e7",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 3 OFF",
         "label": "Relay 3 OFF",
@@ -1325,14 +1325,14 @@
         "y": 1940,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "176e927584299fd5",
+        "id": "144322c04704f48e",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 4 ON",
         "label": "Relay 4 ON",
@@ -1364,14 +1364,14 @@
         "y": 1980,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "07d0a7755be6e9df",
+        "id": "c4dcd78277d5422a",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "group": "6cf2ef424cfcf0b9",
         "name": "Relay 4 OFF",
         "label": "Relay 4 OFF",
@@ -1403,14 +1403,14 @@
         "y": 1980,
         "wires": [
             [
-                "e7f025e71380f24f"
+                "eb8387c9a439f60f"
             ]
         ]
     },
     {
-        "id": "8d8243484a3ef195",
+        "id": "67bb655520f328f3",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Timeout 1000ms",
         "info": "",
         "x": 560,
@@ -1418,9 +1418,9 @@
         "wires": []
     },
     {
-        "id": "baf038accf73d508",
+        "id": "2162018a01d84a2c",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Trigger Status check every 1s",
         "info": "",
         "x": 640,
@@ -1428,12 +1428,12 @@
         "wires": []
     },
     {
-        "id": "31febcb925966737",
+        "id": "6ce06a5efee4dd46",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Switch Function",
-        "func": "\n// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\"];\n\n// Merge for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers (only array format supported now)\nlet registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\nif (registers.length < 2) {\n    node.error(\"Register array too short\", msg);\n    return null;\n}\n\nlet reg0 = registers[0];\nlet reg1 = registers[1];\n\nif (typeof reg0 !== \"number\" || typeof reg1 !== \"number\") {\n    node.error(\"Register values are not numbers\", msg);\n    return null;\n}\n\n// Buffer handling\nlet buf = Buffer.alloc(4);\nif (noSwapTags.includes(msg.topic)) {\n    // No swap\n    buf.writeUInt16BE(reg0, 0);\n    buf.writeUInt16BE(reg1, 2);\n} else if (swapTags.includes(msg.topic)) {\n    // Swap\n    buf.writeUInt16BE(reg1, 0);\n    buf.writeUInt16BE(reg0, 2);\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nlet value = buf.readFloatBE(0);\n\n// Apply per-tag math\nlet adjustedValue;\nswitch (msg.topic) {\n    case \"LEE872avg\":\n        adjustedValue = value / 2;\n        break;\n    case \"LEE872raw\":\n        adjustedValue = value / 3;\n        break;\n    case \"LEE872P\":\n        adjustedValue = value / 5;\n        break;\n    case \"LEE872T\":\n        adjustedValue = value;\n        break;\n    case \"LEE872RH\":\n        adjustedValue = value / 1;\n        break;\n    case \"tag9\":\n        adjustedValue = value * 10; // Example no-swap\n        break;\n    case \"tag8\":\n        adjustedValue = value - 100; // Example no-swap\n        break;\n    default:\n        adjustedValue = value;\n}\n\n// Send to correct output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = Number(adjustedValue.toFixed(2));\noutputs[index] = msg;\nreturn outputs;\n\n",
-        "outputs": 5,
+        "func": "// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\", \"TagX\"];\n\n// Merge tags for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers from payload\nlet registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\n// Proces each tag type\nlet adjustedValue;\nif (noSwapTags.includes(msg.topic)) {\n    if (msg.topic === \"TagX\") {\n        // TagX: expect exactly 4 registers, each 16-bit integer\n        if (registers.length < 4) {\n            node.error(\"TagX requires 4 registers\", msg);\n            return null;\n        }\n        adjustedValue = registers.slice(0,4);  // Keep as array\n        node.warn(\"TagX value handled as array of 4 registers\");\n    } else {\n        // Other noSwap tags: combine first 2 registers as 32-bit signed int\n        let buf = Buffer.alloc(4);\n        buf.writeUInt16BE(registers[0], 0);\n        buf.writeUInt16BE(registers[1], 2);\n        adjustedValue = buf.readInt32BE(0);\n\n        // Apply per-tag math\n        switch(msg.topic) {\n            case \"tag9\": adjustedValue *= 10; break;\n            case \"tag8\": adjustedValue /= 10; break;\n        }\n    }\n} else if (swapTags.includes(msg.topic)) {\n    // Swap tags: combine first 2 registers as 32-bit float with swap\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(registers[1], 0);\n    buf.writeUInt16BE(registers[0], 2);\n    adjustedValue = buf.readFloatBE(0);\n\n    // Per-tag math\n    switch(msg.topic) {\n        case \"LEE872avg\": adjustedValue /= 2; break;\n        case \"LEE872raw\": adjustedValue /= 3; break;\n        case \"LEE872P\": adjustedValue /= 5; break;\n        case \"LEE872T\": adjustedValue = adjustedValue; break;\n        case \"LEE872RH\": adjustedValue /= 1; break;\n    }\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\n// Assign output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = adjustedValue;\noutputs[index] = msg;\n\nreturn outputs;\n",
+        "outputs": 8,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -1443,24 +1443,32 @@
         "y": 440,
         "wires": [
             [
-                "92fd9f5e23f4ca55",
-                "c5c7d678919fa382"
+                "15e49eb3401d7161",
+                "d5e0743a80473e30"
             ],
             [
-                "8279e48f3427a27c"
+                "df85684420b27cbd"
             ],
             [],
             [
-                "a0aada964dbe28a2",
-                "f4910b6f5ee468d8"
+                "9f3868773b84d2b6",
+                "039cf2d05aae49ce"
             ],
-            []
+            [],
+            [
+                "1c627bede15e180b"
+            ],
+            [],
+            [
+                "8344121ff9b5388d",
+                "6a43d69ea6db31aa"
+            ]
         ]
     },
     {
-        "id": "a0aada964dbe28a2",
+        "id": "9f3868773b84d2b6",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "L CO2 Temp",
         "group": "6cf2ef424cfcf0b9",
         "order": 13,
@@ -1512,9 +1520,9 @@
         ]
     },
     {
-        "id": "92fd9f5e23f4ca55",
+        "id": "15e49eb3401d7161",
         "type": "debug",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "debug 2",
         "active": false,
         "tosidebar": true,
@@ -1529,9 +1537,9 @@
         "wires": []
     },
     {
-        "id": "68054c6765550f9e",
+        "id": "ba61229ee55707bc",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Delay between each Modbus Command",
         "info": "",
         "x": 750,
@@ -1539,9 +1547,9 @@
         "wires": []
     },
     {
-        "id": "a06c89b7fcbb408c",
+        "id": "7508616b907352a6",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Start Delay",
         "info": "",
         "x": 500,
@@ -1549,9 +1557,9 @@
         "wires": []
     },
     {
-        "id": "b9432469db3c3a02",
+        "id": "dfed425fcf95422d",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Modbus Registers",
         "info": "",
         "x": 290,
@@ -1559,19 +1567,19 @@
         "wires": []
     },
     {
-        "id": "68d0c063e449ea2b",
+        "id": "c80a30aa5d3d9c7b",
         "type": "comment",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Separate based on Tags",
         "info": "",
         "x": 210,
-        "y": 500,
+        "y": 520,
         "wires": []
     },
     {
-        "id": "c5c7d678919fa382",
+        "id": "d5e0743a80473e30",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R CO2 Avg T",
         "group": "6cf2ef424cfcf0b9",
         "order": 14,
@@ -1611,9 +1619,9 @@
         ]
     },
     {
-        "id": "8279e48f3427a27c",
+        "id": "df85684420b27cbd",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "R CO2 raw T",
         "group": "c34f777b31ff0d3e",
         "order": 14,
@@ -1653,9 +1661,9 @@
         ]
     },
     {
-        "id": "367021becd7ef343",
+        "id": "b9cc117f0400f21f",
         "type": "modbus-flex-write",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "showStatusActivities": false,
         "showErrors": false,
@@ -1669,18 +1677,18 @@
         "y": 820,
         "wires": [
             [
-                "aa58df6d01fcd4e3",
-                "6315269d8f07955b"
+                "4f54d83faca9465d",
+                "dc7e2768c5dd70cc"
             ],
             [
-                "8f9f5fcff3ab6bbe"
+                "e97be8d3b068f6b2"
             ]
         ]
     },
     {
-        "id": "aa58df6d01fcd4e3",
+        "id": "4f54d83faca9465d",
         "type": "modbus-response",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
         "x": 750,
@@ -1688,9 +1696,9 @@
         "wires": []
     },
     {
-        "id": "8f9f5fcff3ab6bbe",
+        "id": "e97be8d3b068f6b2",
         "type": "modbus-response",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
         "x": 750,
@@ -1698,55 +1706,30 @@
         "wires": []
     },
     {
-        "id": "716355a554f119d2",
+        "id": "f565f5459bf5d4ae",
         "type": "function",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "function 1",
-        "func": "// Expecting Inject payload like: { \"address\": 100, \"value\": 1234 }\nlet addr = msg.payload.address;\nlet val  = msg.payload.value;\n\n// Build Modbus Flex Write payload\nmsg.payload = {\n    fc: 6,                // Function Code 0x06 - Write Single Register\n    unitid: 1,            // Modbus slave ID\n    address: addr,        // Register address (zero-based)\n    quantity: 1,          // Always 1 for FC=6\n    value: [val]          // Value must be in array format\n};\n\nreturn msg;\n",
+        "func": "// Expecting Inject payload like: { \"address\": 100, \"value\": 1234, \"unitid\": 5 }\nlet addr = msg.payload.address;\nlet val  = msg.payload.value;\nlet uid  = msg.payload.unitid;  // Get unitid from incoming payload\n\n// Build Modus Flex Write payload\nmsg.payload = {\n    fc: 6,                // Function Code 0x06 - Write Single Register\n    unitid: uid,          // Modbus slave ID from payload\n    address: addr,        // Register address (zero-based)\n    quantity: 1,          // Always 1 for FC=6\n    value: [val]          // Value must be in array format\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
+        "x": 280,
         "y": 820,
         "wires": [
             [
-                "367021becd7ef343",
-                "1f9e8860346896f0"
+                "561c19fa9c59567d",
+                "b9cc117f0400f21f"
             ]
         ]
     },
     {
-        "id": "751581320bb88478",
-        "type": "inject",
-        "z": "e12b29f77bd12dd8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{   \"address\": 1,   \"value\": 1500 }",
-        "payloadType": "json",
-        "x": 110,
-        "y": 820,
-        "wires": [
-            [
-                "716355a554f119d2"
-            ]
-        ]
-    },
-    {
-        "id": "1f9e8860346896f0",
+        "id": "561c19fa9c59567d",
         "type": "debug",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -1755,14 +1738,14 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 440,
-        "y": 880,
+        "x": 380,
+        "y": 720,
         "wires": []
     },
     {
-        "id": "6315269d8f07955b",
+        "id": "dc7e2768c5dd70cc",
         "type": "debug",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "debug 3",
         "active": true,
         "tosidebar": true,
@@ -1776,10 +1759,10 @@
         "wires": []
     },
     {
-        "id": "a9f6e2e6a2de2e38",
+        "id": "5e610a5d3514f1d5",
         "type": "ui-slider",
-        "z": "e12b29f77bd12dd8",
-        "group": "5135f8101ed29455",
+        "z": "f00a2f75f92239ad",
+        "group": "b135539d7634acf8",
         "name": "Left Slider",
         "label": "Frequency",
         "tooltip": "",
@@ -1806,18 +1789,15 @@
         "y": 1080,
         "wires": [
             [
-                "0539105ab6f7228e",
-                "31eb4785ae6ab7ed",
-                "bfda7fcc7d140de7",
-                "5467fcc162282378"
+                "210f32d5557c3e2b"
             ]
         ]
     },
     {
-        "id": "981d3ba1f8df75d7",
+        "id": "ba54712547851fb4",
         "type": "ui-slider",
-        "z": "e12b29f77bd12dd8",
-        "group": "6b4d45e12e6ec865",
+        "z": "f00a2f75f92239ad",
+        "group": "13816c2f51c27294",
         "name": "Right Slider",
         "label": "Frequency",
         "tooltip": "",
@@ -1844,18 +1824,19 @@
         "y": 1080,
         "wires": [
             [
-                "1aa308885efc7103",
-                "706807a0caa9d7a2",
-                "ee67cab0d8dc4904",
-                "dc6fcb6837b5578d"
+                "75c4a8a767510f4b",
+                "968e4595331163e6",
+                "2c674a6743ed4a73",
+                "4851a488b4f784e9",
+                "0f8a862fb77327b1"
             ]
         ]
     },
     {
-        "id": "e4d06f6c1c381351",
+        "id": "0c76598c49d4a5dc",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
-        "group": "5135f8101ed29455",
+        "z": "f00a2f75f92239ad",
+        "group": "b135539d7634acf8",
         "name": "Left Motor ON",
         "label": "Motor ON",
         "order": 3,
@@ -1868,7 +1849,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"ON\", \"bankByte\": 1 }",
+        "payload": "{   \"address\": 1798,   \"value\": 1,   \"unitid\": 1 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -1885,14 +1866,16 @@
         "x": 120,
         "y": 1140,
         "wires": [
-            []
+            [
+                "f565f5459bf5d4ae"
+            ]
         ]
     },
     {
-        "id": "1515fc2a09f60d23",
+        "id": "5b76c003ca2c8f12",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
-        "group": "5135f8101ed29455",
+        "z": "f00a2f75f92239ad",
+        "group": "b135539d7634acf8",
         "name": "Left Motor OFF",
         "label": "Motor OFF",
         "order": 4,
@@ -1905,7 +1888,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payload": "{   \"address\": 1798,   \"value\": 0,   \"unitid\": 1 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -1922,15 +1905,17 @@
         "x": 300,
         "y": 1140,
         "wires": [
-            []
+            [
+                "f565f5459bf5d4ae"
+            ]
         ]
     },
     {
-        "id": "6e6439bda18d7d7e",
+        "id": "d763d534edb299f5",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Motor LED",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 5,
         "width": "2",
         "height": "1",
@@ -1953,15 +1938,15 @@
         "shape": "square",
         "showBorder": true,
         "showGlow": true,
-        "x": 480,
+        "x": 500,
         "y": 1140,
         "wires": []
     },
     {
-        "id": "275c0305744a270e",
+        "id": "79f380f1252ae581",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
-        "group": "6b4d45e12e6ec865",
+        "z": "f00a2f75f92239ad",
+        "group": "13816c2f51c27294",
         "name": "Right Motor ON",
         "label": "Motor ON",
         "order": 3,
@@ -1974,7 +1959,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"ON\", \"bankByte\": 1 }",
+        "payload": "{   \"address\": 1798,   \"value\": 1,   \"unitid\": 2 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -1991,14 +1976,16 @@
         "x": 700,
         "y": 1120,
         "wires": [
-            []
+            [
+                "f565f5459bf5d4ae"
+            ]
         ]
     },
     {
-        "id": "e513dd9f9eda9a55",
+        "id": "bb501f69b92d5060",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
-        "group": "6b4d45e12e6ec865",
+        "z": "f00a2f75f92239ad",
+        "group": "13816c2f51c27294",
         "name": "Right Motor OFF",
         "label": "Motor OFF",
         "order": 4,
@@ -2011,7 +1998,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payload": "{   \"address\": 1798,   \"value\": 0,   \"unitid\": 2 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -2028,15 +2015,17 @@
         "x": 910,
         "y": 1120,
         "wires": [
-            []
+            [
+                "f565f5459bf5d4ae"
+            ]
         ]
     },
     {
-        "id": "a89b4894d8ea4dce",
+        "id": "ffc9ac25d888f816",
         "type": "ui-led",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Motor LED",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 5,
         "width": "2",
         "height": "1",
@@ -2064,11 +2053,11 @@
         "wires": []
     },
     {
-        "id": "0539105ab6f7228e",
+        "id": "5bb2a9b09e7166fc",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Motor Freq",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 6,
         "value": "payload",
         "valueType": "msg",
@@ -2111,18 +2100,18 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 380,
+        "x": 400,
         "y": 1060,
         "wires": [
             []
         ]
     },
     {
-        "id": "0af8aea74b29d624",
+        "id": "da3267aef71d45eb",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left CurrentLabel",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 7,
         "value": "payload",
         "valueType": "msg",
@@ -2160,11 +2149,11 @@
         ]
     },
     {
-        "id": "31eb4785ae6ab7ed",
+        "id": "06981ef2c85a8448",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Current",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 8,
         "value": "payload",
         "valueType": "msg",
@@ -2202,11 +2191,11 @@
         ]
     },
     {
-        "id": "18d07301485b7fae",
+        "id": "22b0de3935b34614",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Volatge Label",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 9,
         "value": "payload",
         "valueType": "msg",
@@ -2244,11 +2233,11 @@
         ]
     },
     {
-        "id": "bfda7fcc7d140de7",
+        "id": "8a303fd5ac8cf624",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Voltage",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 10,
         "value": "payload",
         "valueType": "msg",
@@ -2286,11 +2275,11 @@
         ]
     },
     {
-        "id": "1ef8020d8c43a264",
+        "id": "2f4a4eb51e942ace",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Power Label",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 11,
         "value": "payload",
         "valueType": "msg",
@@ -2328,11 +2317,11 @@
         ]
     },
     {
-        "id": "5467fcc162282378",
+        "id": "da8756ffa7369277",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Left Power",
-        "group": "5135f8101ed29455",
+        "group": "b135539d7634acf8",
         "order": 12,
         "value": "payload",
         "valueType": "msg",
@@ -2349,14 +2338,14 @@
         "suffix": "",
         "segments": [
             {
-                "from": "20",
+                "from": "0",
                 "color": "#ffffff",
                 "text": "",
                 "textType": "value"
             }
         ],
-        "min": "20",
-        "max": "60",
+        "min": "0",
+        "max": "1000",
         "sizeThickness": 16,
         "sizeGap": 4,
         "sizeKeyThickness": 8,
@@ -2370,11 +2359,11 @@
         ]
     },
     {
-        "id": "1aa308885efc7103",
+        "id": "75c4a8a767510f4b",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Motor Freq",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 6,
         "value": "payload",
         "valueType": "msg",
@@ -2424,11 +2413,11 @@
         ]
     },
     {
-        "id": "652550b03fd2315d",
+        "id": "c53aa7834e4da2ec",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right CurrentLabel",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 7,
         "value": "payload",
         "valueType": "msg",
@@ -2466,11 +2455,11 @@
         ]
     },
     {
-        "id": "706807a0caa9d7a2",
+        "id": "968e4595331163e6",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Current",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 8,
         "value": "payload",
         "valueType": "msg",
@@ -2508,11 +2497,11 @@
         ]
     },
     {
-        "id": "158964c048ddcd56",
+        "id": "9efbaed8f08f5ba7",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Volatge Label",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 9,
         "value": "payload",
         "valueType": "msg",
@@ -2550,11 +2539,11 @@
         ]
     },
     {
-        "id": "ee67cab0d8dc4904",
+        "id": "2c674a6743ed4a73",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Voltage",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 10,
         "value": "payload",
         "valueType": "msg",
@@ -2592,11 +2581,11 @@
         ]
     },
     {
-        "id": "d030d77555d938a0",
+        "id": "013b9901ad7d8e43",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Power Label",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 11,
         "value": "payload",
         "valueType": "msg",
@@ -2634,11 +2623,11 @@
         ]
     },
     {
-        "id": "dc6fcb6837b5578d",
+        "id": "4851a488b4f784e9",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Right Power",
-        "group": "6b4d45e12e6ec865",
+        "group": "13816c2f51c27294",
         "order": 12,
         "value": "payload",
         "valueType": "msg",
@@ -2676,10 +2665,10 @@
         ]
     },
     {
-        "id": "4239c1f758b5b5a7",
+        "id": "18927627e6acac0f",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
-        "group": "5135f8101ed29455",
+        "z": "f00a2f75f92239ad",
+        "group": "b135539d7634acf8",
         "name": "Left Slider btn",
         "label": "Set",
         "order": 2,
@@ -2692,7 +2681,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payload": "{   \"address\": 1797,   \"unitid\": 1 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -2709,14 +2698,16 @@
         "x": 380,
         "y": 1100,
         "wires": [
-            []
+            [
+                "4845b64f7363a36b"
+            ]
         ]
     },
     {
-        "id": "dd09066af9e2291e",
+        "id": "d63d32ed154f681d",
         "type": "ui-button",
-        "z": "e12b29f77bd12dd8",
-        "group": "6b4d45e12e6ec865",
+        "z": "f00a2f75f92239ad",
+        "group": "13816c2f51c27294",
         "name": "Right Slider btn",
         "label": "Set",
         "order": 2,
@@ -2729,7 +2720,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payload": "{   \"address\": 1797,   \"unitid\": 2 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -2746,13 +2737,15 @@
         "x": 1060,
         "y": 1080,
         "wires": [
-            []
+            [
+                "8e34a38308520df9"
+            ]
         ]
     },
     {
-        "id": "5b4993b888682f7d",
+        "id": "bbf065a0748bdbff",
         "type": "inject",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "Start Value",
         "props": [
             {
@@ -2774,15 +2767,15 @@
         "y": 1000,
         "wires": [
             [
-                "a9f6e2e6a2de2e38",
-                "981d3ba1f8df75d7"
+                "5e610a5d3514f1d5",
+                "ba54712547851fb4"
             ]
         ]
     },
     {
-        "id": "f4910b6f5ee468d8",
+        "id": "039cf2d05aae49ce",
         "type": "ui-gauge",
-        "z": "e12b29f77bd12dd8",
+        "z": "f00a2f75f92239ad",
         "name": "L CO2 Temp",
         "group": "c34f777b31ff0d3e",
         "order": 13,
@@ -2832,5 +2825,199 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "8344121ff9b5388d",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "1c627bede15e180b",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "78c0810ab60ea4c3",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "210f32d5557c3e2b",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "function 2",
+        "func": "// Store the current slider value in flow.leftSliderValue\nflow.set(\"leftSliderValue\", msg.payload);\n\n// Optional warning for debugging\nnode.warn(\"Slider value stored in flow context: \" + msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 980,
+        "wires": [
+            [
+                "b9cc117f0400f21f"
+            ]
+        ]
+    },
+    {
+        "id": "0f8a862fb77327b1",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "function 6",
+        "func": "// Store the current slider value in flow.leftSliderValue\nflow.set(\"rightSliderValue\", msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4845b64f7363a36b",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "function 9",
+        "func": "// Only process messages coming from button\nif (msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n    // Get slider value stored in flow variable\n    let val = flow.get(\"leftSliderValue\");\n\n\n        // Multiply the slider value by 100\n    val = val * 100;\n    \n    let addr = msg.payload.address;\n    let uid  = msg.payload.unitid;\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,           // Function Code 0x06 - Write Single Register\n        unitid: uid,     // from button\n        address: addr,   // from button\n        quantity: 1,     \n        value: [val]     // value from slider\n    };\n\n    return msg;\n}\n\n// Ignore messages that are not from button\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1080,
+        "wires": [
+            [
+                "78c0810ab60ea4c3",
+                "b9cc117f0400f21f"
+            ]
+        ]
+    },
+    {
+        "id": "8e34a38308520df9",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "function 10",
+        "func": "// Only process messages coming from button\nif (msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n    // Get slider value stored in flow variable\n    let val  = flow.get(\"rightSliderValue\");\n\n        // Multiply the slider value by 100\n    val = val * 100;\n    \n    let addr = msg.payload.address;\n    let uid  = msg.payload.unitid;\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,           // Function Code 0x06 - Write Single Register\n        unitid: uid,     // from button\n        address: addr,   // from button\n        quantity: 1,     \n        value: [val]     // value from slider\n    };\n\n    return msg;\n}\n\n// Ignore messages that are not from button\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 940,
+        "wires": [
+            [
+                "78c0810ab60ea4c3",
+                "b9cc117f0400f21f"
+            ]
+        ]
+    },
+    {
+        "id": "6a43d69ea6db31aa",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "split drive",
+        "func": "// Expect input: msg.payload = [frequency, power, current, voltage]\nif (!Array.isArray(msg.payload) || msg.payload.length < 4) {\n    node.error(\"Expected an array of 4 values from TagX\", msg);\n    return null;\n}\n\nlet [frequency, power, current, voltage] = msg.payload;\n\n// Send each to its own output for gauges\nreturn [\n    { payload: frequency / 100},  // Output 1 - Frequency\n    { payload: power / 100 },      // Output 2 - Power\n    { payload: current / 100},    // Output 3 - Current\n    { payload: voltage / 10}     // Output 4 - Voltage\n];\n",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "5bb2a9b09e7166fc",
+                "5c784c7f3b8efeaa"
+            ],
+            [
+                "da8756ffa7369277",
+                "9ed47256860bb5ab"
+            ],
+            [
+                "06981ef2c85a8448"
+            ],
+            [
+                "8a303fd5ac8cf624"
+            ]
+        ]
+    },
+    {
+        "id": "5c784c7f3b8efeaa",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "9ed47256860bb5ab",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 600,
+        "wires": []
     }
 ]
