@@ -251,7 +251,7 @@
         "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
-        "x": 1050,
+        "x": 1170,
         "y": 120,
         "wires": []
     },
@@ -387,7 +387,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1040,
+        "x": 1160,
         "y": 60,
         "wires": []
     },
@@ -1460,8 +1460,8 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "Switch Function",
-        "func": "// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\", \"TagX\"];\n\n// Merge tags for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers from payload\nlet registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\n// Proces each tag type\nlet adjustedValue;\nif (noSwapTags.includes(msg.topic)) {\n    if (msg.topic === \"TagX\") {\n        // TagX: expect exactly 4 registers, each 16-bit integer\n        if (registers.length < 4) {\n            node.error(\"TagX requires 4 registers\", msg);\n            return null;\n        }\n        adjustedValue = registers.slice(0,4);  // Keep as array\n        node.warn(\"TagX value handled as array of 4 registers\");\n    } else {\n        // Other noSwap tags: combine first 2 registers as 32-bit signed int\n        let buf = Buffer.alloc(4);\n        buf.writeUInt16BE(registers[0], 0);\n        buf.writeUInt16BE(registers[1], 2);\n        adjustedValue = buf.readInt32BE(0);\n\n        // Apply per-tag math\n        switch(msg.topic) {\n            case \"tag9\": adjustedValue *= 10; break;\n            case \"tag8\": adjustedValue /= 10; break;\n        }\n    }\n} else if (swapTags.includes(msg.topic)) {\n    // Swap tags: combine first 2 registers as 32-bit float with swap\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(registers[1], 0);\n    buf.writeUInt16BE(registers[0], 2);\n    adjustedValue = buf.readFloatBE(0);\n\n    // Per-tag math\n    switch(msg.topic) {\n        case \"LEE872avg\": adjustedValue /= 2; break;\n        case \"LEE872raw\": adjustedValue /= 3; break;\n        case \"LEE872P\": adjustedValue /= 5; break;\n        case \"LEE872T\": adjustedValue = adjustedValue; break;\n        case \"LEE872RH\": adjustedValue /= 1; break;\n    }\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\n// Assign output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = adjustedValue;\noutputs[index] = msg;\n\nreturn outputs;\n",
-        "outputs": 8,
+        "func": "// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\", \"TagX\", , \"TagX2\"];\n\n// Merge tags for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers from payload\nlet registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\n// Proces each tag type\nlet adjustedValue;\nif (noSwapTags.includes(msg.topic)) {\n    if (msg.topic === \"TagX\" || msg.topic === \"TagX2\") {\n        // TagX: expect exactly 4 registers, each 16-bit integer\n        if (registers.length < 4) {\n            node.error(\"TagX requires 4 registers\", msg);\n            return null;\n        }\n        adjustedValue = registers.slice(0,4);  // Keep as array\n        node.warn(\"TagX value handled as array of 4 registers\");\n    } else {\n        // Other noSwap tags: combine first 2 registers as 32-bit signed int\n        let buf = Buffer.alloc(4);\n        buf.writeUInt16BE(registers[0], 0);\n        buf.writeUInt16BE(registers[1], 2);\n        adjustedValue = buf.readInt32BE(0);\n\n        // Apply per-tag math\n        switch(msg.topic) {\n            case \"tag9\": adjustedValue *= 10; break;\n            case \"tag8\": adjustedValue /= 10; break;\n        }\n    }\n} else if (swapTags.includes(msg.topic)) {\n    // Swap tags: combine first 2 registers as 32-bit float with swap\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(registers[1], 0);\n    buf.writeUInt16BE(registers[0], 2);\n    adjustedValue = buf.readFloatBE(0);\n\n    // Per-tag math\n    switch(msg.topic) {\n        case \"LEE872avg\": adjustedValue /= 2; break;\n        case \"LEE872raw\": adjustedValue /= 3; break;\n        case \"LEE872P\": adjustedValue /= 5; break;\n        case \"LEE872T\": adjustedValue = adjustedValue; break;\n        case \"LEE872RH\": adjustedValue /= 1; break;\n    }\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\n// Assign output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = adjustedValue;\noutputs[index] = msg;\n\nreturn outputs;\n",
+        "outputs": 9,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -1484,11 +1484,12 @@
             ],
             [],
             [],
-            [
-                "477223d0432c445c"
-            ],
+            [],
             [
                 "6a43d69ea6db31aa"
+            ],
+            [
+                "477223d0432c445c"
             ]
         ]
     },
@@ -1501,8 +1502,8 @@
         "order": 1,
         "value": "payload",
         "valueType": "msg",
-        "width": "3",
-        "height": "3",
+        "width": "2",
+        "height": "2",
         "gtype": "gauge-half",
         "gstyle": "needle",
         "title": "CO2 Temperature",
@@ -1599,8 +1600,8 @@
         "z": "f00a2f75f92239ad",
         "name": "Separate based on Tags",
         "info": "",
-        "x": 150,
-        "y": 400,
+        "x": 130,
+        "y": 420,
         "wires": []
     },
     {
@@ -2328,60 +2329,6 @@
         ]
     },
     {
-        "id": "75c4a8a767510f4b",
-        "type": "ui-gauge",
-        "z": "f00a2f75f92239ad",
-        "name": "Right Motor Freq",
-        "group": "13816c2f51c27294",
-        "order": 6,
-        "value": "payload",
-        "valueType": "msg",
-        "width": "3",
-        "height": "3",
-        "gtype": "gauge-half",
-        "gstyle": "rounded",
-        "title": "Frequency",
-        "alwaysShowTitle": false,
-        "floatingTitlePosition": "top-left",
-        "units": "Hz",
-        "icon": "",
-        "prefix": "",
-        "suffix": "",
-        "segments": [
-            {
-                "from": "20",
-                "color": "#5cd65c",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "40",
-                "color": "#ffc800",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "50",
-                "color": "#ea5353",
-                "text": "",
-                "textType": "label"
-            }
-        ],
-        "min": "20",
-        "max": "60",
-        "sizeThickness": 16,
-        "sizeGap": 4,
-        "sizeKeyThickness": 8,
-        "styleRounded": true,
-        "styleGlow": false,
-        "className": "",
-        "x": 490,
-        "y": 660,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "c53aa7834e4da2ec",
         "type": "ui-gauge",
         "z": "f00a2f75f92239ad",
@@ -2445,14 +2392,20 @@
         "suffix": "",
         "segments": [
             {
-                "from": "20",
+                "from": "0",
                 "color": "#ffffff",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "50",
+                "color": "#59e63d",
                 "text": "",
                 "textType": "value"
             }
         ],
-        "min": "20",
-        "max": "60",
+        "min": "0",
+        "max": "100",
         "sizeThickness": 16,
         "sizeGap": 4,
         "sizeKeyThickness": 8,
@@ -2825,7 +2778,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
+        "x": 790,
         "y": 1100,
         "wires": [
             []
@@ -2835,7 +2788,7 @@
         "id": "4845b64f7363a36b",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "Mb Packet",
+        "name": "Mb Packet Left",
         "func": "if (msg.payload && msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n\n    let val;\n\n    // If value is provided in the payload, use it\n    if (msg.payload.value !== undefined) {\n        val = Number(msg.payload.value);\n    }\n    // Otherwise, get it from the stored slider value\n    else {\n        val = flow.get(\"leftSliderValue\");\n        if (val === undefined || isNaN(val)) {\n            node.warn(\"Slider value not set or invalid, defaulting to 0\");\n            val = 0;\n        }\n        val = Number(val) * 100;\n    }\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,                               // Write Single Register\n        unitid: Number(msg.payload.unitid),  // From button\n        address: Number(msg.payload.address),// From button\n        quantity: 1,\n        value: [val]                         // From slider or fixed button value\n    };\n\n    return msg;\n}\n\n// Ignore other messages\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
@@ -2843,7 +2796,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 420,
         "y": 1100,
         "wires": [
             [
@@ -2856,7 +2809,7 @@
         "id": "8e34a38308520df9",
         "type": "function",
         "z": "f00a2f75f92239ad",
-        "name": "Mb Packet",
+        "name": "Mb Packet Right",
         "func": "if (msg.payload && msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n\n    let val;\n\n    // If value is provided in the payload, use it\n    if (msg.payload.value !== undefined) {\n        val = Number(msg.payload.value);\n    }\n    // Otherwise, get it from the stored slider value\n    else {\n        val = flow.get(\"rightSliderValue\");\n        if (val === undefined || isNaN(val)) {\n            node.warn(\"Slider value not set or invalid, defaulting to 0\");\n            val = 0;\n        }\n        val = Number(val) * 100;\n    }\n\n    // Build Modbus Flex Write payload\n    msg.payload = {\n        fc: 6,                               // Write Single Register\n        unitid: Number(msg.payload.unitid),  // From button\n        address: Number(msg.payload.address),// From button\n        quantity: 1,\n        value: [val]                         // From slider or fixed button value\n    };\n\n    return msg;\n}\n\n// Ignore other messages\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
@@ -2864,7 +2817,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1050,
+        "x": 1040,
         "y": 1100,
         "wires": [
             [
@@ -2980,7 +2933,7 @@
         "y": 720,
         "wires": [
             [
-                "75c4a8a767510f4b"
+                "1bca76d6bbe1c0dc"
             ],
             [
                 "4851a488b4f784e9"
@@ -2991,6 +2944,60 @@
             [
                 "2c674a6743ed4a73"
             ]
+        ]
+    },
+    {
+        "id": "1bca76d6bbe1c0dc",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "Right Motor Freq",
+        "group": "13816c2f51c27294",
+        "order": 6,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "rounded",
+        "title": "Frequency",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "20",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "50",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": "20",
+        "max": "60",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 490,
+        "y": 660,
+        "wires": [
+            []
         ]
     }
 ]
