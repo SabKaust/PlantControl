@@ -251,7 +251,7 @@
         "z": "f00a2f75f92239ad",
         "name": "",
         "registerShowMax": 20,
-        "x": 1170,
+        "x": 1090,
         "y": 120,
         "wires": []
     },
@@ -260,7 +260,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "function 3",
-        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    //{ tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    //{ tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    //{ tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 1, fc: 3, address: 2057, quantity: 4 },\n    { tag: \"TagX2\", unitid: 2, fc: 3, address: 2057, quantity: 4 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
+        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    //{ tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    //{ tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    //{ tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 1, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"TagX2\", unitid: 2, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -387,7 +387,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
+        "x": 1100,
         "y": 60,
         "wires": []
     },
@@ -398,7 +398,7 @@
         "name": "",
         "serial": "c2b3dd79366cad0c",
         "x": 570,
-        "y": 1660,
+        "y": 1860,
         "wires": [
             [
                 "43fc782794b73c3a"
@@ -418,7 +418,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 1720,
+        "y": 1920,
         "wires": [
             [
                 "c6b5f852d287c501"
@@ -438,7 +438,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 1660,
+        "y": 1860,
         "wires": [
             [
                 "45e468ba6b869995"
@@ -479,7 +479,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 1740,
+        "y": 1940,
         "wires": [
             [
                 "c6b5f852d287c501"
@@ -508,7 +508,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 600,
-        "y": 1800,
+        "y": 2000,
         "wires": [
             [
                 "d5a333c1f54b5b5a"
@@ -547,7 +547,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1520,
+        "y": 1720,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -586,7 +586,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1520,
+        "y": 1720,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -600,7 +600,7 @@
         "name": "Right Side (Relay 5 to 8)",
         "info": "",
         "x": 1030,
-        "y": 1700,
+        "y": 1900,
         "wires": []
     },
     {
@@ -632,7 +632,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1520,
+        "y": 1720,
         "wires": []
     },
     {
@@ -664,7 +664,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1560,
+        "y": 1760,
         "wires": []
     },
     {
@@ -696,7 +696,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1600,
+        "y": 1800,
         "wires": []
     },
     {
@@ -728,7 +728,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1640,
+        "y": 1840,
         "wires": []
     },
     {
@@ -760,7 +760,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1740,
+        "y": 1940,
         "wires": []
     },
     {
@@ -792,7 +792,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1780,
+        "y": 1980,
         "wires": []
     },
     {
@@ -824,7 +824,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1820,
+        "y": 2020,
         "wires": []
     },
     {
@@ -856,7 +856,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 990,
-        "y": 1860,
+        "y": 2060,
         "wires": []
     },
     {
@@ -866,7 +866,7 @@
         "name": "Left side (Relay 1 to 4)",
         "info": "",
         "x": 1020,
-        "y": 1480,
+        "y": 1680,
         "wires": []
     },
     {
@@ -876,7 +876,7 @@
         "name": "Left Side (Relay 1 to 4)",
         "info": "",
         "x": 160,
-        "y": 1480,
+        "y": 1680,
         "wires": []
     },
     {
@@ -911,7 +911,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1560,
+        "y": 1760,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -950,7 +950,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1560,
+        "y": 1760,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -989,7 +989,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1600,
+        "y": 1800,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1028,7 +1028,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1600,
+        "y": 1800,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1067,7 +1067,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1640,
+        "y": 1840,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1106,7 +1106,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1640,
+        "y": 1840,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1145,7 +1145,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1860,
+        "y": 2060,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1184,7 +1184,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1860,
+        "y": 2060,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1198,7 +1198,7 @@
         "name": "Right Side (Relay 5 to 8)",
         "info": "",
         "x": 170,
-        "y": 1820,
+        "y": 2020,
         "wires": []
     },
     {
@@ -1233,7 +1233,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1900,
+        "y": 2100,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1272,7 +1272,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1900,
+        "y": 2100,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1311,7 +1311,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1940,
+        "y": 2140,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1350,7 +1350,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1940,
+        "y": 2140,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1389,7 +1389,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 130,
-        "y": 1980,
+        "y": 2180,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1428,7 +1428,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 330,
-        "y": 1980,
+        "y": 2180,
         "wires": [
             [
                 "eb8387c9a439f60f"
@@ -1442,7 +1442,7 @@
         "name": "Timeout 1000ms",
         "info": "",
         "x": 560,
-        "y": 1620,
+        "y": 1820,
         "wires": []
     },
     {
@@ -1452,7 +1452,7 @@
         "name": "Trigger Status check every 1s",
         "info": "",
         "x": 640,
-        "y": 1840,
+        "y": 2040,
         "wires": []
     },
     {
@@ -1460,7 +1460,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "Switch Function",
-        "func": "// Define tags\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\", \"TagX\", \"TagX2\"];\n\n// Merge tags for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// Get registers from payload\nlet registers = msg.payload;\n\nif (!Array.isArray(registers)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\n// Proces each tag type\nlet adjustedValue;\nif (noSwapTags.includes(msg.topic)) {\n    if (msg.topic === \"TagX\" || msg.topic === \"TagX2\") {\n        // TagX: expect exactly 4 registers, each 16-bit integer\n        if (registers.length < 4) {\n            node.error(\"TagX requires 4 registers\", msg);\n            return null;\n        }\n        adjustedValue = registers.slice(0,4);  // Keep as array\n        node.warn(`${msg.topic} value handled as array of 4 registers`);\n    } else {\n        // Other noSwap tags: combine first 2 registers as 32-bit signed int\n        let buf = Buffer.alloc(4);\n        buf.writeUInt16BE(registers[0], 0);\n        buf.writeUInt16BE(registers[1], 2);\n        adjustedValue = buf.readInt32BE(0);\n\n        // Apply per-tag math\n        switch(msg.topic) {\n            case \"tag9\": adjustedValue *= 10; break;\n            case \"tag8\": adjustedValue /= 10; break;\n        }\n    }\n} else if (swapTags.includes(msg.topic)) {\n    // Swap tags: combine first 2 registers as 32-bit float with swap\n    let buf = Buffer.alloc(4);\n    buf.writeUInt16BE(registers[1], 0);\n    buf.writeUInt16BE(registers[0], 2);\n    adjustedValue = buf.readFloatBE(0);\n\n    // Per-tag math\n    switch(msg.topic) {\n        case \"LEE872avg\": adjustedValue /= 2; break;\n        case \"LEE872raw\": adjustedValue /= 3; break;\n        case \"LEE872P\": adjustedValue /= 5; break;\n        case \"LEE872T\": adjustedValue = adjustedValue; break;\n        case \"LEE872RH\": adjustedValue /= 1; break;\n    }\n} else {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\n// Assign output\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = adjustedValue;\noutputs[index] = msg;\n\nreturn outputs;\n",
+        "func": "// --- Define tags ---\nconst swapTags = [\"LEE872avg\", \"LEE872raw\", \"LEE872P\", \"LEE872T\", \"LEE872RH\"];\nconst noSwapTags = [\"tag9\", \"tag8\", \"TagX\", \"TagX2\"];\n\n// Merge for output order\nconst tags = [...swapTags, ...noSwapTags];\nlet outputs = tags.map(() => null);\n\n// --- Lookup maps for per-tag math ---\nconst noSwapMath = {\n    tag9: v => v * 10,\n    tag8: v => v / 10,\n};\n\nconst swapMath = {\n    LEE872avg: v => v / 2,\n    LEE872raw: v => v / 3,\n    LEE872P: v => v / 5,\n    LEE872T: v => v,   // identity\n    LEE872RH: v => v,   // identity\n};\n\n// --- Helpers ---\nfunction readInt32BE(regs) {\n    const buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[0], 0);\n    buf.writeUInt16BE(regs[1], 2);\n    return buf.readInt32BE(0);\n}\n\nfunction readFloat32Swap(regs) {\n    const buf = Buffer.alloc(4);\n    buf.writeUInt16BE(regs[1], 0);\n    buf.writeUInt16BE(regs[0], 2);\n    return buf.readFloatBE(0);\n}\n\n// --- Main processing ---\nlet regs = msg.payload;\nif (!Array.isArray(regs)) {\n    node.error(\"Payload is not an array\", msg);\n    return null;\n}\n\nlet value;\n\nif (noSwapTags.includes(msg.topic)) {\n    if (msg.topic === \"TagX\" || msg.topic === \"TagX2\") {\n        if (regs.length < 6) {\n            node.error(`${msg.topic} requires 6 registers`, msg);\n            return null;\n        }\n        value = regs.slice(0, 6);   // keep as array\n        node.warn(`${msg.topic} value handled as array of 6 registers`);\n    } else {\n        value = readInt32BE(regs);\n        if (noSwapMath[msg.topic]) value = noSwapMath[msg.topic](value);\n    }\n}\nelse if (swapTags.includes(msg.topic)) {\n    value = readFloat32Swap(regs);\n    if (swapMath[msg.topic]) value = swapMath[msg.topic](value);\n}\nelse {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\n// --- Assign output ---\nconst index = tags.indexOf(msg.topic);\nif (index === -1) {\n    node.warn(`Unknown tag/topic: ${msg.topic}`);\n    return null;\n}\n\nmsg.payload = value;\noutputs[index] = msg;\n\nreturn outputs;\n",
         "outputs": 9,
         "timeout": 0,
         "noerr": 0,
@@ -1610,7 +1610,7 @@
         "z": "f00a2f75f92239ad",
         "name": "R CO2 Avg T",
         "group": "dcc0565feb8882f8",
-        "order": 1,
+        "order": 3,
         "value": "payload",
         "valueType": "msg",
         "width": "2",
@@ -1652,7 +1652,7 @@
         "z": "f00a2f75f92239ad",
         "name": "R CO2 raw T",
         "group": "dcc0565feb8882f8",
-        "order": 2,
+        "order": 4,
         "value": "payload",
         "valueType": "msg",
         "width": "2",
@@ -1702,7 +1702,7 @@
         "delayOnStart": false,
         "startDelayTime": "",
         "x": 470,
-        "y": 940,
+        "y": 1140,
         "wires": [
             [
                 "4f54d83faca9465d"
@@ -1719,7 +1719,7 @@
         "name": "",
         "registerShowMax": 20,
         "x": 690,
-        "y": 900,
+        "y": 1100,
         "wires": []
     },
     {
@@ -1729,7 +1729,7 @@
         "name": "",
         "registerShowMax": 20,
         "x": 690,
-        "y": 960,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1760,7 +1760,7 @@
         "colorThumb": "",
         "showTextField": true,
         "x": 140,
-        "y": 1160,
+        "y": 1360,
         "wires": [
             [
                 "210f32d5557c3e2b"
@@ -1795,7 +1795,7 @@
         "colorThumb": "",
         "showTextField": true,
         "x": 790,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             [
                 "0f8a862fb77327b1"
@@ -1834,7 +1834,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 120,
-        "y": 1220,
+        "y": 1420,
         "wires": [
             [
                 "4845b64f7363a36b"
@@ -1873,7 +1873,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 340,
-        "y": 1220,
+        "y": 1420,
         "wires": [
             [
                 "4845b64f7363a36b"
@@ -1908,8 +1908,8 @@
         "shape": "square",
         "showBorder": true,
         "showGlow": true,
-        "x": 340,
-        "y": 1260,
+        "x": 480,
+        "y": 580,
         "wires": []
     },
     {
@@ -1944,7 +1944,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 800,
-        "y": 1220,
+        "y": 1420,
         "wires": [
             [
                 "8e34a38308520df9"
@@ -1983,7 +1983,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 1030,
-        "y": 1220,
+        "y": 1420,
         "wires": [
             [
                 "8e34a38308520df9"
@@ -2018,8 +2018,8 @@
         "shape": "square",
         "showBorder": true,
         "showGlow": true,
-        "x": 1020,
-        "y": 1260,
+        "x": 480,
+        "y": 820,
         "wires": []
     },
     {
@@ -2071,7 +2071,7 @@
         "styleGlow": false,
         "className": "",
         "x": 480,
-        "y": 480,
+        "y": 420,
         "wires": [
             []
         ]
@@ -2089,7 +2089,7 @@
         "height": "1",
         "gtype": "gauge-tile",
         "gstyle": "rounded",
-        "title": "Current (A)",
+        "title": "Current (% Rated)",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
         "units": "Hz",
@@ -2113,7 +2113,7 @@
         "styleGlow": false,
         "className": "",
         "x": 130,
-        "y": 1260,
+        "y": 1460,
         "wires": [
             []
         ]
@@ -2155,7 +2155,7 @@
         "styleGlow": false,
         "className": "",
         "x": 470,
-        "y": 560,
+        "y": 500,
         "wires": [
             []
         ]
@@ -2197,7 +2197,7 @@
         "styleGlow": false,
         "className": "",
         "x": 130,
-        "y": 1300,
+        "y": 1500,
         "wires": [
             []
         ]
@@ -2239,7 +2239,7 @@
         "styleGlow": false,
         "className": "",
         "x": 470,
-        "y": 600,
+        "y": 540,
         "wires": [
             []
         ]
@@ -2257,7 +2257,7 @@
         "height": "1",
         "gtype": "gauge-tile",
         "gstyle": "rounded",
-        "title": "Power (W)",
+        "title": "Power (% Rated)",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
         "units": "Hz",
@@ -2281,7 +2281,7 @@
         "styleGlow": false,
         "className": "",
         "x": 130,
-        "y": 1340,
+        "y": 1540,
         "wires": [
             []
         ]
@@ -2323,7 +2323,7 @@
         "styleGlow": false,
         "className": "",
         "x": 470,
-        "y": 520,
+        "y": 460,
         "wires": [
             []
         ]
@@ -2365,7 +2365,7 @@
         "styleGlow": false,
         "className": "",
         "x": 810,
-        "y": 1260,
+        "y": 1460,
         "wires": [
             []
         ]
@@ -2455,7 +2455,7 @@
         "styleGlow": false,
         "className": "",
         "x": 810,
-        "y": 1300,
+        "y": 1500,
         "wires": [
             []
         ]
@@ -2539,7 +2539,7 @@
         "styleGlow": false,
         "className": "",
         "x": 810,
-        "y": 1340,
+        "y": 1540,
         "wires": [
             []
         ]
@@ -2618,7 +2618,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 380,
-        "y": 1160,
+        "y": 1360,
         "wires": [
             [
                 "4845b64f7363a36b"
@@ -2657,7 +2657,7 @@
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
         "x": 1020,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             [
                 "8e34a38308520df9"
@@ -2686,7 +2686,7 @@
         "payload": "30",
         "payloadType": "num",
         "x": 45,
-        "y": 1160,
+        "y": 1360,
         "wires": [
             [
                 "5e610a5d3514f1d5"
@@ -2761,7 +2761,7 @@
         "finalize": "",
         "libs": [],
         "x": 170,
-        "y": 1100,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -2779,7 +2779,7 @@
         "finalize": "",
         "libs": [],
         "x": 790,
-        "y": 1100,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -2797,7 +2797,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 1100,
+        "y": 1300,
         "wires": [
             [
                 "b9cc117f0400f21f",
@@ -2818,7 +2818,7 @@
         "finalize": "",
         "libs": [],
         "x": 1040,
-        "y": 1100,
+        "y": 1300,
         "wires": [
             [
                 "b9cc117f0400f21f",
@@ -2831,8 +2831,8 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "split left drive",
-        "func": "// Expect input: msg.payload = [frequency, power, current, voltage]\nif (!Array.isArray(msg.payload) || msg.payload.length < 4) {\n    node.error(\"Expected an array of 4 values from TagX\", msg);\n    return null;\n}\n\nlet [frequency, power, current, voltage] = msg.payload;\n\n// Send each to its own output for gauges\nreturn [\n    { payload: frequency / 100},  // Output 1 - Frequency\n    { payload: power / 100 },      // Output 2 - Power\n    { payload: current / 100},    // Output 3 - Current\n    { payload: voltage / 10}     // Output 4 - Voltage\n];\n",
-        "outputs": 4,
+        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, extra1, motorLedRaw] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: extra1 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: motorLedRaw !== 0 } // Output 6 - MotorLed (boolean)\n];\n",
+        "outputs": 6,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -2852,6 +2852,10 @@
             ],
             [
                 "8a303fd5ac8cf624"
+            ],
+            [],
+            [
+                "d763d534edb299f5"
             ]
         ]
     },
@@ -2877,7 +2881,7 @@
         "payload": "30",
         "payloadType": "num",
         "x": 675,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             [
                 "ba54712547851fb4"
@@ -2898,7 +2902,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 300,
-        "y": 1040,
+        "y": 1240,
         "wires": []
     },
     {
@@ -2914,7 +2918,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 880,
-        "y": 1040,
+        "y": 1240,
         "wires": []
     },
     {
@@ -2922,8 +2926,8 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "split right drive",
-        "func": "// Expect input: msg.payload = [frequency, power, current, voltage]\nif (!Array.isArray(msg.payload) || msg.payload.length < 4) {\n    node.error(\"Expected an array of 4 values from TagX\", msg);\n    return null;\n}\n\nlet [frequency, power, current, voltage] = msg.payload;\n\n// Send each to its own output for gauges\nreturn [\n    { payload: frequency / 100},  // Output 1 - Frequency\n    { payload: power / 100 },      // Output 2 - Power\n    { payload: current / 100},    // Output 3 - Current\n    { payload: voltage / 10}     // Output 4 - Voltage\n];\n",
-        "outputs": 4,
+        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, extra1, motorLedRaw] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: extra1 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: motorLedRaw !== 0 } // Output 6 - MotorLed (boolean)\n];\n",
+        "outputs": 6,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -2943,6 +2947,10 @@
             ],
             [
                 "2c674a6743ed4a73"
+            ],
+            [],
+            [
+                "ffc9ac25d888f816"
             ]
         ]
     },
@@ -2996,6 +3004,101 @@
         "className": "",
         "x": 490,
         "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a82d5fab19b1305a",
+        "type": "ui-slider",
+        "z": "f00a2f75f92239ad",
+        "group": "dcc0565feb8882f8",
+        "name": "",
+        "label": "slider",
+        "tooltip": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": 0,
+        "max": "400",
+        "step": 1,
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": false,
+        "x": 230,
+        "y": 960,
+        "wires": [
+            [
+                "a43106d6093a29ae"
+            ]
+        ]
+    },
+    {
+        "id": "a43106d6093a29ae",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "",
+        "group": "dcc0565feb8882f8",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "1",
+        "height": "1",
+        "gtype": "gauge-tile",
+        "gstyle": "needle",
+        "title": "gauge",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "bottom-right",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#a8f5ff",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "100",
+                "color": "#55dbec",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "200",
+                "color": "#53b4fd",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "50",
+                "color": "#2397d1",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": 0,
+        "max": "400",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 430,
+        "y": 940,
         "wires": [
             []
         ]
