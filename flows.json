@@ -19,7 +19,7 @@
         "tcpHost": "127.0.0.1",
         "tcpPort": 502,
         "tcpType": "DEFAULT",
-        "serialPort": "/dev/ttyAMA5",
+        "serialPort": "/dev/ttyUSB0",
         "serialType": "RTU-BUFFERD",
         "serialBaudrate": "19200",
         "serialDatabits": 8,
@@ -41,7 +41,7 @@
         "id": "c2b3dd79366cad0c",
         "type": "serial-port",
         "name": "tusb",
-        "serialport": "/dev/ttyUSB0",
+        "serialport": "/dev/ttyAMA5",
         "serialbaud": "9600",
         "databits": 8,
         "parity": "none",
@@ -260,7 +260,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "function 3",
-        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    //{ tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    //{ tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    //{ tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 1, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"TagX2\", unitid: 2, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
+        "func": "\n/*\nglobal.set(\"addrInfo\", [{\n    'tag' : \"Tag1\",\n    'unitid' : 238,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n},{\n    'tag' : \"Tag2\",\n    'unitid' : 43,\n    'fc' : 4,\n    'address' : 9,\n    'quantity' : 8\n}\n]);\nglobal.set(\"index\",0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n*/\n\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"LEE872avg\", unitid: 238, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"LEE872raw\", unitid: 238, fc: 4, address: 0x426, quantity: 2 },\n    //{ tag: \"LEE872P\", unitid: 238, fc: 4, address: 0x4B0, quantity: 2 },\n    //{ tag: \"LEE872T\", unitid: 238, fc: 4, address: 0x3EA, quantity: 2 },\n    //{ tag: \"LEE872RH\", unitid: 238, fc: 4, address: 0x3FC, quantity: 2 },\n    //{ tag: \"Tag7\", unitid: 239, fc: 4, address: 0x424, quantity: 2 },\n    //{ tag: \"Tag4\", unitid: 238, fc: 4, address: 0xFBE, quantity: 2 },\n    { tag: \"TagX\", unitid: 1, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"TagX2\", unitid: 2, fc: 3, address: 2057, quantity: 6 }\n    //{ tag: \"Tag5\", unitid: 44, fc: 4, address: 0x300, quantity: 2 }\n    //{ tag: \"Tag6\", unitid: 44, fc: 4, address: 0x1009, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; ",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -291,12 +291,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
+        "x": 130,
         "y": 180,
         "wires": [
             [
@@ -355,7 +355,7 @@
         "z": "f00a2f75f92239ad",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1000",
+        "timeout": "2000",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -379,7 +379,7 @@
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 14",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1610,7 +1610,7 @@
         "z": "f00a2f75f92239ad",
         "name": "R CO2 Avg T",
         "group": "dcc0565feb8882f8",
-        "order": 3,
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "2",
@@ -1652,7 +1652,7 @@
         "z": "f00a2f75f92239ad",
         "name": "R CO2 raw T",
         "group": "dcc0565feb8882f8",
-        "order": 4,
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": "2",
@@ -2831,7 +2831,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "split left drive",
-        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, extra1, motorLedRaw] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: extra1 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: motorLedRaw !== 0 } // Output 6 - MotorLed (boolean)\n];\n",
+        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, motorLedRaw, extra1] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: motorLedRaw !== 0 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: extra1 } // Output 6 - MotorLed (boolean)\n];\n",
         "outputs": 6,
         "timeout": 0,
         "noerr": 0,
@@ -2853,10 +2853,10 @@
             [
                 "8a303fd5ac8cf624"
             ],
-            [],
             [
                 "d763d534edb299f5"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -2926,7 +2926,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "split right drive",
-        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, extra1, motorLedRaw] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: extra1 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: motorLedRaw !== 0 } // Output 6 - MotorLed (boolean)\n];\n",
+        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, motorLedRaw, extra1] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: motorLedRaw !== 0 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: extra1 } // Output 6 - MotorLed (boolean)\n];\n",
         "outputs": 6,
         "timeout": 0,
         "noerr": 0,
@@ -2948,10 +2948,10 @@
             [
                 "2c674a6743ed4a73"
             ],
-            [],
             [
                 "ffc9ac25d888f816"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -3004,101 +3004,6 @@
         "className": "",
         "x": 490,
         "y": 660,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a82d5fab19b1305a",
-        "type": "ui-slider",
-        "z": "f00a2f75f92239ad",
-        "group": "dcc0565feb8882f8",
-        "name": "",
-        "label": "slider",
-        "tooltip": "",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": 0,
-        "max": "400",
-        "step": 1,
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 230,
-        "y": 960,
-        "wires": [
-            [
-                "a43106d6093a29ae"
-            ]
-        ]
-    },
-    {
-        "id": "a43106d6093a29ae",
-        "type": "ui-gauge",
-        "z": "f00a2f75f92239ad",
-        "name": "",
-        "group": "dcc0565feb8882f8",
-        "order": 2,
-        "value": "payload",
-        "valueType": "msg",
-        "width": "1",
-        "height": "1",
-        "gtype": "gauge-tile",
-        "gstyle": "needle",
-        "title": "gauge",
-        "alwaysShowTitle": false,
-        "floatingTitlePosition": "bottom-right",
-        "units": "units",
-        "icon": "",
-        "prefix": "",
-        "suffix": "",
-        "segments": [
-            {
-                "from": "0",
-                "color": "#a8f5ff",
-                "text": "",
-                "textType": "value"
-            },
-            {
-                "from": "100",
-                "color": "#55dbec",
-                "text": "",
-                "textType": "value"
-            },
-            {
-                "from": "200",
-                "color": "#53b4fd",
-                "text": "",
-                "textType": "value"
-            },
-            {
-                "from": "50",
-                "color": "#2397d1",
-                "text": "",
-                "textType": "value"
-            }
-        ],
-        "min": 0,
-        "max": "400",
-        "sizeThickness": 16,
-        "sizeGap": 4,
-        "sizeKeyThickness": 8,
-        "styleRounded": true,
-        "styleGlow": false,
-        "className": "",
-        "x": 430,
-        "y": 940,
         "wires": [
             []
         ]
