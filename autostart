@@ -1,0 +1,30 @@
+xset s off
+xset -dpms
+xset s noblank
+unclutter -idle 0 &
+
+# 270° (left) rotation + align touchscreen
+xrandr --output HDMI-1 --rotate left
+DISPLAY=:0 xinput set-prop "ILITEK ILITEK-TP" "Coordinate Transformation Matrix" 0 -1 1  1 0 0  0 0 1
+DISPLAY=:0 xinput set-prop "ILITEK ILITEK-TP Mouse" "Coordinate Transformation Matrix" 0 -1 1  1 0 0  0 0 1
+
+# wait for Node-RED Dashboard to be ready on 1880
+#until curl -sf http://127.0.0.1:1881/ >/dev/null; do
+#  sleep 1
+#done
+
+# wait for Node-RED (1881) OR the HTTPS proxy (41880)
+until curl -sf http://127.0.0.1:1881/ >/dev/null \
+   || curl -skf https://localhost:41880/dashboard >/dev/null; do
+  sleep 1
+done
+
+
+
+# kiosk keep-alive
+while true; do
+  chromium-browser --kiosk 'https://localhost:41880/dashboard' \
+    --incognito --no-first-run --noerrdialogs --disable-session-crashed-bubble \
+    --check-for-update-interval=0 --allow-insecure-localhost
+  sleep 2
+done &
