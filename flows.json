@@ -1432,7 +1432,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "function 3",
-        "func": "\nglobal.set(\"addrInfo\", [\n  // VFDs\n  //{ tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n  //{ tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n\n  // Energy Meters\n  //{ tag: \"LEM\", unitid: 102, fc: 3, address: 0x0C, quantity: 2 },\n  //{ tag: \"REM\", unitid: 202, fc: 3, address: 0x0C, quantity: 2 },\n\n  // PIDs\n  //{ tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 2 },\n  //{ tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 2 },\n\n  // EE872 Up (grouped)\n  // CO2 avg+raw (0x424..0x427)\n  { tag: \"LUPEE872CO2\", unitid: 111, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RUPEE872CO2\", unitid: 211, fc: 4, address: 0x424, quantity: 0x04 },\n  // Temp+RH (0x3EA..0x3FD)\n  { tag: \"LUPEE872TRH\", unitid: 111, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RUPEE872TRH\", unitid: 211, fc: 4, address: 0x3EA, quantity: 0x14 },\n  // Pressure (0x4B0..0x4B1)\n  { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE872 Down (grouped)\n  { tag: \"LDOWNEE872CO2\", unitid: 112, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RDOWNEE872CO2\", unitid: 212, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"LDOWNEE872TRH\", unitid: 112, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RDOWNEE872TRH\", unitid: 212, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE600 (as you had)\n  { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 0x02 },\n  { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 0x02 },\n\n  // EE650 (as you had)\n  { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 0x02 },\n  { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 0x02 }\n]);\n\nglobal.set(\"index\", 0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n\n\n/*\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    // VFDs\n    { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n    \n    // Energy Meters\n    { tag: \"LEM\", unitid: 102, fc: 3, address: 0x0C, quantity: 6 },\n    { tag: \"REM\", unitid: 202, fc: 3, address: 0x0C, quantity: 6 },\n\n    // PIDs\n    { tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 6 },\n    { tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 6 },\n    \n    //EE72 UP\n    { tag: \"LUPEE872Co2\", unitid: 111, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RUPEE872Co2\", unitid: 211, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LUPEE872RH\", unitid: 111, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RUPEE872RH\", unitid: 211, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LUPEE872T\", unitid: 111, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RUPEE872T\", unitid: 211, fc: 4, address: 0x3EA, quantity: 2 },\n    \n    //EE872 Down\n    { tag: \"LDOWNEE872Co2\", unitid: 112, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RDOWNEE872Co2\", unitid: 212, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LDOWNEE872RH\", unitid: 112, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RDOWNEE872RH\", unitid: 212, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LDOWNEE872T\", unitid: 112, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RDOWNEE872T\", unitid: 212, fc: 4, address: 0x3EA, quantity: 2 },\n\n    // EE600\n    { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 2 },\n    { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 2 },\n\n    // EE650\n    { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 2 },\n\n    { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 2 },\n    { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; \n*/",
+        "func": "\nglobal.set(\"addrInfo\", [\n  // VFDs\n  { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n  { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n\n  // Energy Meters\n  { tag: \"LEM\", unitid: 102, fc: 4, address: 12, quantity: 2 },\n  { tag: \"REM\", unitid: 202, fc: 4, address: 12, quantity: 2 },\n\n  // PIDs\n  //{ tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 2 },\n  //{ tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 2 },\n\n  // EE872 Up (grouped)\n  // CO2 avg+raw (0x424..0x427)\n  { tag: \"LUPEE872CO2\", unitid: 111, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RUPEE872CO2\", unitid: 211, fc: 4, address: 0x424, quantity: 0x04 },\n  // Temp+RH (0x3EA..0x3FD)\n  { tag: \"LUPEE872TRH\", unitid: 111, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RUPEE872TRH\", unitid: 211, fc: 4, address: 0x3EA, quantity: 0x14 },\n  // Pressure (0x4B0..0x4B1)\n  { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE872 Down (grouped)\n  { tag: \"LDOWNEE872CO2\", unitid: 112, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RDOWNEE872CO2\", unitid: 212, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"LDOWNEE872TRH\", unitid: 112, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RDOWNEE872TRH\", unitid: 212, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE600 (as you had)\n  { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 0x02 },\n  { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 0x02 },\n\n  // EE650 (as you had)\n  { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 0x02 },\n  { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 0x02 }\n]);\n\nglobal.set(\"index\", 0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n\n\n/*\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    // VFDs\n    { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n    \n    // Energy Meters\n    { tag: \"LEM\", unitid: 102, fc: 3, address: 0x0C, quantity: 6 },\n    { tag: \"REM\", unitid: 202, fc: 3, address: 0x0C, quantity: 6 },\n\n    // PIDs\n    { tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 6 },\n    { tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 6 },\n    \n    //EE72 UP\n    { tag: \"LUPEE872Co2\", unitid: 111, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RUPEE872Co2\", unitid: 211, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LUPEE872RH\", unitid: 111, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RUPEE872RH\", unitid: 211, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LUPEE872T\", unitid: 111, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RUPEE872T\", unitid: 211, fc: 4, address: 0x3EA, quantity: 2 },\n    \n    //EE872 Down\n    { tag: \"LDOWNEE872Co2\", unitid: 112, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RDOWNEE872Co2\", unitid: 212, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LDOWNEE872RH\", unitid: 112, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RDOWNEE872RH\", unitid: 212, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LDOWNEE872T\", unitid: 112, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RDOWNEE872T\", unitid: 212, fc: 4, address: 0x3EA, quantity: 2 },\n\n    // EE600\n    { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 2 },\n    { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 2 },\n\n    // EE650\n    { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 2 },\n\n    { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 2 },\n    { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; \n*/",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1463,12 +1463,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
+        "x": 150,
         "y": 220,
         "wires": [
             [
@@ -1527,7 +1527,7 @@
         "z": "f00a2f75f92239ad",
         "name": "",
         "pauseType": "delay",
-        "timeout": "500",
+        "timeout": "400",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -1672,14 +1672,14 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 600,
+        "x": 610,
         "y": 2480,
         "wires": [
             [
@@ -2632,7 +2632,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "Switch Function",
-        "func": "// =============== Switch Function (32 outputs) ===============\n// Output map:\n//  1  LU CO2 avg        2  LU CO2 raw         3  LU Temp (°C)      4  LU RH (%)        5  LU Pressure (hPa)\n//  6  RU CO2 avg        7  RU CO2 raw         8  RU Temp (°C)      9  RU RH (%)       10  RU Pressure (hPa)\n// 11  LD CO2 avg       12  LD CO2 raw        13  LD Temp (°C)     14  LD RH (%)       15  LD Pressure (hPa)\n// 16  RD CO2 avg       17  RD CO2 raw        18  RD Temp (°C)     19  RD RH (%)       20  RD Pressure (hPa)\n// 21  LEE600           22  REE600            23  LEE650T (°C)     24  REE650T (°C)    25  LEE650AV (m/s)\n// 26  REE650AV (m/s)   27  LEM watts         28  REM watts        29  LPID watts      30  RPID watts\n// 31  LVFD (array→splitter)                 32  RVFD (array→splitter)\n\n// -------- helpers --------\n// E+E float32 values are word-swapped (hi,lo -> lo,hi for bytes)\nfunction readFloat32Swap(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r1, 0); // low word\n  b.writeUInt16BE(r0, 2); // high word\n  return b.readFloatBE(0);\n}\nfunction f32at(regs, i) { return readFloat32Swap(regs[i], regs[i+1]); }\n\nfunction readInt32BE(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0);\n  b.writeUInt16BE(r1, 2);\n  return b.readInt32BE(0); // signed\n}\n\n// round to 2 decimals\nfunction round2(v) { return Math.round(v * 100) / 100; }\n\nconst regs = msg.payload;\nconst tag  = String(msg.topic || \"\");\n\nif (!Array.isArray(regs)) {\n  node.error(\"Payload is not an array of registers\", msg);\n  return null;\n}\n\nconst out = Array.from({ length: 32 }, () => null);\n\n// side helpers\nfunction isLeftUp(t){ return /^LU/i.test(t); }\nfunction isRightUp(t){ return /^RU/i.test(t); }\nfunction isLeftDown(t){ return /^LD/i.test(t); }\nfunction isRightDown(t){ return /^RD/i.test(t); }\n\n// ---------- EE872: CO2 block (avg+raw at 0x424..0x427) ----------\nif (/EE872CO2$/i.test(tag)) {\n  if (regs.length < 4) { node.error(`${tag} requires 4 registers`, msg); return null; }\n  const co2_avg = round2(f32at(regs, 0)); // 0x424..0x425\n  const co2_raw = round2(f32at(regs, 2)); // 0x426..0x427\n\n  if (isLeftUp(tag))      { out[0]  = { topic: \"LU.CO2.avg\", payload: co2_avg };  out[1]  = { topic: \"LU.CO2.raw\", payload: co2_raw }; }\n  else if (isRightUp(tag)){ out[5]  = { topic: \"RU.CO2.avg\", payload: co2_avg };  out[6]  = { topic: \"RU.CO2.raw\", payload: co2_raw }; }\n  else if (isLeftDown(tag)){out[10] = { topic: \"LD.CO2.avg\", payload: co2_avg };  out[11] = { topic: \"LD.CO2.raw\", payload: co2_raw }; }\n  else if (isRightDown(tag)){out[15]= { topic: \"RD.CO2.avg\", payload: co2_avg };  out[16] = { topic: \"RD.CO2.raw\", payload: co2_raw }; }\n  else node.warn(`Unhandled CO2 tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: TRH wide block (Temp at 0x3EA..0x3EB, RH at 0x3FC..0x3FD) ----------\nif (/EE872TRH$/i.test(tag)) {\n  if (regs.length < 20) { node.error(`${tag} requires 20 registers`, msg); return null; }\n  const temperature_c = round2(f32at(regs, 0));   // 0x3EA..0x3EB\n  const rh_percent    = round2(f32at(regs, 18));  // 0x3FC..0x3FD\n\n  if (isLeftUp(tag))       { out[2]  = { topic: \"LU.Temp.C\", payload: temperature_c };  out[3]  = { topic: \"LU.RH.%\", payload: rh_percent }; }\n  else if (isRightUp(tag)) { out[7]  = { topic: \"RU.Temp.C\", payload: temperature_c };  out[8]  = { topic: \"RU.RH.%\", payload: rh_percent }; }\n  else if (isLeftDown(tag)){ out[12] = { topic: \"LD.Temp.C\", payload: temperature_c };  out[13] = { topic: \"LD.RH.%\", payload: rh_percent }; }\n  else if (isRightDown(tag)){out[17] = { topic: \"RD.Temp.C\", payload: temperature_c };  out[18] = { topic: \"RD.RH.%\", payload: rh_percent }; }\n  else node.warn(`Unhandled TRH tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: Pressure (0x4B0..0x4B1) ----------\nif (/EE872P$/i.test(tag)) {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const pressure_hpa = round2(f32at(regs, 0));\n\n  if (isLeftUp(tag))       out[4]  = { topic: \"LU.P.hPa\", payload: pressure_hpa };\n  else if (isRightUp(tag)) out[9]  = { topic: \"RU.P.hPa\", payload: pressure_hpa };\n  else if (isLeftDown(tag))out[14] = { topic: \"LD.P.hPa\", payload: pressure_hpa };\n  else if (isRightDown(tag))out[19]= { topic: \"RD.P.hPa\", payload: pressure_hpa };\n  else node.warn(`Unhandled Pressure tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE600 / EE650 (single float32 swap) ----------\nif (tag === \"LEE600\" || tag === \"REE600\" || tag === \"LEE650T\" || tag === \"REE650T\" || tag === \"LEE650AV\" || tag === \"REE650AV\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const val = round2(f32at(regs, 0));\n\n  switch (tag) {\n    case \"LEE600\":   out[20] = { topic: \"LEE600\",        payload: val }; break;\n    case \"REE600\":   out[21] = { topic: \"REE600\",        payload: val }; break;\n    case \"LEE650T\":  out[22] = { topic: \"LEE650T.C\",     payload: val }; break;\n    case \"REE650T\":  out[23] = { topic: \"REE650T.C\",     payload: val }; break;\n    case \"LEE650AV\": out[24] = { topic: \"LEE650AV.mps\",  payload: val }; break;\n    case \"REE650AV\": out[25] = { topic: \"REE650AV.mps\",  payload: val }; break;\n  }\n  return out;\n}\n\n// ---------- Non-EE singles (Int32 Watts) with per-tag scaling ----------\nif (tag === \"LEM\" || tag === \"REM\" || tag === \"LPID\" || tag === \"RPID\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n\n  // Raw 32-bit (big-endian) from two holding registers\n  const rawW = readInt32BE(regs[0], regs[1]);\n\n  // Adjust these factors to your manuals:\n  const wattScale = {\n    LEM:  0.10,   // e.g. register holds watts * 10  → divide by 10\n    REM:  0.10,\n    LPID: 1.00,   // PID already in W\n    RPID: 1.00\n  };\n\n  const watts = (wattScale[tag] ?? 1) * rawW;\n\n  switch (tag) {\n    case \"LEM\":  out[26] = { topic: \"LEM.W\",  payload: watts }; break;\n    case \"REM\":  out[27] = { topic: \"REM.W\",  payload: watts }; break;\n    case \"LPID\": out[28] = { topic: \"LPID.W\", payload: watts }; break;\n    case \"RPID\": out[29] = { topic: \"RPID.W\", payload: watts }; break;\n  }\n  return out;\n}\n\n// ---------- VFDs (6 regs pass-through to your splitter nodes) ----------\nif (tag === \"LVFD\" || tag === \"RVFD\") {\n  if (regs.length < 6) { node.error(`${tag} requires 6 registers`, msg); return null; }\n  const arr6 = regs.slice(0, 6);\n  if (tag === \"LVFD\") out[30] = { topic: \"LVFD\", payload: arr6 };\n  else                out[31] = { topic: \"RVFD\", payload: arr6 };\n  return out;\n}\n\nnode.warn(`Decoder: unhandled tag \"${tag}\"`);\nreturn null;\n",
+        "func": "// =============== Switch Function (32 outputs, 2-dp rounding) ===============\n// Output map:\n//  1  LU CO2 avg        2  LU CO2 raw         3  LU Temp (°C)      4  LU RH (%)        5  LU Pressure (hPa)\n//  6  RU CO2 avg        7  RU CO2 raw         8  RU Temp (°C)      9  RU RH (%)       10  RU Pressure (hPa)\n// 11  LD CO2 avg       12  LD CO2 raw        13  LD Temp (°C)     14  LD RH (%)       15  LD Pressure (hPa)\n// 16  RD CO2 avg       17  RD CO2 raw        18  RD Temp (°C)     19  RD RH (%)       20  RD Pressure (hPa)\n// 21  LEE600           22  REE600            23  LEE650T (°C)     24  REE650T (°C)    25  LEE650AV (m/s)\n// 26  REE650AV (m/s)   27  LEM watts         28  REM watts        29  LPID watts      30  RPID watts\n// 31  LVFD (array→splitter)                 32  RVFD (array→splitter)\n\n// -------- helpers --------\n\n// E+E float32 values are word-swapped (hi,lo -> lo,hi for bytes)\nfunction readFloat32Swap(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r1, 0); // low word\n  b.writeUInt16BE(r0, 2); // high word\n  return b.readFloatBE(0);\n}\nfunction f32at(regs, i) { return readFloat32Swap(regs[i], regs[i+1]); }\n\n// Generic Int32 (big-endian) from two holding registers\nfunction readInt32BE(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0);\n  b.writeUInt16BE(r1, 2);\n  return b.readInt32BE(0); // signed\n}\n\n// SDM230 (energy meter): float32, MS-register first (r0 = high reg, r1 = low reg)\nfunction f32be(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0); // high reg\n  b.writeUInt16BE(r1, 2); // low  reg\n  return b.readFloatBE(0);\n}\n\n// round to 2 decimals\nfunction round2(v) { return Math.round(v * 100) / 100; }\n\nconst regs = msg.payload;\nconst tag  = String(msg.topic || \"\");\n\nif (!Array.isArray(regs)) {\n  node.error(\"Payload is not an array of registers\", msg);\n  return null;\n}\n\nconst out = Array.from({ length: 32 }, () => null);\n\n// side helpers\nfunction isLeftUp(t){ return /^LU/i.test(t); }\nfunction isRightUp(t){ return /^RU/i.test(t); }\nfunction isLeftDown(t){ return /^LD/i.test(t); }\nfunction isRightDown(t){ return /^RD/i.test(t); }\n\n// ---------- EE872: CO2 block (avg+raw at 0x424..0x427) ----------\nif (/EE872CO2$/i.test(tag)) {\n  if (regs.length < 4) { node.error(`${tag} requires 4 registers`, msg); return null; }\n  const co2_avg = round2(f32at(regs, 0)); // 0x424..0x425\n  const co2_raw = round2(f32at(regs, 2)); // 0x426..0x427\n\n  if (isLeftUp(tag))      { out[0]  = { topic: \"LU.CO2.avg\", payload: co2_avg };  out[1]  = { topic: \"LU.CO2.raw\", payload: co2_raw }; }\n  else if (isRightUp(tag)){ out[5]  = { topic: \"RU.CO2.avg\", payload: co2_avg };  out[6]  = { topic: \"RU.CO2.raw\", payload: co2_raw }; }\n  else if (isLeftDown(tag)){out[10] = { topic: \"LD.CO2.avg\", payload: co2_avg };  out[11] = { topic: \"LD.CO2.raw\", payload: co2_raw }; }\n  else if (isRightDown(tag)){out[15]= { topic: \"RD.CO2.avg\", payload: co2_avg };  out[16] = { topic: \"RD.CO2.raw\", payload: co2_raw }; }\n  else node.warn(`Unhandled CO2 tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: TRH wide block (Temp at 0x3EA..0x3EB, RH at 0x3FC..0x3FD) ----------\nif (/EE872TRH$/i.test(tag)) {\n  if (regs.length < 20) { node.error(`${tag} requires 20 registers`, msg); return null; }\n  const temperature_c = round2(f32at(regs, 0));   // 0x3EA..0x3EB\n  const rh_percent    = round2(f32at(regs, 18));  // 0x3FC..0x3FD\n\n  if (isLeftUp(tag))       { out[2]  = { topic: \"LU.Temp.C\", payload: temperature_c };  out[3]  = { topic: \"LU.RH.%\", payload: rh_percent }; }\n  else if (isRightUp(tag)) { out[7]  = { topic: \"RU.Temp.C\", payload: temperature_c };  out[8]  = { topic: \"RU.RH.%\", payload: rh_percent }; }\n  else if (isLeftDown(tag)){ out[12] = { topic: \"LD.Temp.C\", payload: temperature_c };  out[13] = { topic: \"LD.RH.%\", payload: rh_percent }; }\n  else if (isRightDown(tag)){out[17] = { topic: \"RD.Temp.C\", payload: temperature_c };  out[18] = { topic: \"RD.RH.%\", payload: rh_percent }; }\n  else node.warn(`Unhandled TRH tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: Pressure (0x4B0..0x4B1) ----------\nif (/EE872P$/i.test(tag)) {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const pressure_hpa = round2(f32at(regs, 0));\n\n  if (isLeftUp(tag))       out[4]  = { topic: \"LU.P.hPa\", payload: pressure_hpa };\n  else if (isRightUp(tag)) out[9]  = { topic: \"RU.P.hPa\", payload: pressure_hpa };\n  else if (isLeftDown(tag))out[14] = { topic: \"LD.P.hPa\", payload: pressure_hpa };\n  else if (isRightDown(tag))out[19]= { topic: \"RD.P.hPa\", payload: pressure_hpa };\n  else node.warn(`Unhandled Pressure tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE600 / EE650 (single float32 swap) ----------\nif (tag === \"LEE600\" || tag === \"REE600\" || tag === \"LEE650T\" || tag === \"REE650T\" || tag === \"LEE650AV\" || tag === \"REE650AV\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const val = round2(f32at(regs, 0));\n\n  switch (tag) {\n    case \"LEE600\":   out[20] = { topic: \"LEE600\",        payload: val }; break;\n    case \"REE600\":   out[21] = { topic: \"REE600\",        payload: val }; break;\n    case \"LEE650T\":  out[22] = { topic: \"LEE650T.C\",     payload: val }; break;\n    case \"REE650T\":  out[23] = { topic: \"REE650T.C\",     payload: val }; break;\n    case \"LEE650AV\": out[24] = { topic: \"LEE650AV.mps\",  payload: val }; break;\n    case \"REE650AV\": out[25] = { topic: \"REE650AV.mps\",  payload: val }; break;\n  }\n  return out;\n}\n\n// ---------- Energy meters ----------\n// SDM230 (LEM/REM): float32 in Input Registers (FC=4), MS-register first\nif (tag === \"LEM\" || tag === \"REM\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const watts = round2(f32be(regs[0], regs[1]));   // Active Power (W)\n  if (tag === \"LEM\")      out[26] = { topic: \"LEM.W\",  payload: watts };\n  else /* REM */          out[27] = { topic: \"REM.W\",  payload: watts };\n  return out;\n}\n\n// LPID/RPID: keep as Int32 source (adjust scale if your source differs)\nif (tag === \"LPID\" || tag === \"RPID\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const rawW = readInt32BE(regs[0], regs[1]);\n  const watts = round2(rawW * 1.00);\n  if (tag === \"LPID\") out[28] = { topic: \"LPID.W\", payload: watts };\n  else                out[29] = { topic: \"RPID.W\", payload: watts };\n  return out;\n}\n\n// ---------- VFDs (6 regs pass-through to your splitter nodes) ----------\nif (tag === \"LVFD\" || tag === \"RVFD\") {\n  if (regs.length < 6) { node.error(`${tag} requires 6 registers`, msg); return null; }\n  const arr6 = regs.slice(0, 6);\n  if (tag === \"LVFD\") out[30] = { topic: \"LVFD\", payload: arr6 };\n  else                out[31] = { topic: \"RVFD\", payload: arr6 };\n  return out;\n}\n\nnode.warn(`Decoder: unhandled tag \"${tag}\"`);\nreturn null;\n",
         "outputs": 32,
         "timeout": 0,
         "noerr": 0,
@@ -2703,21 +2703,39 @@
             [
                 "aab213c0292e3d71"
             ],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
             [
-                "6a43d69ea6db31aa"
+                "425f9759fad81dc2"
             ],
             [
-                "477223d0432c445c"
+                "ceec527cfe446f27"
+            ],
+            [
+                "575d7a35282dea86"
+            ],
+            [
+                "acb2515655cf6bdc"
+            ],
+            [
+                "eecd85be02959776"
+            ],
+            [
+                "267bf3d4cef01972"
+            ],
+            [
+                "9b49d378b529ca54"
+            ],
+            [
+                "790e4a73289b3230"
+            ],
+            [],
+            [],
+            [
+                "6a43d69ea6db31aa",
+                "3c17b4c633646672"
+            ],
+            [
+                "477223d0432c445c",
+                "76bd6fe293fe3ccf"
             ]
         ]
     },
@@ -2726,7 +2744,7 @@
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 2",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2909,7 +2927,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{   \"address\": 1798,   \"value\": 1,   \"unitid\": 1 }",
+        "payload": "{   \"address\": 1798,   \"value\": 1,   \"unitid\": 101 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -2948,7 +2966,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{   \"address\": 1798,   \"value\": 0,   \"unitid\": 1 }",
+        "payload": "{   \"address\": 1798,   \"value\": 0,   \"unitid\": 101 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -2999,7 +3017,7 @@
         "showBorder": true,
         "showGlow": true,
         "x": 340,
-        "y": 1180,
+        "y": 1220,
         "wires": []
     },
     {
@@ -3019,7 +3037,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{   \"address\": 1798,   \"value\": 1,   \"unitid\": 2 }",
+        "payload": "{   \"address\": 1798,   \"value\": 1,   \"unitid\": 201 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -3058,7 +3076,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{   \"address\": 1798,   \"value\": 0,   \"unitid\": 2 }",
+        "payload": "{   \"address\": 1798,   \"value\": 0,   \"unitid\": 201 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -3108,8 +3126,8 @@
         "shape": "square",
         "showBorder": true,
         "showGlow": true,
-        "x": 360,
-        "y": 1440,
+        "x": 420,
+        "y": 1420,
         "wires": []
     },
     {
@@ -3160,8 +3178,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 320,
-        "y": 1140,
+        "x": 360,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -3183,7 +3201,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{   \"address\": 1797,   \"unitid\": 1 }",
+        "payload": "{   \"address\": 1797,   \"unitid\": 101 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -3222,7 +3240,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{   \"address\": 1797,   \"unitid\": 2 }",
+        "payload": "{   \"address\": 1797,   \"unitid\": 201 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -3357,7 +3375,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "split left drive",
-        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, motorLedRaw, extra1] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: motorLedRaw !== 0 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: extra1 } // Output 6 - MotorLed (boolean)\n];\n",
+        "func": "// Expect input: msg.payload = [frequency, power, current, voltage, motorLedRaw, extra1]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n  node.error(\"Expected an array of 6 values: [f, p, i, v, motorLedRaw, extra1]\", msg);\n  return null;\n}\n\n// Destructure in correct order\nconst [fRaw, pRaw, iRaw, vRaw, motorLedRaw, extra1] = msg.payload;\n\n// helper: round to 2 dp\nconst r2 = n => Math.round(n * 100) / 100;\n\n// Scale per your spec\nconst frequencyHz = r2(fRaw / 100);   // Hz\nconst powerW      = r2(pRaw / 100);   // W\nconst currentA    = r2(iRaw / 100);   // A\nconst voltageV    = r2(vRaw / 10);    // V\nconst motorOn     = (motorLedRaw !== 0); // boolean\n\n// Six outputs: 1 Freq, 2 Power, 3 Current, 4 Voltage, 5 Motor LED, 6 Extra1\nreturn [\n  { topic: \"VFD.freq.Hz\",   payload: frequencyHz }, // Output 1\n  { topic: \"VFD.power.W\",   payload: powerW },      // Output 2\n  { topic: \"VFD.current.A\", payload: currentA },    // Output 3\n  { topic: \"VFD.voltage.V\", payload: voltageV },    // Output 4\n  { topic: \"VFD.motorLED\",  payload: motorOn },     // Output 5\n  { topic: \"VFD.extra1\",    payload: extra1 }       // Output 6\n];\n",
         "outputs": 6,
         "timeout": 0,
         "noerr": 0,
@@ -3370,13 +3388,22 @@
             [
                 "5bb2a9b09e7166fc"
             ],
-            [],
-            [],
-            [],
             [
+                "e25fdab2073ca9e4"
+            ],
+            [
+                "0ad7e80ef3925daa"
+            ],
+            [
+                "0b3847b3ac6c1f6b"
+            ],
+            [
+                "397f3b0bde8bb39f",
                 "d763d534edb299f5"
             ],
-            []
+            [
+                "6bba9ada2a7a841b"
+            ]
         ]
     },
     {
@@ -3446,7 +3473,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "split right drive",
-        "func": "// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, motorLedRaw, extra1] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: motorLedRaw !== 0 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: extra1 } // Output 6 - MotorLed (boolean)\n];\n",
+        "func": "// Expect input: msg.payload = [frequency, power, current, voltage, motorLedRaw, extra1]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n  node.error(\"Expected an array of 6 values: [f, p, i, v, motorLedRaw, extra1]\", msg);\n  return null;\n}\n\n// Destructure in correct order\nconst [fRaw, pRaw, iRaw, vRaw, motorLedRaw, extra1] = msg.payload;\n\n// helper: round to 2 dp\nconst r2 = n => Math.round(n * 100) / 100;\n\n// Scale per your spec\nconst frequencyHz = r2(fRaw / 100);   // Hz\nconst powerW      = r2(pRaw / 100);   // W\nconst currentA    = r2(iRaw / 100);   // A\nconst voltageV    = r2(vRaw / 10);    // V\nconst motorOn     = (motorLedRaw !== 0); // boolean\n\n// Six outputs: 1 Freq, 2 Power, 3 Current, 4 Voltage, 5 Motor LED, 6 Extra1\nreturn [\n  { topic: \"VFD.freq.Hz\",   payload: frequencyHz }, // Output 1\n  { topic: \"VFD.power.W\",   payload: powerW },      // Output 2\n  { topic: \"VFD.current.A\", payload: currentA },    // Output 3\n  { topic: \"VFD.voltage.V\", payload: voltageV },    // Output 4\n  { topic: \"VFD.motorLED\",  payload: motorOn },     // Output 5\n  { topic: \"VFD.extra1\",    payload: extra1 }       // Output 6\n];\n\n\n/*\n// --- Expect input: msg.payload = [f, p, i, v, extra1, motorLed]\nif (!Array.isArray(msg.payload) || msg.payload.length < 6) {\n    node.error(\"Expected an array of at least 6 values (TagX/TagX2)\", msg);\n    return null;\n}\n\n// Destructure 6 values\nconst [frequency, power, current, voltage, motorLedRaw, extra1] = msg.payload;\n\n// Scale & send each value to its own output\nreturn [\n    { payload: frequency / 100 }, // Output 1 - Frequency\n    { payload: power / 100 },     // Output 2 - Power\n    { payload: current / 100 },   // Output 3 - Current\n    { payload: voltage / 10 },    // Output 4 - Voltage\n    { payload: motorLedRaw !== 0 },          // Output 5 - Extra value (raw or scale if needed)\n    { payload: extra1 } // Output 6 - MotorLed (boolean)\n];\n*/",
         "outputs": 6,
         "timeout": 0,
         "noerr": 0,
@@ -3459,9 +3486,15 @@
             [
                 "1bca76d6bbe1c0dc"
             ],
-            [],
-            [],
-            [],
+            [
+                "6ba2367646f04bd1"
+            ],
+            [
+                "af657047306a3df5"
+            ],
+            [
+                "fdc214f8b86967f9"
+            ],
             [
                 "ffc9ac25d888f816"
             ],
@@ -3516,8 +3549,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 370,
-        "y": 1280,
+        "x": 550,
+        "y": 1260,
         "wires": [
             []
         ]
@@ -4306,28 +4339,28 @@
                 "textType": "label"
             },
             {
-                "from": "4",
+                "from": "1000",
                 "color": "#ffc800",
                 "text": "",
                 "textType": "label"
             },
             {
-                "from": "7",
+                "from": "2000",
                 "color": "#ea5353",
                 "text": "",
                 "textType": "label"
             }
         ],
         "min": "0",
-        "max": "10",
+        "max": "2500",
         "sizeThickness": 16,
         "sizeGap": 4,
         "sizeKeyThickness": 8,
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1410,
-        "y": 760,
+        "x": 930,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -4387,7 +4420,7 @@
         "styleGlow": false,
         "className": "",
         "x": 940,
-        "y": 980,
+        "y": 880,
         "wires": [
             []
         ]
@@ -4420,28 +4453,28 @@
                 "textType": "label"
             },
             {
-                "from": "4",
+                "from": "1000",
                 "color": "#ffc800",
                 "text": "",
                 "textType": "label"
             },
             {
-                "from": "7",
+                "from": "2000",
                 "color": "#ea5353",
                 "text": "",
                 "textType": "label"
             }
         ],
         "min": "0",
-        "max": "10",
+        "max": "2500",
         "sizeThickness": 16,
         "sizeGap": 4,
         "sizeKeyThickness": 8,
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1670,
-        "y": 760,
+        "x": 1130,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -4482,8 +4515,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1190,
-        "y": 980,
+        "x": 950,
+        "y": 960,
         "wires": [
             []
         ]
@@ -4524,8 +4557,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1180,
-        "y": 1020,
+        "x": 940,
+        "y": 920,
         "wires": [
             []
         ]
@@ -4566,8 +4599,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1530,
-        "y": 980,
+        "x": 1150,
+        "y": 960,
         "wires": [
             []
         ]
@@ -4608,8 +4641,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1520,
-        "y": 1020,
+        "x": 1140,
+        "y": 920,
         "wires": [
             []
         ]
@@ -4948,8 +4981,8 @@
         "color": "#717171",
         "wrapText": false,
         "className": "",
-        "x": 340,
-        "y": 1320,
+        "x": 400,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4970,8 +5003,8 @@
         "color": "#717171",
         "wrapText": false,
         "className": "",
-        "x": 340,
-        "y": 1360,
+        "x": 400,
+        "y": 1340,
         "wires": []
     },
     {
@@ -5098,8 +5131,72 @@
         "color": "#717171",
         "wrapText": false,
         "className": "",
-        "x": 340,
-        "y": 1400,
+        "x": 400,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "3c17b4c633646672",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "76bd6fe293fe3ccf",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "6bba9ada2a7a841b",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "397f3b0bde8bb39f",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1040,
         "wires": []
     }
 ]
