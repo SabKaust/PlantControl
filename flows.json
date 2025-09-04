@@ -346,7 +346,7 @@
     {
         "id": "b135539d7634acf8",
         "type": "ui-group",
-        "name": "Plant Drive & PID - Left",
+        "name": "Plant Drive - Left",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -360,7 +360,7 @@
     {
         "id": "13816c2f51c27294",
         "type": "ui-group",
-        "name": "Plant Drive & PID - Right",
+        "name": "Plant Drive - Right",
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
@@ -378,7 +378,7 @@
         "page": "8aa6d6140cfde471",
         "width": "3",
         "height": 1,
-        "order": 10,
+        "order": 12,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -507,7 +507,7 @@
         "page": "8aa6d6140cfde471",
         "width": "3",
         "height": 1,
-        "order": 12,
+        "order": 14,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -521,7 +521,7 @@
         "page": "8aa6d6140cfde471",
         "width": "3",
         "height": 1,
-        "order": 9,
+        "order": 11,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -535,7 +535,7 @@
         "page": "8aa6d6140cfde471",
         "width": "3",
         "height": 1,
-        "order": 11,
+        "order": 13,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -549,7 +549,7 @@
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
-        "order": 5,
+        "order": 7,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -563,7 +563,7 @@
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
-        "order": 6,
+        "order": 8,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -577,7 +577,7 @@
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
-        "order": 7,
+        "order": 9,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -591,7 +591,35 @@
         "page": "8aa6d6140cfde471",
         "width": 6,
         "height": 1,
-        "order": 8,
+        "order": 10,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "7aa27d4b2d1c0ea6",
+        "type": "ui-group",
+        "name": "PID Left",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "1150877cb6638246",
+        "type": "ui-group",
+        "name": "PID Right",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 6,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -1432,7 +1460,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "function 3",
-        "func": "\nglobal.set(\"addrInfo\", [\n  // VFDs\n  { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n  { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n\n  // Energy Meters\n  { tag: \"LEM\", unitid: 102, fc: 4, address: 12, quantity: 2 },\n  { tag: \"REM\", unitid: 202, fc: 4, address: 12, quantity: 2 },\n\n  // PIDs\n  //{ tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 2 },\n  //{ tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 2 },\n\n  // EE872 Up (grouped)\n  // CO2 avg+raw (0x424..0x427)\n  { tag: \"LUPEE872CO2\", unitid: 111, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RUPEE872CO2\", unitid: 211, fc: 4, address: 0x424, quantity: 0x04 },\n  // Temp+RH (0x3EA..0x3FD)\n  { tag: \"LUPEE872TRH\", unitid: 111, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RUPEE872TRH\", unitid: 211, fc: 4, address: 0x3EA, quantity: 0x14 },\n  // Pressure (0x4B0..0x4B1)\n  { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE872 Down (grouped)\n  { tag: \"LDOWNEE872CO2\", unitid: 112, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RDOWNEE872CO2\", unitid: 212, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"LDOWNEE872TRH\", unitid: 112, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RDOWNEE872TRH\", unitid: 212, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE600 (as you had)\n  { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 0x02 },\n  { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 0x02 },\n\n  // EE650 (as you had)\n  { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 0x02 },\n  { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 0x02 }\n]);\n\nglobal.set(\"index\", 0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n\n\n/*\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    // VFDs\n    { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n    \n    // Energy Meters\n    { tag: \"LEM\", unitid: 102, fc: 3, address: 0x0C, quantity: 6 },\n    { tag: \"REM\", unitid: 202, fc: 3, address: 0x0C, quantity: 6 },\n\n    // PIDs\n    { tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 6 },\n    { tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 6 },\n    \n    //EE72 UP\n    { tag: \"LUPEE872Co2\", unitid: 111, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RUPEE872Co2\", unitid: 211, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LUPEE872RH\", unitid: 111, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RUPEE872RH\", unitid: 211, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LUPEE872T\", unitid: 111, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RUPEE872T\", unitid: 211, fc: 4, address: 0x3EA, quantity: 2 },\n    \n    //EE872 Down\n    { tag: \"LDOWNEE872Co2\", unitid: 112, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RDOWNEE872Co2\", unitid: 212, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LDOWNEE872RH\", unitid: 112, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RDOWNEE872RH\", unitid: 212, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LDOWNEE872T\", unitid: 112, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RDOWNEE872T\", unitid: 212, fc: 4, address: 0x3EA, quantity: 2 },\n\n    // EE600\n    { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 2 },\n    { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 2 },\n\n    // EE650\n    { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 2 },\n\n    { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 2 },\n    { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; \n*/",
+        "func": "\nglobal.set(\"addrInfo\", [\n  // VFDs\n  { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n  { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n\n  // Energy Meters\n  { tag: \"LEM\", unitid: 102, fc: 4, address: 12, quantity: 2 },\n  { tag: \"REM\", unitid: 202, fc: 4, address: 12, quantity: 2 },\n\n  // PIDs (read variables block 1..15 in one shot)\n  { tag: \"LPID\", unitid: 103, fc: 3, address: 1, quantity: 15 },\n  { tag: \"RPID\", unitid: 203, fc: 3, address: 1, quantity: 15 },\n\n  // EE872 Up (grouped)\n  // CO2 avg+raw (0x424..0x427)\n  { tag: \"LUPEE872CO2\", unitid: 111, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RUPEE872CO2\", unitid: 211, fc: 4, address: 0x424, quantity: 0x04 },\n  // Temp+RH (0x3EA..0x3FD)\n  { tag: \"LUPEE872TRH\", unitid: 111, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RUPEE872TRH\", unitid: 211, fc: 4, address: 0x3EA, quantity: 0x14 },\n  // Pressure (0x4B0..0x4B1)\n  { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE872 Down (grouped)\n  { tag: \"LDOWNEE872CO2\", unitid: 112, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"RDOWNEE872CO2\", unitid: 212, fc: 4, address: 0x424, quantity: 0x04 },\n  { tag: \"LDOWNEE872TRH\", unitid: 112, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"RDOWNEE872TRH\", unitid: 212, fc: 4, address: 0x3EA, quantity: 0x14 },\n  { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 0x02 },\n  { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 0x02 },\n\n  // EE600 (as you had)\n  { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 0x02 },\n  { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 0x02 },\n\n  // EE650 (as you had)\n  { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 0x02 },\n  { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 0x02 },\n  { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 0x02 }\n]);\n\nglobal.set(\"index\", 0);\nnode.warn(\"Global variables initialized\");\nreturn msg;\n\n\n/*\nglobal.set(\"addrInfo\", [\n    //{ tag: \"S238Name\", unitid: 238, fc: 4, address: 9, quantity: 8 },\n    //{ tag: \"S44Name\", unitid: 44, fc: 4, address: 9, quantity: 8 },\n    // VFDs\n    { tag: \"LVFD\", unitid: 101, fc: 3, address: 2057, quantity: 6 },\n    { tag: \"RVFD\", unitid: 201, fc: 3, address: 2057, quantity: 6 },\n    \n    // Energy Meters\n    { tag: \"LEM\", unitid: 102, fc: 3, address: 0x0C, quantity: 6 },\n    { tag: \"REM\", unitid: 202, fc: 3, address: 0x0C, quantity: 6 },\n\n    // PIDs\n    { tag: \"LPID\", unitid: 103, fc: 3, address: 587, quantity: 6 },\n    { tag: \"RPID\", unitid: 203, fc: 3, address: 587, quantity: 6 },\n    \n    //EE72 UP\n    { tag: \"LUPEE872Co2\", unitid: 111, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RUPEE872Co2\", unitid: 211, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LUPEE872P\", unitid: 111, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RUPEE872P\", unitid: 211, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LUPEE872RH\", unitid: 111, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RUPEE872RH\", unitid: 211, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LUPEE872T\", unitid: 111, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RUPEE872T\", unitid: 211, fc: 4, address: 0x3EA, quantity: 2 },\n    \n    //EE872 Down\n    { tag: \"LDOWNEE872Co2\", unitid: 112, fc: 4, address: 0x424, quantity: 4 },\n    { tag: \"RDOWNEE872Co2\", unitid: 212, fc: 4, address: 0x424, quantity: 4 },\n    \n    { tag: \"LDOWNEE872P\", unitid: 112, fc: 4, address: 0x4B0, quantity: 2 },\n    { tag: \"RDOWNEE872P\", unitid: 212, fc: 4, address: 0x4B0, quantity: 2 },\n\n    { tag: \"LDOWNEE872RH\", unitid: 112, fc: 4, address: 0x3FC, quantity: 2 },\n    { tag: \"RDOWNEE872RH\", unitid: 212, fc: 4, address: 0x3FC, quantity: 2 },\n\n    { tag: \"LDOWNEE872T\", unitid: 112, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"RDOWNEE872T\", unitid: 212, fc: 4, address: 0x3EA, quantity: 2 },\n\n    // EE600\n    { tag: \"LEE600\", unitid: 113, fc: 4, address: 0x4BE, quantity: 2 },\n    { tag: \"REE600\", unitid: 213, fc: 4, address: 0x4BE, quantity: 2 },\n\n    // EE650\n    { tag: \"LEE650T\", unitid: 114, fc: 4, address: 0x3EA, quantity: 2 },\n    { tag: \"REE650T\", unitid: 214, fc: 4, address: 0x3EA, quantity: 2 },\n\n    { tag: \"LEE650AV\", unitid: 114, fc: 4, address: 0x410, quantity: 2 },\n    { tag: \"REE650AV\", unitid: 214, fc: 4, address: 0x410, quantity: 2 }\n]);\n\nglobal.set(\"index\", 0);\n\nnode.warn(\"Global variables initialized\");\nreturn msg; \n*/",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2408,7 +2436,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "Switch Function",
-        "func": "// =============== Switch Function (32 outputs, 2-dp rounding) ===============\n// Output map:\n//  1  LU CO2 avg        2  LU CO2 raw         3  LU Temp (°C)      4  LU RH (%)        5  LU Pressure (hPa)\n//  6  RU CO2 avg        7  RU CO2 raw         8  RU Temp (°C)      9  RU RH (%)       10  RU Pressure (hPa)\n// 11  LD CO2 avg       12  LD CO2 raw        13  LD Temp (°C)     14  LD RH (%)       15  LD Pressure (hPa)\n// 16  RD CO2 avg       17  RD CO2 raw        18  RD Temp (°C)     19  RD RH (%)       20  RD Pressure (hPa)\n// 21  LEE600           22  REE600            23  LEE650T (°C)     24  REE650T (°C)    25  LEE650AV (m/s)\n// 26  REE650AV (m/s)   27  LEM watts         28  REM watts        29  LPID watts      30  RPID watts\n// 31  LVFD (array→splitter)                 32  RVFD (array→splitter)\n\n// -------- helpers --------\n\n// E+E float32 values are word-swapped (hi,lo -> lo,hi for bytes)\nfunction readFloat32Swap(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r1, 0); // low word\n  b.writeUInt16BE(r0, 2); // high word\n  return b.readFloatBE(0);\n}\nfunction f32at(regs, i) { return readFloat32Swap(regs[i], regs[i+1]); }\n\n// Generic Int32 (big-endian) from two holding registers\nfunction readInt32BE(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0);\n  b.writeUInt16BE(r1, 2);\n  return b.readInt32BE(0); // signed\n}\n\n// SDM230 (energy meter): float32, MS-register first (r0 = high reg, r1 = low reg)\nfunction f32be(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0); // high reg\n  b.writeUInt16BE(r1, 2); // low  reg\n  return b.readFloatBE(0);\n}\n\n// round to 2 decimals\nfunction round2(v) { return Math.round(v * 100) / 100; }\n\nconst regs = msg.payload;\nconst tag  = String(msg.topic || \"\");\n\nif (!Array.isArray(regs)) {\n  node.error(\"Payload is not an array of registers\", msg);\n  return null;\n}\n\nconst out = Array.from({ length: 32 }, () => null);\n\n// side helpers\nfunction isLeftUp(t){ return /^LU/i.test(t); }\nfunction isRightUp(t){ return /^RU/i.test(t); }\nfunction isLeftDown(t){ return /^LD/i.test(t); }\nfunction isRightDown(t){ return /^RD/i.test(t); }\n\n// ---------- EE872: CO2 block (avg+raw at 0x424..0x427) ----------\nif (/EE872CO2$/i.test(tag)) {\n  if (regs.length < 4) { node.error(`${tag} requires 4 registers`, msg); return null; }\n  const co2_avg = round2(f32at(regs, 0)); // 0x424..0x425\n  const co2_raw = round2(f32at(regs, 2)); // 0x426..0x427\n\n  if (isLeftUp(tag))      { out[0]  = { topic: \"LU.CO2.avg\", payload: co2_avg };  out[1]  = { topic: \"LU.CO2.raw\", payload: co2_raw }; }\n  else if (isRightUp(tag)){ out[5]  = { topic: \"RU.CO2.avg\", payload: co2_avg };  out[6]  = { topic: \"RU.CO2.raw\", payload: co2_raw }; }\n  else if (isLeftDown(tag)){out[10] = { topic: \"LD.CO2.avg\", payload: co2_avg };  out[11] = { topic: \"LD.CO2.raw\", payload: co2_raw }; }\n  else if (isRightDown(tag)){out[15]= { topic: \"RD.CO2.avg\", payload: co2_avg };  out[16] = { topic: \"RD.CO2.raw\", payload: co2_raw }; }\n  else node.warn(`Unhandled CO2 tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: TRH wide block (Temp at 0x3EA..0x3EB, RH at 0x3FC..0x3FD) ----------\nif (/EE872TRH$/i.test(tag)) {\n  if (regs.length < 20) { node.error(`${tag} requires 20 registers`, msg); return null; }\n  const temperature_c = round2(f32at(regs, 0));   // 0x3EA..0x3EB\n  const rh_percent    = round2(f32at(regs, 18));  // 0x3FC..0x3FD\n\n  if (isLeftUp(tag))       { out[2]  = { topic: \"LU.Temp.C\", payload: temperature_c };  out[3]  = { topic: \"LU.RH.%\", payload: rh_percent }; }\n  else if (isRightUp(tag)) { out[7]  = { topic: \"RU.Temp.C\", payload: temperature_c };  out[8]  = { topic: \"RU.RH.%\", payload: rh_percent }; }\n  else if (isLeftDown(tag)){ out[12] = { topic: \"LD.Temp.C\", payload: temperature_c };  out[13] = { topic: \"LD.RH.%\", payload: rh_percent }; }\n  else if (isRightDown(tag)){out[17] = { topic: \"RD.Temp.C\", payload: temperature_c };  out[18] = { topic: \"RD.RH.%\", payload: rh_percent }; }\n  else node.warn(`Unhandled TRH tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: Pressure (0x4B0..0x4B1) ----------\nif (/EE872P$/i.test(tag)) {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const pressure_hpa = round2(f32at(regs, 0));\n\n  if (isLeftUp(tag))       out[4]  = { topic: \"LU.P.hPa\", payload: pressure_hpa };\n  else if (isRightUp(tag)) out[9]  = { topic: \"RU.P.hPa\", payload: pressure_hpa };\n  else if (isLeftDown(tag))out[14] = { topic: \"LD.P.hPa\", payload: pressure_hpa };\n  else if (isRightDown(tag))out[19]= { topic: \"RD.P.hPa\", payload: pressure_hpa };\n  else node.warn(`Unhandled Pressure tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE600 / EE650 (single float32 swap) ----------\nif (tag === \"LEE600\" || tag === \"REE600\" || tag === \"LEE650T\" || tag === \"REE650T\" || tag === \"LEE650AV\" || tag === \"REE650AV\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const val = round2(f32at(regs, 0));\n\n  switch (tag) {\n    case \"LEE600\":   out[20] = { topic: \"LEE600\",        payload: val }; break;\n    case \"REE600\":   out[21] = { topic: \"REE600\",        payload: val }; break;\n    case \"LEE650T\":  out[22] = { topic: \"LEE650T.C\",     payload: val }; break;\n    case \"REE650T\":  out[23] = { topic: \"REE650T.C\",     payload: val }; break;\n    case \"LEE650AV\": out[24] = { topic: \"LEE650AV.mps\",  payload: val }; break;\n    case \"REE650AV\": out[25] = { topic: \"REE650AV.mps\",  payload: val }; break;\n  }\n  return out;\n}\n\n// ---------- Energy meters ----------\n// SDM230 (LEM/REM): float32 in Input Registers (FC=4), MS-register first\nif (tag === \"LEM\" || tag === \"REM\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const watts = round2(f32be(regs[0], regs[1]));   // Active Power (W)\n  if (tag === \"LEM\")      out[26] = { topic: \"LEM.W\",  payload: watts };\n  else /* REM */          out[27] = { topic: \"REM.W\",  payload: watts };\n  return out;\n}\n\n// LPID/RPID: keep as Int32 source (adjust scale if your source differs)\nif (tag === \"LPID\" || tag === \"RPID\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const rawW = readInt32BE(regs[0], regs[1]);\n  const watts = round2(rawW * 1.00);\n  if (tag === \"LPID\") out[28] = { topic: \"LPID.W\", payload: watts };\n  else                out[29] = { topic: \"RPID.W\", payload: watts };\n  return out;\n}\n\n// ---------- VFDs (6 regs pass-through to your splitter nodes) ----------\nif (tag === \"LVFD\" || tag === \"RVFD\") {\n  if (regs.length < 6) { node.error(`${tag} requires 6 registers`, msg); return null; }\n  const arr6 = regs.slice(0, 6);\n  if (tag === \"LVFD\") out[30] = { topic: \"LVFD\", payload: arr6 };\n  else                out[31] = { topic: \"RVFD\", payload: arr6 };\n  return out;\n}\n\nnode.warn(`Decoder: unhandled tag \"${tag}\"`);\nreturn null;\n",
+        "func": "// =============== Switch Function (32 outputs, 2-dp rounding) ===============\n// Output map:\n//  1  LU CO2 avg        2  LU CO2 raw         3  LU Temp (°C)      4  LU RH (%)        5  LU Pressure (hPa)\n//  6  RU CO2 avg        7  RU CO2 raw         8  RU Temp (°C)      9  RU RH (%)       10  RU Pressure (hPa)\n// 11  LD CO2 avg       12  LD CO2 raw        13  LD Temp (°C)     14  LD RH (%)       15  LD Pressure (hPa)\n// 16  RD CO2 avg       17  RD CO2 raw        18  RD Temp (°C)     19  RD RH (%)       20  RD Pressure (hPa)\n// 21  LEE600           22  REE600            23  LEE650T (°C)     24  REE650T (°C)    25  LEE650AV (m/s)\n// 26  REE650AV (m/s)   27  LEM watts         28  REM watts        29  LPID block(1..15)  30  RPID block(1..15)\n// 31  LVFD (array→splitter)                 32  RVFD (array→splitter)\n\n// -------- helpers --------\n\n// E+E float32 values are word-swapped (hi,lo -> lo,hi for bytes)\nfunction readFloat32Swap(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r1, 0); // low word\n  b.writeUInt16BE(r0, 2); // high word\n  return b.readFloatBE(0);\n}\nfunction f32at(regs, i) { return readFloat32Swap(regs[i], regs[i + 1]); }\n\n// Generic Int32 (big-endian) from two holding registers\nfunction readInt32BE(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0);\n  b.writeUInt16BE(r1, 2);\n  return b.readInt32BE(0); // signed\n}\n\n// SDM230 (energy meter): float32, MS-register first (r0 = high reg, r1 = low reg)\nfunction f32be(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0); // high reg\n  b.writeUInt16BE(r1, 2); // low  reg\n  return b.readFloatBE(0);\n}\n\n// round to 2 decimals\nfunction round2(v) { return Math.round(v * 100) / 100; }\n\nconst regs = msg.payload;\nconst tag = String(msg.topic || \"\");\n\nif (!Array.isArray(regs)) {\n  node.error(\"Payload is not an array of registers\", msg);\n  return null;\n}\n\nconst out = Array.from({ length: 32 }, () => null);\n\n// side helpers\nfunction isLeftUp(t) { return /^LU/i.test(t); }\nfunction isRightUp(t) { return /^RU/i.test(t); }\nfunction isLeftDown(t) { return /^LD/i.test(t); }\nfunction isRightDown(t) { return /^RD/i.test(t); }\n\n// ---------- EE872: CO2 block (avg+raw at 0x424..0x427) ----------\nif (/EE872CO2$/i.test(tag)) {\n  if (regs.length < 4) { node.error(`${tag} requires 4 registers`, msg); return null; }\n  const co2_avg = round2(f32at(regs, 0)); // 0x424..0x425\n  const co2_raw = round2(f32at(regs, 2)); // 0x426..0x427\n\n  if (isLeftUp(tag)) { out[0] = { topic: \"LU.CO2.avg\", payload: co2_avg }; out[1] = { topic: \"LU.CO2.raw\", payload: co2_raw }; }\n  else if (isRightUp(tag)) { out[5] = { topic: \"RU.CO2.avg\", payload: co2_avg }; out[6] = { topic: \"RU.CO2.raw\", payload: co2_raw }; }\n  else if (isLeftDown(tag)) { out[10] = { topic: \"LD.CO2.avg\", payload: co2_avg }; out[11] = { topic: \"LD.CO2.raw\", payload: co2_raw }; }\n  else if (isRightDown(tag)) { out[15] = { topic: \"RD.CO2.avg\", payload: co2_avg }; out[16] = { topic: \"RD.CO2.raw\", payload: co2_raw }; }\n  else node.warn(`Unhandled CO2 tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: TRH wide block (Temp at 0x3EA..0x3EB, RH at 0x3FC..0x3FD) ----------\nif (/EE872TRH$/i.test(tag)) {\n  if (regs.length < 20) { node.error(`${tag} requires 20 registers`, msg); return null; }\n  const temperature_c = round2(f32at(regs, 0));   // 0x3EA..0x3EB\n  const rh_percent = round2(f32at(regs, 18));  // 0x3FC..0x3FD\n\n  if (isLeftUp(tag)) { out[2] = { topic: \"LU.Temp.C\", payload: temperature_c }; out[3] = { topic: \"LU.RH.%\", payload: rh_percent }; }\n  else if (isRightUp(tag)) { out[7] = { topic: \"RU.Temp.C\", payload: temperature_c }; out[8] = { topic: \"RU.RH.%\", payload: rh_percent }; }\n  else if (isLeftDown(tag)) { out[12] = { topic: \"LD.Temp.C\", payload: temperature_c }; out[13] = { topic: \"LD.RH.%\", payload: rh_percent }; }\n  else if (isRightDown(tag)) { out[17] = { topic: \"RD.Temp.C\", payload: temperature_c }; out[18] = { topic: \"RD.RH.%\", payload: rh_percent }; }\n  else node.warn(`Unhandled TRH tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: Pressure (0x4B0..0x4B1) ----------\nif (/EE872P$/i.test(tag)) {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const pressure_hpa = round2(f32at(regs, 0));\n\n  if (isLeftUp(tag)) out[4] = { topic: \"LU.P.hPa\", payload: pressure_hpa };\n  else if (isRightUp(tag)) out[9] = { topic: \"RU.P.hPa\", payload: pressure_hpa };\n  else if (isLeftDown(tag)) out[14] = { topic: \"LD.P.hPa\", payload: pressure_hpa };\n  else if (isRightDown(tag)) out[19] = { topic: \"RD.P.hPa\", payload: pressure_hpa };\n  else node.warn(`Unhandled Pressure tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE600 / EE650 (single float32 swap) ----------\nif (tag === \"LEE600\" || tag === \"REE600\" || tag === \"LEE650T\" || tag === \"REE650T\" || tag === \"LEE650AV\" || tag === \"REE650AV\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const val = round2(f32at(regs, 0));\n\n  switch (tag) {\n    case \"LEE600\": out[20] = { topic: \"LEE600\", payload: val }; break;\n    case \"REE600\": out[21] = { topic: \"REE600\", payload: val }; break;\n    case \"LEE650T\": out[22] = { topic: \"LEE650T.C\", payload: val }; break;\n    case \"REE650T\": out[23] = { topic: \"REE650T.C\", payload: val }; break;\n    case \"LEE650AV\": out[24] = { topic: \"LEE650AV.mps\", payload: val }; break;\n    case \"REE650AV\": out[25] = { topic: \"REE650AV.mps\", payload: val }; break;\n  }\n  return out;\n}\n\n// ---------- Energy meters ----------\n// SDM230 (LEM/REM): float32 in Input Registers (FC=4), MS-register first\nif (tag === \"LEM\" || tag === \"REM\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const watts = round2(f32be(regs[0], regs[1]));   // Active Power (W)\n  if (tag === \"LEM\") out[26] = { topic: \"LEM.W\", payload: watts };\n  else /* REM */          out[27] = { topic: \"REM.W\", payload: watts };\n  return out;\n}\n\n// ---------- PIDs: pass-through full 15-register variables block (addr 1..15) ----------\nif (tag === \"LPID\" || tag === \"RPID\") {\n  if (regs.length < 15) { node.error(`${tag} requires 15 registers (addr 1..15)`, msg); return null; }\n  const block = regs.slice(0, 15); // keep raw words; decode downstream\n\n  if (tag === \"LPID\") out[28] = { topic: \"LPID.block\", payload: block };\n  else out[29] = { topic: \"RPID.block\", payload: block };\n  return out;\n}\n\n// ---------- VFDs (6 regs pass-through to your splitter nodes) ----------\nif (tag === \"LVFD\" || tag === \"RVFD\") {\n  if (regs.length < 6) { node.error(`${tag} requires 6 registers`, msg); return null; }\n  const arr6 = regs.slice(0, 6);\n  if (tag === \"LVFD\") out[30] = { topic: \"LVFD\", payload: arr6 };\n  else out[31] = { topic: \"RVFD\", payload: arr6 };\n  return out;\n}\n\nnode.warn(`Decoder: unhandled tag \"${tag}\"`);\nreturn null;\n",
         "outputs": 32,
         "timeout": 0,
         "noerr": 0,
@@ -2419,7 +2447,6 @@
         "y": 540,
         "wires": [
             [
-                "15e49eb3401d7161",
                 "3565c8c8c72c32f6"
             ],
             [
@@ -2503,34 +2530,21 @@
             [
                 "790e4a73289b3230"
             ],
-            [],
-            [],
             [
-                "6a43d69ea6db31aa",
-                "3c17b4c633646672"
+                "3c17b4c633646672",
+                "dafc89f3c8e20050"
             ],
             [
-                "477223d0432c445c",
-                "76bd6fe293fe3ccf"
+                "76bd6fe293fe3ccf",
+                "78a1e1ed442d6ac0"
+            ],
+            [
+                "6a43d69ea6db31aa"
+            ],
+            [
+                "477223d0432c445c"
             ]
         ]
-    },
-    {
-        "id": "15e49eb3401d7161",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 340,
-        "y": 280,
-        "wires": []
     },
     {
         "id": "ba61229ee55707bc",
@@ -2912,7 +2926,7 @@
         "z": "f00a2f75f92239ad",
         "name": "Left Motor Freq",
         "group": "b135539d7634acf8",
-        "order": 9,
+        "order": 6,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -3174,12 +3188,9 @@
                 "0b3847b3ac6c1f6b"
             ],
             [
-                "397f3b0bde8bb39f",
                 "d763d534edb299f5"
             ],
-            [
-                "6bba9ada2a7a841b"
-            ]
+            []
         ]
     },
     {
@@ -3217,7 +3228,7 @@
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 1",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3283,7 +3294,7 @@
         "z": "f00a2f75f92239ad",
         "name": "Right Motor Freq",
         "group": "13816c2f51c27294",
-        "order": 9,
+        "order": 6,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -4428,7 +4439,7 @@
         "type": "ui-text",
         "z": "f00a2f75f92239ad",
         "group": "b135539d7634acf8",
-        "order": 10,
+        "order": 7,
         "width": "3",
         "height": "1",
         "name": "LPower",
@@ -4450,7 +4461,7 @@
         "type": "ui-text",
         "z": "f00a2f75f92239ad",
         "group": "b135539d7634acf8",
-        "order": 11,
+        "order": 8,
         "width": "3",
         "height": "1",
         "name": "LCurrent",
@@ -4531,10 +4542,10 @@
         "id": "0872a57d27de6570",
         "type": "ui-button",
         "z": "f00a2f75f92239ad",
-        "group": "b135539d7634acf8",
+        "group": "7aa27d4b2d1c0ea6",
         "name": "Left PID ON",
         "label": "PID ON",
-        "order": 6,
+        "order": 1,
         "width": "2",
         "height": "1",
         "emulateClick": true,
@@ -4544,7 +4555,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"ON\", \"bankByte\": 1 }",
+        "payload": "{ \"unitid\": 103, \"address\": 15, \"value\": 0 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -4558,20 +4569,22 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 1210,
-        "y": 1180,
+        "x": 1610,
+        "y": 1100,
         "wires": [
-            []
+            [
+                "096d74536e8e846f"
+            ]
         ]
     },
     {
         "id": "998fd0322518af53",
         "type": "ui-button",
         "z": "f00a2f75f92239ad",
-        "group": "b135539d7634acf8",
+        "group": "7aa27d4b2d1c0ea6",
         "name": "Left PID OFF",
         "label": "PID OFF",
-        "order": 7,
+        "order": 2,
         "width": "2",
         "height": "1",
         "emulateClick": true,
@@ -4581,7 +4594,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payload": "{ \"unitid\": 103, \"address\": 15, \"value\": 2 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -4595,10 +4608,12 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 1410,
-        "y": 1180,
+        "x": 1830,
+        "y": 1100,
         "wires": [
-            []
+            [
+                "096d74536e8e846f"
+            ]
         ]
     },
     {
@@ -4606,8 +4621,8 @@
         "type": "ui-led",
         "z": "f00a2f75f92239ad",
         "name": "Left PID Status",
-        "group": "b135539d7634acf8",
-        "order": 8,
+        "group": "7aa27d4b2d1c0ea6",
+        "order": 3,
         "width": "2",
         "height": "1",
         "label": "PID Status",
@@ -4629,18 +4644,18 @@
         "shape": "square",
         "showBorder": true,
         "showGlow": true,
-        "x": 1600,
-        "y": 1180,
+        "x": 1180,
+        "y": 1460,
         "wires": []
     },
     {
         "id": "c802110ab1542569",
         "type": "ui-button",
         "z": "f00a2f75f92239ad",
-        "group": "13816c2f51c27294",
+        "group": "1150877cb6638246",
         "name": "Right PID ON",
         "label": "PID ON",
-        "order": 6,
+        "order": 1,
         "width": "2",
         "height": "1",
         "emulateClick": true,
@@ -4650,7 +4665,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"ON\", \"bankByte\": 1 }",
+        "payload": "{ \"unitid\": 203, \"address\": 15, \"value\": 0 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -4664,20 +4679,22 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 1220,
-        "y": 1240,
+        "x": 1860,
+        "y": 1340,
         "wires": [
-            []
+            [
+                "90a83a8cf7caff18"
+            ]
         ]
     },
     {
         "id": "a4f110560c17d172",
         "type": "ui-button",
         "z": "f00a2f75f92239ad",
-        "group": "13816c2f51c27294",
+        "group": "1150877cb6638246",
         "name": "Right PID OFF",
         "label": "PID OFF",
-        "order": 7,
+        "order": 2,
         "width": "2",
         "height": "1",
         "emulateClick": true,
@@ -4687,7 +4704,7 @@
         "className": "",
         "icon": "",
         "iconPosition": "right",
-        "payload": "{ \"relay\": 1, \"state\": \"OFF\", \"bankByte\": 1 }",
+        "payload": "{ \"unitid\": 203, \"address\": 15, \"value\": 2 }",
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
@@ -4701,10 +4718,12 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 1420,
-        "y": 1240,
+        "x": 1880,
+        "y": 1380,
         "wires": [
-            []
+            [
+                "90a83a8cf7caff18"
+            ]
         ]
     },
     {
@@ -4712,8 +4731,8 @@
         "type": "ui-led",
         "z": "f00a2f75f92239ad",
         "name": "Right PID Status",
-        "group": "13816c2f51c27294",
-        "order": 8,
+        "group": "1150877cb6638246",
+        "order": 3,
         "width": "2",
         "height": "1",
         "label": "PID Status",
@@ -4735,8 +4754,8 @@
         "shape": "square",
         "showBorder": true,
         "showGlow": true,
-        "x": 1610,
-        "y": 1240,
+        "x": 1680,
+        "y": 1480,
         "wires": []
     },
     {
@@ -4744,7 +4763,7 @@
         "type": "ui-text",
         "z": "f00a2f75f92239ad",
         "group": "13816c2f51c27294",
-        "order": 10,
+        "order": 7,
         "width": "3",
         "height": "1",
         "name": "RPower",
@@ -4766,7 +4785,7 @@
         "type": "ui-text",
         "z": "f00a2f75f92239ad",
         "group": "13816c2f51c27294",
-        "order": 11,
+        "order": 8,
         "width": "3",
         "height": "1",
         "name": "RCurrent",
@@ -4872,7 +4891,7 @@
         "type": "ui-text",
         "z": "f00a2f75f92239ad",
         "group": "b135539d7634acf8",
-        "order": 12,
+        "order": 9,
         "width": "3",
         "height": "1",
         "name": "LVolatge",
@@ -4894,7 +4913,7 @@
         "type": "ui-text",
         "z": "f00a2f75f92239ad",
         "group": "13816c2f51c27294",
-        "order": 12,
+        "order": 9,
         "width": "3",
         "height": "1",
         "name": "RVoltage",
@@ -4916,7 +4935,7 @@
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 4",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4932,7 +4951,7 @@
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 5",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4944,7 +4963,637 @@
         "wires": []
     },
     {
-        "id": "6bba9ada2a7a841b",
+        "id": "f6fed2830311c73a",
+        "type": "inject",
+        "z": "f00a2f75f92239ad",
+        "name": "Start Value",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 1035,
+        "y": 1240,
+        "wires": [
+            [
+                "4b4fbfdc49e29e72"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "4b4fbfdc49e29e72",
+        "type": "ui-slider",
+        "z": "f00a2f75f92239ad",
+        "group": "7aa27d4b2d1c0ea6",
+        "name": "Left PID Slider",
+        "label": "SV",
+        "tooltip": "",
+        "order": 4,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": "0",
+        "max": "50",
+        "step": "2",
+        "className": "my-slider",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 1180,
+        "y": 1240,
+        "wires": [
+            [
+                "d8ee63760660bcd8"
+            ]
+        ]
+    },
+    {
+        "id": "94d8177cc15bd876",
+        "type": "inject",
+        "z": "f00a2f75f92239ad",
+        "name": "Start Value",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 1485,
+        "y": 1240,
+        "wires": [
+            [
+                "456c097c86e82d85"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "456c097c86e82d85",
+        "type": "ui-slider",
+        "z": "f00a2f75f92239ad",
+        "group": "1150877cb6638246",
+        "name": "Right PID Slider",
+        "label": "SV",
+        "tooltip": "",
+        "order": 4,
+        "width": "5",
+        "height": "1",
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": "0",
+        "max": "50",
+        "step": "2",
+        "className": "my-slider",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 1630,
+        "y": 1240,
+        "wires": [
+            [
+                "121e7c07221e172b"
+            ]
+        ]
+    },
+    {
+        "id": "dde7bef198b63c66",
+        "type": "ui-button",
+        "z": "f00a2f75f92239ad",
+        "group": "7aa27d4b2d1c0ea6",
+        "name": "Left SV btn",
+        "label": "Set",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "{ \"unitid\": 103, \"address\": 6 }",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 1170,
+        "y": 1300,
+        "wires": [
+            [
+                "096d74536e8e846f",
+                "194de0eb4e4e7e3c"
+            ]
+        ]
+    },
+    {
+        "id": "7228053bbe3362d6",
+        "type": "ui-button",
+        "z": "f00a2f75f92239ad",
+        "group": "1150877cb6638246",
+        "name": "Right SV btn",
+        "label": "Set",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "emulateClick": true,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "right",
+        "payload": "{ \"unitid\": 203, \"address\": 6 }",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 1630,
+        "y": 1300,
+        "wires": [
+            [
+                "90a83a8cf7caff18"
+            ]
+        ]
+    },
+    {
+        "id": "db3928a89c23c8c6",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "LPID SV",
+        "group": "7aa27d4b2d1c0ea6",
+        "order": 6,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Current Set Point Value - SV",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#fcfcfc",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": "0",
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1160,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0d84d66850e697af",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "RPID SV",
+        "group": "1150877cb6638246",
+        "order": 6,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Current Set Point Value - SV",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#fcfcfc",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": "0",
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1620,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "187f178d1bb678d9",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "LPID PV",
+        "group": "7aa27d4b2d1c0ea6",
+        "order": 7,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Current Measured Value - PV",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#fcfcfc",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": "0",
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1160,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c201d3bf3b2f931",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "RPID PV",
+        "group": "1150877cb6638246",
+        "order": 7,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Current Measure Value - PV",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#fcfcfc",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": "0",
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1620,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91ad431c2d164ef5",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "LPID PecrentP",
+        "group": "7aa27d4b2d1c0ea6",
+        "order": 8,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Power Output - %",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#fcfcfc",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": "0",
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1180,
+        "y": 1420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0b3ec60e8f8d0402",
+        "type": "ui-gauge",
+        "z": "f00a2f75f92239ad",
+        "name": "RPID PecrentP",
+        "group": "1150877cb6638246",
+        "order": 8,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-tile",
+        "gstyle": "rounded",
+        "title": "Power Output - %",
+        "alwaysShowTitle": true,
+        "floatingTitlePosition": "top-left",
+        "units": "Hz",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#fcfcfc",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": "0",
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1640,
+        "y": 1420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dafc89f3c8e20050",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "PID Split Left",
+        "func": "// Outputs (5):\n// 1: PV (number)\n// 2: SP (number)\n// 3: Power % (number)\n// 4: Mode text (\"Auto\"/\"Manual\"/\"Standby\"/\"Unknown\")\n// 5: LED boolean (Auto=true; Manual/Standby/Unknown=false)\n\nconst r = msg.payload;\nif (!Array.isArray(r) || r.length < 15) {\n  node.error(\"PID block requires 15 registers (addr 1..15)\", msg);\n  return [null, null, null, null, null];\n}\n\n// dP and scaler\nconst dP = Number(r[1] || 0);\nconst scale = v => Math.round((v / Math.pow(10, dP)) * 100) / 100;\n\n// Decode basics\nconst pv = scale(r[0]);                          // addr 1\nconst sp = scale(r[2]);                          // addr 3 (operative SP)\nconst powerPct = Math.round((r[3] / 100) * 100) / 100; // addr 4 (2 implied dp)\nconst modeCode = Number(r[14] || 0);                   // addr 15 (0=Auto,1=Manual,2=Standby)\n\n// Text + LED boolean (Auto = true)\nconst modeText = (modeCode === 0) ? \"Auto\" : (modeCode === 1) ? \"Manual\" :\n  (modeCode === 2) ? \"Standby\" : \"Unknown\";\nconst ledOn = (modeCode === 0); // ONLY Auto turns the LED on\n\n// Status\nnode.status({\n  fill: ledOn ? \"green\" : (modeCode === 2 ? \"grey\" : \"yellow\"),\n  shape: \"dot\",\n  text: `PV ${pv}  SP ${sp}  ${powerPct}%  ${modeText}`\n});\n\n// Fan out\nreturn [\n  { topic: \"PID.PV\", payload: pv },\n  { topic: \"PID.SP\", payload: sp },\n  { topic: \"PID.Power.%\", payload: powerPct },\n  { topic: \"PID.Mode.Text\", payload: modeText },\n  { topic: \"PID.Mode.Boolean\", payload: ledOn }  // <-- wire this to ui_led\n];\n",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1360,
+        "wires": [
+            [
+                "187f178d1bb678d9"
+            ],
+            [
+                "db3928a89c23c8c6"
+            ],
+            [
+                "91ad431c2d164ef5"
+            ],
+            [
+                "12972c686ad23230"
+            ],
+            [
+                "05fa7dca6f5c76a0",
+                "31af0bf4722f20bc"
+            ]
+        ]
+    },
+    {
+        "id": "78a1e1ed442d6ac0",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "PID Split Left",
+        "func": "// Outputs (5):\n// 1: PV (number)\n// 2: SP (number)\n// 3: Power % (number)\n// 4: Mode text (\"Auto\"/\"Manual\"/\"Standby\"/\"Unknown\")\n// 5: LED boolean (Auto=true; Manual/Standby/Unknown=false)\n\nconst r = msg.payload;\nif (!Array.isArray(r) || r.length < 15) {\n  node.error(\"PID block requires 15 registers (addr 1..15)\", msg);\n  return [null, null, null, null, null];\n}\n\n// dP and scaler\nconst dP = Number(r[1] || 0);\nconst scale = v => Math.round((v / Math.pow(10, dP)) * 100) / 100;\n\n// Decode basics\nconst pv = scale(r[0]);                          // addr 1\nconst sp = scale(r[2]);                          // addr 3 (operative SP)\nconst powerPct = Math.round((r[3] / 100) * 100) / 100; // addr 4 (2 implied dp)\nconst modeCode = Number(r[14] || 0);                   // addr 15 (0=Auto,1=Manual,2=Standby)\n\n// Text + LED boolean (Auto = true)\nconst modeText = (modeCode === 0) ? \"Auto\" : (modeCode === 1) ? \"Manual\" :\n  (modeCode === 2) ? \"Standby\" : \"Unknown\";\nconst ledOn = (modeCode === 0); // ONLY Auto turns the LED on\n\n// Status\nnode.status({\n  fill: ledOn ? \"green\" : (modeCode === 2 ? \"grey\" : \"yellow\"),\n  shape: \"dot\",\n  text: `PV ${pv}  SP ${sp}  ${powerPct}%  ${modeText}`\n});\n\n// Fan out\nreturn [\n  { topic: \"PID.PV\", payload: pv },\n  { topic: \"PID.SP\", payload: sp },\n  { topic: \"PID.Power.%\", payload: powerPct },\n  { topic: \"PID.Mode.Text\", payload: modeText },\n  { topic: \"PID.Mode.Boolean\", payload: ledOn }  // <-- wire this to ui_led\n];\n",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 1360,
+        "wires": [
+            [
+                "7c201d3bf3b2f931"
+            ],
+            [
+                "0d84d66850e697af"
+            ],
+            [
+                "0b3ec60e8f8d0402"
+            ],
+            [
+                "74dd2ce47975dddf"
+            ],
+            [
+                "c7f6752c3dcd79d9"
+            ]
+        ]
+    },
+    {
+        "id": "d8ee63760660bcd8",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "Left PID Slider Val",
+        "func": "\nflow.set(\"leftSliderPIDValue\", msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "121e7c07221e172b",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "Right PID Slider Val",
+        "func": "\nflow.set(\"rightSliderPIDValue\", msg.payload);\n\n// Do not send anything downstream\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1830,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "096d74536e8e846f",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "Left SV Set",
+        "func": "// Expects: msg.payload = { address:<number>, unitid:<number> }\n// Optional: msg.payload.value -> write this (integer)\n// If address = SP (6..9 or 16): falls back to leftSliderPIDValue if no value\n// If address = 15: Control Status (0=Auto,1=Manual,2=Standby)\n\nif (msg && msg.payload && msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n    if (typeof msg.payload === \"string\") {\n        try { msg.payload = JSON.parse(msg.payload); }\n        catch(e) { node.error(\"Button payload is not valid JSON\", msg); return null; }\n    }\n\n    const unitid  = Number(msg.payload.unitid);\n    const address = Number(msg.payload.address);\n\n    if (!Number.isInteger(unitid) || unitid <= 0) { node.error(\"Invalid unitid\", msg); return null; }\n    if (!Number.isInteger(address) || address < 0) { node.error(\"Invalid address\", msg); return null; }\n\n    let val;\n\n    if (msg.payload.value !== undefined) {\n        val = Number(msg.payload.value);\n    } else {\n        // For SP registers only → fallback to slider\n        if ([6,7,8,9,16].includes(address)) {\n            val = flow.get(\"leftSliderPIDValue\");\n            if (val === undefined || isNaN(val)) {\n                node.warn(\"leftSliderPIDValue not set, defaulting to 0\");\n                val = 0;\n            }\n            val = Math.round(val);\n            if (val < 0) val = 0;\n            if (val > 50) val = 50;\n        } else {\n            node.error(\"No value provided for non-SP address\", msg);\n            return null;\n        }\n    }\n\n    // Build Flex Write\n    msg.payload = {\n        fc: 6,\n        unitid,\n        address,     // zero-based offset\n        quantity: 1,\n        value: [ val ]\n    };\n\n    node.status({ fill: \"green\", shape: \"dot\", text: `Write ${val} @U${unitid}:${address}` });\n    return msg;\n}\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 1180,
+        "wires": [
+            [
+                "b9cc117f0400f21f",
+                "17bf20344ef9935f"
+            ]
+        ]
+    },
+    {
+        "id": "17bf20344ef9935f",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "e0ae50e7df9772a7",
+        "type": "inject",
+        "z": "f00a2f75f92239ad",
+        "name": "Start Value",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 945,
+        "y": 1300,
+        "wires": [
+            [
+                "dde7bef198b63c66"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "194de0eb4e4e7e3c",
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 6",
@@ -4955,12 +5604,12 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
-        "y": 1000,
+        "x": 1120,
+        "y": 1120,
         "wires": []
     },
     {
-        "id": "397f3b0bde8bb39f",
+        "id": "12972c686ad23230",
         "type": "debug",
         "z": "f00a2f75f92239ad",
         "name": "debug 7",
@@ -4971,8 +5620,60 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
-        "y": 1040,
+        "x": 1380,
+        "y": 1500,
         "wires": []
+    },
+    {
+        "id": "74dd2ce47975dddf",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1660,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "05fa7dca6f5c76a0",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "90a83a8cf7caff18",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "Right SV Set",
+        "func": "// Expects: msg.payload = { address:<number>, unitid:<number> }\n// Optional: msg.payload.value -> write this (integer)\n// If address = SP (6..9 or 16): falls back to rihghtSliderPIDValue if no value\n// If address = 15: Control Status (0=Auto,1=Manual,2=Standby)\n\nif (msg && msg.payload && msg.payload.address !== undefined && msg.payload.unitid !== undefined) {\n    if (typeof msg.payload === \"string\") {\n        try { msg.payload = JSON.parse(msg.payload); }\n        catch(e) { node.error(\"Button payload is not valid JSON\", msg); return null; }\n    }\n\n    const unitid  = Number(msg.payload.unitid);\n    const address = Number(msg.payload.address);\n\n    if (!Number.isInteger(unitid) || unitid <= 0) { node.error(\"Invalid unitid\", msg); return null; }\n    if (!Number.isInteger(address) || address < 0) { node.error(\"Invalid address\", msg); return null; }\n\n    let val;\n\n    if (msg.payload.value !== undefined) {\n        val = Number(msg.payload.value);\n    } else {\n        // For SP registers only → fallback to slider\n        if ([6,7,8,9,16].includes(address)) {\n            val = flow.get(\"rightSliderPIDValue\");\n            if (val === undefined || isNaN(val)) {\n                node.warn(\"rightSliderPIDValue not set, defaulting to 0\");\n                val = 0;\n            }\n            val = Math.round(val);\n            if (val < 0) val = 0;\n            if (val > 50) val = 50;\n        } else {\n            node.error(\"No value provided for non-SP address\", msg);\n            return null;\n        }\n    }\n\n    // Build Flex Write\n    msg.payload = {\n        fc: 6,\n        unitid,\n        address,     // zero-based offset\n        quantity: 1,\n        value: [ val ]\n    };\n\n    node.status({ fill: \"green\", shape: \"dot\", text: `Write ${val} @U${unitid}:${address}` });\n    return msg;\n}\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1330,
+        "y": 1680,
+        "wires": [
+            [
+                "b9cc117f0400f21f"
+            ]
+        ]
     }
 ]
