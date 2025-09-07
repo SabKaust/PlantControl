@@ -8,189 +8,6 @@
         "env": []
     },
     {
-        "id": "5ac29785f0203a21",
-        "type": "subflow",
-        "name": "Subflow 1",
-        "info": "",
-        "in": [],
-        "out": []
-    },
-    {
-        "id": "24b4fc1d.dc1434",
-        "type": "subflow",
-        "name": "Upload G-Code",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 54,
-                "y": 126,
-                "wires": [
-                    {
-                        "id": "9568cdc7.6c476"
-                    }
-                ]
-            }
-        ],
-        "out": [],
-        "env": [],
-        "meta": {},
-        "color": "#DDAA99"
-    },
-    {
-        "id": "a6a697b7.0da498",
-        "type": "subflow",
-        "name": "Conditioning",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 56,
-                "y": 234,
-                "wires": [
-                    {
-                        "id": "6cfb200c.654d7"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 776,
-                "y": 72,
-                "wires": [
-                    {
-                        "id": "698e7586.cbcfdc",
-                        "port": 0
-                    },
-                    {
-                        "id": "7f9c3eeb.e9c4d",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 776,
-                "y": 126,
-                "wires": [
-                    {
-                        "id": "bda4d05.f262d3",
-                        "port": 1
-                    }
-                ]
-            },
-            {
-                "x": 776,
-                "y": 180,
-                "wires": [
-                    {
-                        "id": "2d4ec7b4.9ed328",
-                        "port": 0
-                    },
-                    {
-                        "id": "cdf869d4.821a58",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 776,
-                "y": 252,
-                "wires": [
-                    {
-                        "id": "f3009186.c1427",
-                        "port": 0
-                    },
-                    {
-                        "id": "2d841f1.5eddde",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 848,
-                "y": 396,
-                "wires": [
-                    {
-                        "id": "ec2fd52c.c95c68",
-                        "port": "0"
-                    }
-                ]
-            },
-            {
-                "x": 848,
-                "y": 450,
-                "wires": [
-                    {
-                        "id": "b58b0616.1300d8",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 848,
-                "y": 522,
-                "wires": [
-                    {
-                        "id": "168e0e27.14fce2",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 848,
-                "y": 576,
-                "wires": [
-                    {
-                        "id": "df390ef9.d68b9",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 848,
-                "y": 630,
-                "wires": [
-                    {
-                        "id": "64834c4e.76b524",
-                        "port": 0
-                    }
-                ]
-            },
-            {
-                "x": 956,
-                "y": 324,
-                "wires": [
-                    {
-                        "id": "e43c9f4b.6fea1",
-                        "port": 0
-                    },
-                    {
-                        "id": "c97d017b.52592",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [],
-        "meta": {},
-        "color": "#DDAA99",
-        "inputLabels": [
-            "from http request"
-        ],
-        "outputLabels": [
-            "Nozzle/Bed/State",
-            "Interface",
-            "Nozzle Timeline",
-            "Bed Timeline",
-            "Progress",
-            "Progress to 0",
-            "Current Job",
-            "Print Time Left",
-            "Elapsed Print Time"
-        ]
-    },
-    {
         "id": "8d17c08d50d1770f",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -384,24 +201,6 @@
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
-    },
-    {
-        "id": "ad12ad91.ab672",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "39b7a5c6.1e9a8a",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "ad12ad91.ab672",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
     },
     {
         "id": "a94205eff71ff9ec",
@@ -627,796 +426,6 @@
         "groupType": "default"
     },
     {
-        "id": "fd46d45c.0b9468",
-        "type": "function",
-        "z": "24b4fc1d.dc1434",
-        "name": "Format the header and payload",
-        "func": "msg.headers = {\n    \"Content-Type\": \"multipart/form-data; boundary=------------------------d74496d66958873e\"\n}\n\n\nmsg.payload = '--------------------------d74496d66958873e\\r\\n'+\n'Content-Disposition: form-data; name=\"select\"\\r\\n'+\n'\\r\\n'+\n'true\\r\\n'+\n'--------------------------d74496d66958873e\\r\\n'+\n'Content-Disposition: form-data; name=\"print\"\\r\\n'+\n'\\r\\n'+\n'false\\r\\n'+\n'--------------------------d74496d66958873e\\r\\n'+\n'Content-Disposition: form-data; name=\"file\"; filename=\"'+msg.filename+'\"\\r\\n'+\n'Content-Type: application/octet-stream\\r\\n'+\n'\\r\\n'+\nmsg.payload+'\\r\\n'+\n'--------------------------d74496d66958873e--\\r\\n';\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 544,
-        "y": 144,
-        "wires": [
-            [
-                "c634de7a.3d5e6"
-            ]
-        ]
-    },
-    {
-        "id": "c634de7a.3d5e6",
-        "type": "http request",
-        "z": "24b4fc1d.dc1434",
-        "name": "",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://10.10.13.71/api/files/local?apikey=EF4EA6DCB7E845FEB33724865388D794",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 772,
-        "y": 144,
-        "wires": [
-            [
-                "da9503c3.f393d"
-            ]
-        ]
-    },
-    {
-        "id": "da9503c3.f393d",
-        "type": "debug",
-        "z": "24b4fc1d.dc1434",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 934,
-        "y": 144,
-        "wires": []
-    },
-    {
-        "id": "ebe4c7d6.bb5718",
-        "type": "file in",
-        "z": "24b4fc1d.dc1434",
-        "name": "",
-        "filename": "",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "x": 338,
-        "y": 144,
-        "wires": [
-            [
-                "fd46d45c.0b9468"
-            ]
-        ]
-    },
-    {
-        "id": "9568cdc7.6c476",
-        "type": "function",
-        "z": "24b4fc1d.dc1434",
-        "name": "",
-        "func": "msg.filename = msg.payload\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 186,
-        "y": 126,
-        "wires": [
-            [
-                "ebe4c7d6.bb5718",
-                "4b622c86.c0b5e4"
-            ]
-        ]
-    },
-    {
-        "id": "4b622c86.c0b5e4",
-        "type": "debug",
-        "z": "24b4fc1d.dc1434",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 338,
-        "y": 72,
-        "wires": []
-    },
-    {
-        "id": "b58b0616.1300d8",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "Set Progress 0",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.progress.completion",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 710,
-        "y": 486,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7f9c3eeb.e9c4d",
-        "type": "json",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 320,
-        "y": 108,
-        "wires": [
-            [
-                "f3009186.c1427",
-                "bda4d05.f262d3",
-                "2d4ec7b4.9ed328",
-                "cdf869d4.821a58",
-                "2d841f1.5eddde",
-                "57c14122.40984",
-                "698e7586.cbcfdc"
-            ]
-        ]
-    },
-    {
-        "id": "168e0e27.14fce2",
-        "type": "json",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 392,
-        "y": 540,
-        "wires": [
-            [
-                "ec2fd52c.c95c68",
-                "df390ef9.d68b9",
-                "64834c4e.76b524"
-            ]
-        ]
-    },
-    {
-        "id": "6cfb200c.654d7",
-        "type": "switch",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "property": "api",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "PRINTER",
-                "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "JOB",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 176,
-        "y": 234,
-        "wires": [
-            [
-                "7f9c3eeb.e9c4d"
-            ],
-            [
-                "168e0e27.14fce2"
-            ]
-        ]
-    },
-    {
-        "id": "ec2fd52c.c95c68",
-        "type": "switch",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "property": "payload.progress.completion",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "cont",
-                "v": "null",
-                "vt": "str"
-            },
-            {
-                "t": "null"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 572,
-        "y": 432,
-        "wires": [
-            [],
-            [
-                "b58b0616.1300d8"
-            ],
-            [
-                "b58b0616.1300d8"
-            ]
-        ]
-    },
-    {
-        "id": "f3009186.c1427",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "Bed Temp Actual",
-        "rules": [
-            {
-                "t": "move",
-                "p": "msg.payload.temperature.bed.actual",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Line1",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 540,
-        "y": 234,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bda4d05.f262d3",
-        "type": "function",
-        "z": "a6a697b7.0da498",
-        "name": "print check",
-        "func": "var state = msg.payload.state.flags.printing;\nvar msg1 = { background:\"green\",enabled: true };\nvar msg2 = { background:\"red\", enabled: false };\nif ( state === true ){\n    global.set(\"state\",true);\n    return [msg1,msg2];\n} else {\n    global.set(\"state\",false);\n    return [msg2,msg1];\n}",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 126,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "2d4ec7b4.9ed328",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "Tool Temp Actual",
-        "rules": [
-            {
-                "t": "move",
-                "p": "msg.payload.temperature.tool0.actual",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Line1",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 540,
-        "y": 162,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cdf869d4.821a58",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "Tool Temp Target",
-        "rules": [
-            {
-                "t": "move",
-                "p": "msg.payload.temperature.tool0.target",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Line2",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 540,
-        "y": 198,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7f6842dd.92bbcc",
-        "type": "function",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "",
-        "func": "var msg1 = {};\nvar msg2 = {};\n\nmsg.payload = msg.payload.temperature.tool0.actual\nmsg.topic = 'Line1';\n\nmsg.payload = msg.payload.temperature.tool0.target\nmsg.topic = 'Line2';\n\nreturn [msg1, msg2];",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1104,
-        "y": 252,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "2d841f1.5eddde",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "Bed Temp Target",
-        "rules": [
-            {
-                "t": "move",
-                "p": "msg.payload.temperature.bed.target",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Line2",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 540,
-        "y": 270,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "df390ef9.d68b9",
-        "type": "function",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "func": "// Time HH:MM:SS from number\n\n// Hours\nvar Hours = ((msg.payload.progress.printTimeLeft)/3600);\nHours = Math.floor(Hours);\n\n// Minutes\nvar Minutes = (msg.payload.progress.printTimeLeft-(Hours*3600))/60;\nMinutes = Math.floor(Minutes);\n\n// Seconds\nvar Seconds = (msg.payload.progress.printTimeLeft-(Hours*3600)-(Minutes*60));\n\n// Concatenate\nvar Time = ('0' + Hours).slice(-2)+':'+('0' + Minutes).slice(-2)+':'+('0' + Seconds).slice(-2);\n\nmsg.payload = Time;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 618,
-        "y": 558,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "64834c4e.76b524",
-        "type": "function",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "func": "// Time HH:MM:SS from number\n\n// Hours\nvar Hours = ((msg.payload.progress.printTime)/3600);\nHours = Math.floor(Hours);\n\n// Minutes\nvar Minutes = (msg.payload.progress.printTime-(Hours*3600))/60;\nMinutes = Math.floor(Minutes);\n\n// Seconds\nvar Seconds = (msg.payload.progress.printTime-(Hours*3600)-(Minutes*60));\n\n// Concatenate\nvar Time = ('0' + Hours).slice(-2)+':'+('0' + Minutes).slice(-2)+':'+('0' + Seconds).slice(-2);\n\nmsg.payload = Time;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 618,
-        "y": 594,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e43c9f4b.6fea1",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "enabled",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "value",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "background",
-                "pt": "msg",
-                "to": "\"red\"",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 782,
-        "y": 306,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "23319124.03b6de",
-        "type": "switch",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "property": "payload.state.flags.printing",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 626,
-        "y": 324,
-        "wires": [
-            [
-                "e43c9f4b.6fea1"
-            ],
-            [
-                "c97d017b.52592"
-            ]
-        ]
-    },
-    {
-        "id": "57c14122.40984",
-        "type": "rbe",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "septopics": true,
-        "property": "payload.state.flags.printing",
-        "x": 500,
-        "y": 324,
-        "wires": [
-            [
-                "23319124.03b6de"
-            ]
-        ]
-    },
-    {
-        "id": "c97d017b.52592",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "enabled",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "value",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "background",
-                "pt": "msg",
-                "to": "\"green\"",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 782,
-        "y": 342,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e24c988b.699b78",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "ui_control.options.minLabelMinFontSize",
-                "pt": "msg",
-                "to": "6",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "ui_control.options.maxLabelMinFontSize",
-                "pt": "msg",
-                "to": "32",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "ui_control.options.labelMinFontSize",
-                "pt": "msg",
-                "to": "32",
-                "tot": "str"
-            },
-            {
-                "t": "delete",
-                "p": "payload",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 638,
-        "y": 1224,
-        "wires": [
-            [
-                "8c14a7d9.681bb8"
-            ]
-        ]
-    },
-    {
-        "id": "8c14a7d9.681bb8",
-        "type": "ui_gauge",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "",
-        "group": "39b7a5c6.1e9a8a",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
-        "format": "{{value|number:2}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "3",
-        "seg2": "7",
-        "x": 808,
-        "y": 1284,
-        "wires": []
-    },
-    {
-        "id": "22d7d976.1fa2c6",
-        "type": "inject",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "",
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 508,
-        "y": 1284,
-        "wires": [
-            [
-                "f0bfbde4.1a8cf"
-            ]
-        ]
-    },
-    {
-        "id": "f97cda05.dde058",
-        "type": "ui_ui_control",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "",
-        "x": 298,
-        "y": 1084,
-        "wires": [
-            [
-                "95ef6d63.e77fd"
-            ]
-        ]
-    },
-    {
-        "id": "2d8d8dd6.8c2a82",
-        "type": "comment",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "To send options when dashboard connects",
-        "info": "",
-        "x": 394,
-        "y": 972,
-        "wires": []
-    },
-    {
-        "id": "95ef6d63.e77fd",
-        "type": "delay",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "40",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "outputs": 1,
-        "x": 438,
-        "y": 1144,
-        "wires": [
-            [
-                "e24c988b.699b78"
-            ]
-        ]
-    },
-    {
-        "id": "250f93b0.a9b97c",
-        "type": "comment",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "Let gauge to be initialized before change any options",
-        "info": "There will be browser errors otherwise ",
-        "x": 578,
-        "y": 1104,
-        "wires": []
-    },
-    {
-        "id": "d94b0f1f.2a6f6",
-        "type": "comment",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "Change the options",
-        "info": "gauge scales according to predefined card size\ndefined font sizes are not absolute values but minimum values\nFor example if you make your gauge smaller, the changed font sizes may happen to be too large and will overlap.\n\nminLabelMinFontSize - minimum size of min field // number\nmaxLabelMinFontSize - minimum size of max field // number\nlabelMinFontSize - minimum size of units field // numbert\n\ndelete msg.payload cos it does not contain proper value",
-        "x": 638,
-        "y": 1184,
-        "wires": []
-    },
-    {
-        "id": "f0bfbde4.1a8cf",
-        "type": "function",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "random",
-        "func": "msg.payload = Math.random()*10\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 648,
-        "y": 1284,
-        "wires": [
-            [
-                "8c14a7d9.681bb8"
-            ]
-        ]
-    },
-    {
-        "id": "a651e851.2a2a28",
-        "type": "comment",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "generate random value",
-        "info": "",
-        "x": 588,
-        "y": 1324,
-        "wires": []
-    },
-    {
-        "id": "698e7586.cbcfdc",
-        "type": "change",
-        "z": "a6a697b7.0da498",
-        "d": true,
-        "name": "Adjust Gauge Font",
-        "rules": [
-            {
-                "t": "set",
-                "p": "ui_control.options.title",
-                "pt": "msg",
-                "to": "F12",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 558,
-        "y": 54,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "969f5026bd873d72",
         "type": "modbus-flex-getter",
         "z": "f00a2f75f92239ad",
@@ -1439,7 +448,6 @@
             [
                 "6be932af4beeb0ec",
                 "a2ee2948cd4e9836",
-                "6456e84130ac57de",
                 "6ce06a5efee4dd46"
             ],
             []
@@ -1573,23 +581,6 @@
                 "6984c3f189f81103"
             ]
         ]
-    },
-    {
-        "id": "6456e84130ac57de",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 14",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1140,
-        "y": 100,
-        "wires": []
     },
     {
         "id": "c6b5f852d287c501",
@@ -2531,11 +1522,9 @@
                 "790e4a73289b3230"
             ],
             [
-                "3c17b4c633646672",
                 "dafc89f3c8e20050"
             ],
             [
-                "76bd6fe293fe3ccf",
                 "78a1e1ed442d6ac0"
             ],
             [
@@ -2602,33 +1591,9 @@
         "x": 490,
         "y": 1520,
         "wires": [
-            [
-                "4f54d83faca9465d"
-            ],
-            [
-                "e97be8d3b068f6b2"
-            ]
+            [],
+            []
         ]
-    },
-    {
-        "id": "4f54d83faca9465d",
-        "type": "modbus-response",
-        "z": "f00a2f75f92239ad",
-        "name": "",
-        "registerShowMax": 20,
-        "x": 710,
-        "y": 1480,
-        "wires": []
-    },
-    {
-        "id": "e97be8d3b068f6b2",
-        "type": "modbus-response",
-        "z": "f00a2f75f92239ad",
-        "name": "",
-        "registerShowMax": 20,
-        "x": 710,
-        "y": 1540,
-        "wires": []
     },
     {
         "id": "5e610a5d3514f1d5",
@@ -3134,8 +2099,7 @@
         "y": 1680,
         "wires": [
             [
-                "b9cc117f0400f21f",
-                "66c1da7ac63b8f0e"
+                "b9cc117f0400f21f"
             ]
         ]
     },
@@ -3155,8 +2119,7 @@
         "y": 1680,
         "wires": [
             [
-                "b9cc117f0400f21f",
-                "2f97ab33a7fde799"
+                "b9cc117f0400f21f"
             ]
         ]
     },
@@ -3222,38 +2185,6 @@
             ]
         ],
         "l": false
-    },
-    {
-        "id": "66c1da7ac63b8f0e",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 320,
-        "y": 1620,
-        "wires": []
-    },
-    {
-        "id": "2f97ab33a7fde799",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 3",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 900,
-        "y": 1620,
-        "wires": []
     },
     {
         "id": "477223d0432c445c",
@@ -4931,38 +3862,6 @@
         "wires": []
     },
     {
-        "id": "3c17b4c633646672",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 360,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "76bd6fe293fe3ccf",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 5",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 360,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "f6fed2830311c73a",
         "type": "inject",
         "z": "f00a2f75f92239ad",
@@ -5127,8 +4026,7 @@
         "y": 1300,
         "wires": [
             [
-                "096d74536e8e846f",
-                "194de0eb4e4e7e3c"
+                "096d74536e8e846f"
             ]
         ]
     },
@@ -5428,7 +4326,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "PID Split Left",
-        "func": "// Outputs (5):\n// 1: PV (number)\n// 2: SP (number)\n// 3: Power % (number)\n// 4: Mode text (\"Auto\"/\"Manual\"/\"Standby\"/\"Unknown\")\n// 5: LED boolean (Auto=true; Manual/Standby/Unknown=false)\n\nconst r = msg.payload;\nif (!Array.isArray(r) || r.length < 15) {\n  node.error(\"PID block requires 15 registers (addr 1..15)\", msg);\n  return [null, null, null, null, null];\n}\n\n// dP and scaler\nconst dP = Number(r[1] || 0);\nconst scale = v => Math.round((v / Math.pow(10, dP)) * 100) / 100;\n\n// Decode basics\nconst pv = scale(r[0]);                          // addr 1\nconst sp = scale(r[2]);                          // addr 3 (operative SP)\nconst powerPct = Math.round((r[3] / 100) * 100) / 100; // addr 4 (2 implied dp)\nconst modeCode = Number(r[14] || 0);                   // addr 15 (0=Auto,1=Manual,2=Standby)\n\n// Text + LED boolean (Auto = true)\nconst modeText = (modeCode === 0) ? \"Auto\" : (modeCode === 1) ? \"Manual\" :\n  (modeCode === 2) ? \"Standby\" : \"Unknown\";\nconst ledOn = (modeCode === 0); // ONLY Auto turns the LED on\n\n// Status\nnode.status({\n  fill: ledOn ? \"green\" : (modeCode === 2 ? \"grey\" : \"yellow\"),\n  shape: \"dot\",\n  text: `PV ${pv}  SP ${sp}  ${powerPct}%  ${modeText}`\n});\n\n// Fan out\nreturn [\n  { topic: \"PID.PV\", payload: pv },\n  { topic: \"PID.SP\", payload: sp },\n  { topic: \"PID.Power.%\", payload: powerPct },\n  { topic: \"PID.Mode.Text\", payload: modeText },\n  { topic: \"PID.Mode.Boolean\", payload: ledOn }  // <-- wire this to ui_led\n];\n",
+        "func": "// Outputs (5):\n// 1: PV (number)\n// 2: SP (number)\n// 3: Power % (number)\n// 4: Mode text (\"Auto\"/\"Manual\"/\"Standby\"/\"Unknown\")\n// 5: LED boolean (Auto=true; Manual/Standby/Unknown=false)\n\nconst r = msg.payload;\nif (!Array.isArray(r) || r.length < 15) {\n  node.error(\"PID block requires 15 registers (addr 1..15)\", msg);\n  return [null, null, null, null, null];\n}\n\n// dP and scaler\nconst dP = Number(r[1] || 0);\nconst scale = v => Math.round((v / Math.pow(10, dP)) * 100) / 100;\n\n// Decode basics\nconst pv = scale(r[0]);                          // addr 1\nconst sp = scale(r[2]);                          // addr 3 (operative SP)\nconst powerPct = Math.round((r[3] / 100) * 100) / 100; // addr 4 (2 implied dp)\nconst modeCode = Number(r[14] || 0);                   // addr 15 (0=Auto,1=Manual,2=Standby)\n\n// Text + LED boolean (Auto = true)\nconst modeText = (modeCode === 0) ? \"Auto\" : (modeCode === 1) ? \"Manual\" :\n  (modeCode === 2) ? \"Standby\" : \"Unknown\";\nconst ledOn = (modeCode === 0); // ONLY Auto turns the LED on\n\n// Status\n//node.status({\n//  fill: ledOn ? \"green\" : (modeCode === 2 ? \"grey\" : \"yellow\"),\n//  shape: \"dot\",\n//  text: `PV ${pv}  SP ${sp}  ${powerPct}%  ${modeText}`\n//});\n\n// Fan out\nreturn [\n  { topic: \"PID.PV\", payload: pv },\n  { topic: \"PID.SP\", payload: sp },\n  { topic: \"PID.Power.%\", payload: powerPct },\n  { topic: \"PID.Mode.Text\", payload: modeText },\n  { topic: \"PID.Mode.Boolean\", payload: ledOn }  // <-- wire this to ui_led\n];\n",
         "outputs": 5,
         "timeout": 0,
         "noerr": 0,
@@ -5447,11 +4345,8 @@
             [
                 "91ad431c2d164ef5"
             ],
+            [],
             [
-                "12972c686ad23230"
-            ],
-            [
-                "05fa7dca6f5c76a0",
                 "31af0bf4722f20bc"
             ]
         ]
@@ -5461,7 +4356,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "PID Split Left",
-        "func": "// Outputs (5):\n// 1: PV (number)\n// 2: SP (number)\n// 3: Power % (number)\n// 4: Mode text (\"Auto\"/\"Manual\"/\"Standby\"/\"Unknown\")\n// 5: LED boolean (Auto=true; Manual/Standby/Unknown=false)\n\nconst r = msg.payload;\nif (!Array.isArray(r) || r.length < 15) {\n  node.error(\"PID block requires 15 registers (addr 1..15)\", msg);\n  return [null, null, null, null, null];\n}\n\n// dP and scaler\nconst dP = Number(r[1] || 0);\nconst scale = v => Math.round((v / Math.pow(10, dP)) * 100) / 100;\n\n// Decode basics\nconst pv = scale(r[0]);                          // addr 1\nconst sp = scale(r[2]);                          // addr 3 (operative SP)\nconst powerPct = Math.round((r[3] / 100) * 100) / 100; // addr 4 (2 implied dp)\nconst modeCode = Number(r[14] || 0);                   // addr 15 (0=Auto,1=Manual,2=Standby)\n\n// Text + LED boolean (Auto = true)\nconst modeText = (modeCode === 0) ? \"Auto\" : (modeCode === 1) ? \"Manual\" :\n  (modeCode === 2) ? \"Standby\" : \"Unknown\";\nconst ledOn = (modeCode === 0); // ONLY Auto turns the LED on\n\n// Status\nnode.status({\n  fill: ledOn ? \"green\" : (modeCode === 2 ? \"grey\" : \"yellow\"),\n  shape: \"dot\",\n  text: `PV ${pv}  SP ${sp}  ${powerPct}%  ${modeText}`\n});\n\n// Fan out\nreturn [\n  { topic: \"PID.PV\", payload: pv },\n  { topic: \"PID.SP\", payload: sp },\n  { topic: \"PID.Power.%\", payload: powerPct },\n  { topic: \"PID.Mode.Text\", payload: modeText },\n  { topic: \"PID.Mode.Boolean\", payload: ledOn }  // <-- wire this to ui_led\n];\n",
+        "func": "// Outputs (5):\n// 1: PV (number)\n// 2: SP (number)\n// 3: Power % (number)\n// 4: Mode text (\"Auto\"/\"Manual\"/\"Standby\"/\"Unknown\")\n// 5: LED boolean (Auto=true; Manual/Standby/Unknown=false)\n\nconst r = msg.payload;\nif (!Array.isArray(r) || r.length < 15) {\n  node.error(\"PID block requires 15 registers (addr 1..15)\", msg);\n  return [null, null, null, null, null];\n}\n\n// dP and scaler\nconst dP = Number(r[1] || 0);\nconst scale = v => Math.round((v / Math.pow(10, dP)) * 100) / 100;\n\n// Decode basics\nconst pv = scale(r[0]);                          // addr 1\nconst sp = scale(r[2]);                          // addr 3 (operative SP)\nconst powerPct = Math.round((r[3] / 100) * 100) / 100; // addr 4 (2 implied dp)\nconst modeCode = Number(r[14] || 0);                   // addr 15 (0=Auto,1=Manual,2=Standby)\n\n// Text + LED boolean (Auto = true)\nconst modeText = (modeCode === 0) ? \"Auto\" : (modeCode === 1) ? \"Manual\" :\n  (modeCode === 2) ? \"Standby\" : \"Unknown\";\nconst ledOn = (modeCode === 0); // ONLY Auto turns the LED on\n\n// Status\n//node.status({\n//  fill: ledOn ? \"green\" : (modeCode === 2 ? \"grey\" : \"yellow\"),\n//  shape: \"dot\",\n//  text: `PV ${pv}  SP ${sp}  ${powerPct}%  ${modeText}`\n//});\n\n// Fan out\nreturn [\n  { topic: \"PID.PV\", payload: pv },\n  { topic: \"PID.SP\", payload: sp },\n  { topic: \"PID.Power.%\", payload: powerPct },\n  { topic: \"PID.Mode.Text\", payload: modeText },\n  { topic: \"PID.Mode.Boolean\", payload: ledOn }  // <-- wire this to ui_led\n];\n",
         "outputs": 5,
         "timeout": 0,
         "noerr": 0,
@@ -5480,9 +4375,7 @@
             [
                 "0b3ec60e8f8d0402"
             ],
-            [
-                "74dd2ce47975dddf"
-            ],
+            [],
             [
                 "c7f6752c3dcd79d9"
             ]
@@ -5540,27 +4433,9 @@
         "y": 1180,
         "wires": [
             [
-                "b9cc117f0400f21f",
-                "17bf20344ef9935f"
+                "b9cc117f0400f21f"
             ]
         ]
-    },
-    {
-        "id": "17bf20344ef9935f",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1380,
-        "y": 1120,
-        "wires": []
     },
     {
         "id": "e0ae50e7df9772a7",
@@ -5593,70 +4468,6 @@
         "l": false
     },
     {
-        "id": "194de0eb4e4e7e3c",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 6",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1120,
-        "y": 1120,
-        "wires": []
-    },
-    {
-        "id": "12972c686ad23230",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 7",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1380,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "74dd2ce47975dddf",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 8",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1660,
-        "y": 1540,
-        "wires": []
-    },
-    {
-        "id": "05fa7dca6f5c76a0",
-        "type": "debug",
-        "z": "f00a2f75f92239ad",
-        "name": "debug 9",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1360,
-        "y": 1560,
-        "wires": []
-    },
-    {
         "id": "90a83a8cf7caff18",
         "type": "function",
         "z": "f00a2f75f92239ad",
@@ -5668,8 +4479,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1330,
-        "y": 1680,
+        "x": 2050,
+        "y": 1280,
         "wires": [
             [
                 "b9cc117f0400f21f"
