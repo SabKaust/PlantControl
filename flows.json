@@ -431,8 +431,8 @@
         "z": "f00a2f75f92239ad",
         "name": "Modbus Flex Getter",
         "showStatusActivities": true,
-        "showErrors": true,
-        "showWarnings": true,
+        "showErrors": false,
+        "showWarnings": false,
         "logIOActivities": false,
         "server": "d3e8251c2f05a30e",
         "useIOFile": false,
@@ -1427,8 +1427,8 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "Switch Function",
-        "func": "// =============== Switch Function (32 outputs, 2-dp rounding) ===============\n// Output map:\n//  1  LU CO2 avg        2  LU CO2 raw         3  LU Temp (°C)      4  LU RH (%)        5  LU Pressure (hPa)\n//  6  RU CO2 avg        7  RU CO2 raw         8  RU Temp (°C)      9  RU RH (%)       10  RU Pressure (hPa)\n// 11  LD CO2 avg       12  LD CO2 raw        13  LD Temp (°C)     14  LD RH (%)       15  LD Pressure (hPa)\n// 16  RD CO2 avg       17  RD CO2 raw        18  RD Temp (°C)     19  RD RH (%)       20  RD Pressure (hPa)\n// 21  LEE600           22  REE600            23  LEE650T (°C)     24  REE650T (°C)    25  LEE650AV (m/s)\n// 26  REE650AV (m/s)   27  LEM watts         28  REM watts        29  LPID block(1..15)  30  RPID block(1..15)\n// 31  LVFD (array→splitter)                 32  RVFD (array→splitter)\n\n// -------- helpers --------\n\n// E+E float32 values are word-swapped (hi,lo -> lo,hi for bytes)\nfunction readFloat32Swap(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r1, 0); // low word\n  b.writeUInt16BE(r0, 2); // high word\n  return b.readFloatBE(0);\n}\nfunction f32at(regs, i) { return readFloat32Swap(regs[i], regs[i + 1]); }\n\n// Generic Int32 (big-endian) from two holding registers\nfunction readInt32BE(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0);\n  b.writeUInt16BE(r1, 2);\n  return b.readInt32BE(0); // signed\n}\n\n// SDM230 (energy meter): float32, MS-register first (r0 = high reg, r1 = low reg)\nfunction f32be(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0); // high reg\n  b.writeUInt16BE(r1, 2); // low  reg\n  return b.readFloatBE(0);\n}\n\n// round to 2 decimals\nfunction round2(v) { return Math.round(v * 100) / 100; }\n\nconst regs = msg.payload;\nconst tag = String(msg.topic || \"\");\n\nif (!Array.isArray(regs)) {\n  node.error(\"Payload is not an array of registers\", msg);\n  return null;\n}\n\nconst out = Array.from({ length: 32 }, () => null);\n\n// side helpers\nfunction isLeftUp(t) { return /^LU/i.test(t); }\nfunction isRightUp(t) { return /^RU/i.test(t); }\nfunction isLeftDown(t) { return /^LD/i.test(t); }\nfunction isRightDown(t) { return /^RD/i.test(t); }\n\n// ---------- EE872: CO2 block (avg+raw at 0x424..0x427) ----------\nif (/EE872CO2$/i.test(tag)) {\n  if (regs.length < 4) { node.error(`${tag} requires 4 registers`, msg); return null; }\n  const co2_avg = round2(f32at(regs, 0)); // 0x424..0x425\n  const co2_raw = round2(f32at(regs, 2)); // 0x426..0x427\n\n  if (isLeftUp(tag)) { out[0] = { topic: \"LU.CO2.avg\", payload: co2_avg }; out[1] = { topic: \"LU.CO2.raw\", payload: co2_raw }; }\n  else if (isRightUp(tag)) { out[5] = { topic: \"RU.CO2.avg\", payload: co2_avg }; out[6] = { topic: \"RU.CO2.raw\", payload: co2_raw }; }\n  else if (isLeftDown(tag)) { out[10] = { topic: \"LD.CO2.avg\", payload: co2_avg }; out[11] = { topic: \"LD.CO2.raw\", payload: co2_raw }; }\n  else if (isRightDown(tag)) { out[15] = { topic: \"RD.CO2.avg\", payload: co2_avg }; out[16] = { topic: \"RD.CO2.raw\", payload: co2_raw }; }\n  else node.warn(`Unhandled CO2 tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: TRH wide block (Temp at 0x3EA..0x3EB, RH at 0x3FC..0x3FD) ----------\nif (/EE872TRH$/i.test(tag)) {\n  if (regs.length < 20) { node.error(`${tag} requires 20 registers`, msg); return null; }\n  const temperature_c = round2(f32at(regs, 0));   // 0x3EA..0x3EB\n  const rh_percent = round2(f32at(regs, 18));  // 0x3FC..0x3FD\n\n  if (isLeftUp(tag)) { out[2] = { topic: \"LU.Temp.C\", payload: temperature_c }; out[3] = { topic: \"LU.RH.%\", payload: rh_percent }; }\n  else if (isRightUp(tag)) { out[7] = { topic: \"RU.Temp.C\", payload: temperature_c }; out[8] = { topic: \"RU.RH.%\", payload: rh_percent }; }\n  else if (isLeftDown(tag)) { out[12] = { topic: \"LD.Temp.C\", payload: temperature_c }; out[13] = { topic: \"LD.RH.%\", payload: rh_percent }; }\n  else if (isRightDown(tag)) { out[17] = { topic: \"RD.Temp.C\", payload: temperature_c }; out[18] = { topic: \"RD.RH.%\", payload: rh_percent }; }\n  else node.warn(`Unhandled TRH tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE872: Pressure (0x4B0..0x4B1) ----------\nif (/EE872P$/i.test(tag)) {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const pressure_hpa = round2(f32at(regs, 0));\n\n  if (isLeftUp(tag)) out[4] = { topic: \"LU.P.hPa\", payload: pressure_hpa };\n  else if (isRightUp(tag)) out[9] = { topic: \"RU.P.hPa\", payload: pressure_hpa };\n  else if (isLeftDown(tag)) out[14] = { topic: \"LD.P.hPa\", payload: pressure_hpa };\n  else if (isRightDown(tag)) out[19] = { topic: \"RD.P.hPa\", payload: pressure_hpa };\n  else node.warn(`Unhandled Pressure tag: ${tag}`);\n\n  return out;\n}\n\n// ---------- EE600 / EE650 (single float32 swap) ----------\nif (tag === \"LEE600\" || tag === \"REE600\" || tag === \"LEE650T\" || tag === \"REE650T\" || tag === \"LEE650AV\" || tag === \"REE650AV\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const val = round2(f32at(regs, 0));\n\n  switch (tag) {\n    case \"LEE600\": out[20] = { topic: \"LEE600\", payload: val }; break;\n    case \"REE600\": out[21] = { topic: \"REE600\", payload: val }; break;\n    case \"LEE650T\": out[22] = { topic: \"LEE650T.C\", payload: val }; break;\n    case \"REE650T\": out[23] = { topic: \"REE650T.C\", payload: val }; break;\n    case \"LEE650AV\": out[24] = { topic: \"LEE650AV.mps\", payload: val }; break;\n    case \"REE650AV\": out[25] = { topic: \"REE650AV.mps\", payload: val }; break;\n  }\n  return out;\n}\n\n// ---------- Energy meters ----------\n// SDM230 (LEM/REM): float32 in Input Registers (FC=4), MS-register first\nif (tag === \"LEM\" || tag === \"REM\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const watts = round2(f32be(regs[0], regs[1]));   // Active Power (W)\n  if (tag === \"LEM\") out[26] = { topic: \"LEM.W\", payload: watts };\n  else /* REM */          out[27] = { topic: \"REM.W\", payload: watts };\n  return out;\n}\n\n// ---------- PIDs: pass-through full 15-register variables block (addr 1..15) ----------\nif (tag === \"LPID\" || tag === \"RPID\") {\n  if (regs.length < 15) { node.error(`${tag} requires 15 registers (addr 1..15)`, msg); return null; }\n  const block = regs.slice(0, 15); // keep raw words; decode downstream\n\n  if (tag === \"LPID\") out[28] = { topic: \"LPID.block\", payload: block };\n  else out[29] = { topic: \"RPID.block\", payload: block };\n  return out;\n}\n\n// ---------- VFDs (6 regs pass-through to your splitter nodes) ----------\nif (tag === \"LVFD\" || tag === \"RVFD\") {\n  if (regs.length < 6) { node.error(`${tag} requires 6 registers`, msg); return null; }\n  const arr6 = regs.slice(0, 6);\n  if (tag === \"LVFD\") out[30] = { topic: \"LVFD\", payload: arr6 };\n  else out[31] = { topic: \"RVFD\", payload: arr6 };\n  return out;\n}\n\nnode.warn(`Decoder: unhandled tag \"${tag}\"`);\nreturn null;\n",
-        "outputs": 32,
+        "func": "// =============== Switch Function (32 + 1 outputs, 2-dp rounding) ===============\n// Output map:\n//  1  LU CO2 avg        2  LU CO2 raw         3  LU Temp (°C)      4  LU RH (%)        5  LU Pressure (hPa)\n//  6  RU CO2 avg        7  RU CO2 raw         8  RU Temp (°C)      9  RU RH (%)       10  RU Pressure (hPa)\n// 11  LD CO2 avg       12  LD CO2 raw        13  LD Temp (°C)     14  LD RH (%)       15  LD Pressure (hPa)\n// 16  RD CO2 avg       17  RD CO2 raw        18  RD Temp (°C)     19  RD RH (%)       20  RD Pressure (hPa)\n// 21  LEE600           22  REE600            23  LEE650T (°C)     24  REE650T (°C)    25  LEE650AV (m/s)\n// 26  REE650AV (m/s)   27  LEM watts         28  REM watts        29  LPID block(1..15)  30  RPID block(1..15)\n// 31  LVFD (array→splitter)                 32  RVFD (array→splitter)\n// 33  Mirrored scalar metrics for Grafana (/metrics flow)\n\n// -------- helpers --------\n\n// E+E float32 values are word-swapped (hi,lo -> lo,hi for bytes)\nfunction readFloat32Swap(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r1, 0); // low word\n  b.writeUInt16BE(r0, 2); // high word\n  return b.readFloatBE(0);\n}\nfunction f32at(regs, i) { return readFloat32Swap(regs[i], regs[i + 1]); }\n\n// Generic Int32 (big-endian) from two holding registers\nfunction readInt32BE(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0);\n  b.writeUInt16BE(r1, 2);\n  return b.readInt32BE(0); // signed\n}\n\n// SDM230 (energy meter): float32, MS-register first (r0 = high reg, r1 = low reg)\nfunction f32be(r0, r1) {\n  const b = Buffer.alloc(4);\n  b.writeUInt16BE(r0, 0); // high reg\n  b.writeUInt16BE(r1, 2); // low  reg\n  return b.readFloatBE(0);\n}\n\n// round to 2 decimals\nfunction round2(v) { return Math.round(v * 100) / 100; }\n\nconst regs = msg.payload;\nconst tag = String(msg.topic || \"\");\n\nif (!Array.isArray(regs)) {\n  node.error(\"Payload is not an array of registers\", msg);\n  return null;\n}\n\n// ===== MINIMAL CHANGE: make 33 outputs & add a mirror helper =====\nconst out = Array.from({ length: 33 }, () => null);\nconst out33 = [];\nfunction mirror(topic, value, labels) {\n  if (value == null || isNaN(value)) return;\n  out33.push({ topic, payload: Number(value), labels: labels || {} });\n}\n\n// side helpers\nfunction isLeftUp(t) { return /^LU/i.test(t); }\nfunction isRightUp(t) { return /^RU/i.test(t); }\nfunction isLeftDown(t) { return /^LD/i.test(t); }\nfunction isRightDown(t) { return /^RD/i.test(t); }\n\n// ---------- EE872: CO2 block (avg+raw at 0x424..0x427) ----------\nif (/EE872CO2$/i.test(tag)) {\n  if (regs.length < 4) { node.error(`${tag} requires 4 registers`, msg); return null; }\n  const co2_avg = round2(f32at(regs, 0)); // 0x424..0x425\n  const co2_raw = round2(f32at(regs, 2)); // 0x426..0x427\n\n  if (isLeftUp(tag)) {\n    out[0] = { topic: \"LU.CO2.avg\", payload: co2_avg };\n    out[1] = { topic: \"LU.CO2.raw\", payload: co2_raw };\n    mirror(\"LU.CO2.avg\", co2_avg, { zone: \"lu\" });\n    mirror(\"LU.CO2.raw\", co2_raw, { zone: \"lu\" });\n  }\n  else if (isRightUp(tag)) {\n    out[5] = { topic: \"RU.CO2.avg\", payload: co2_avg };\n    out[6] = { topic: \"RU.CO2.raw\", payload: co2_raw };\n    mirror(\"RU.CO2.avg\", co2_avg, { zone: \"ru\" });\n    mirror(\"RU.CO2.raw\", co2_raw, { zone: \"ru\" });\n  }\n  else if (isLeftDown(tag)) {\n    out[10] = { topic: \"LD.CO2.avg\", payload: co2_avg };\n    out[11] = { topic: \"LD.CO2.raw\", payload: co2_raw };\n    mirror(\"LD.CO2.avg\", co2_avg, { zone: \"ld\" });\n    mirror(\"LD.CO2.raw\", co2_raw, { zone: \"ld\" });\n  }\n  else if (isRightDown(tag)) {\n    out[15] = { topic: \"RD.CO2.avg\", payload: co2_avg };\n    out[16] = { topic: \"RD.CO2.raw\", payload: co2_raw };\n    mirror(\"RD.CO2.avg\", co2_avg, { zone: \"rd\" });\n    mirror(\"RD.CO2.raw\", co2_raw, { zone: \"rd\" });\n  }\n  else node.warn(`Unhandled CO2 tag: ${tag}`);\n\n  out[32] = out33; // <- emit mirrored metrics\n  return out;\n}\n\n// ---------- EE872: TRH wide block (Temp at 0x3EA..0x3EB, RH at 0x3FC..0x3FD) ----------\nif (/EE872TRH$/i.test(tag)) {\n  if (regs.length < 20) { node.error(`${tag} requires 20 registers`, msg); return null; }\n  const temperature_c = round2(f32at(regs, 0));   // 0x3EA..0x3EB\n  const rh_percent = round2(f32at(regs, 18));     // 0x3FC..0x3FD\n\n  if (isLeftUp(tag)) {\n    out[2] = { topic: \"LU.Temp.C\", payload: temperature_c };\n    out[3] = { topic: \"LU.RH.%\", payload: rh_percent };\n    mirror(\"LU.Temp.C\", temperature_c, { zone: \"lu\" });\n    mirror(\"LU.RH.%\", rh_percent, { zone: \"lu\" });\n  }\n  else if (isRightUp(tag)) {\n    out[7] = { topic: \"RU.Temp.C\", payload: temperature_c };\n    out[8] = { topic: \"RU.RH.%\", payload: rh_percent };\n    mirror(\"RU.Temp.C\", temperature_c, { zone: \"ru\" });\n    mirror(\"RU.RH.%\", rh_percent, { zone: \"ru\" });\n  }\n  else if (isLeftDown(tag)) {\n    out[12] = { topic: \"LD.Temp.C\", payload: temperature_c };\n    out[13] = { topic: \"LD.RH.%\", payload: rh_percent };\n    mirror(\"LD.Temp.C\", temperature_c, { zone: \"ld\" });\n    mirror(\"LD.RH.%\", rh_percent, { zone: \"ld\" });\n  }\n  else if (isRightDown(tag)) {\n    out[17] = { topic: \"RD.Temp.C\", payload: temperature_c };\n    out[18] = { topic: \"RD.RH.%\", payload: rh_percent };\n    mirror(\"RD.Temp.C\", temperature_c, { zone: \"rd\" });\n    mirror(\"RD.RH.%\", rh_percent, { zone: \"rd\" });\n  }\n  else node.warn(`Unhandled TRH tag: ${tag}`);\n\n  out[32] = out33;\n  return out;\n}\n\n// ---------- EE872: Pressure (0x4B0..0x4B1) ----------\nif (/EE872P$/i.test(tag)) {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const pressure_hpa = round2(f32at(regs, 0));\n\n  if (isLeftUp(tag)) {\n    out[4] = { topic: \"LU.P.hPa\", payload: pressure_hpa };\n    mirror(\"LU.P.hPa\", pressure_hpa, { zone: \"lu\" });\n  }\n  else if (isRightUp(tag)) {\n    out[9] = { topic: \"RU.P.hPa\", payload: pressure_hpa };\n    mirror(\"RU.P.hPa\", pressure_hpa, { zone: \"ru\" });\n  }\n  else if (isLeftDown(tag)) {\n    out[14] = { topic: \"LD.P.hPa\", payload: pressure_hpa };\n    mirror(\"LD.P.hPa\", pressure_hpa, { zone: \"ld\" });\n  }\n  else if (isRightDown(tag)) {\n    out[19] = { topic: \"RD.P.hPa\", payload: pressure_hpa };\n    mirror(\"RD.P.hPa\", pressure_hpa, { zone: \"rd\" });\n  }\n  else node.warn(`Unhandled Pressure tag: ${tag}`);\n\n  out[32] = out33;\n  return out;\n}\n\n// ---------- EE600 / EE650 (single float32 swap) ----------\nif (tag === \"LEE600\" || tag === \"REE600\" || tag === \"LEE650T\" || tag === \"REE650T\" || tag === \"LEE650AV\" || tag === \"REE650AV\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const val = round2(f32at(regs, 0));\n\n  switch (tag) {\n    case \"LEE600\": out[20] = { topic: \"LEE600\", payload: val }; mirror(\"LEE600\", val, { sensor: \"LEE600\" }); break;\n    case \"REE600\": out[21] = { topic: \"REE600\", payload: val }; mirror(\"REE600\", val, { sensor: \"REE600\" }); break;\n    case \"LEE650T\": out[22] = { topic: \"LEE650T.C\", payload: val }; mirror(\"LEE650T.C\", val, { sensor: \"LEE650T\" }); break;\n    case \"REE650T\": out[23] = { topic: \"REE650T.C\", payload: val }; mirror(\"REE650T.C\", val, { sensor: \"REE650T\" }); break;\n    case \"LEE650AV\": out[24] = { topic: \"LEE650AV.mps\", payload: val }; mirror(\"LEE650AV.mps\", val, { sensor: \"LEE650AV\" }); break;\n    case \"REE650AV\": out[25] = { topic: \"REE650AV.mps\", payload: val }; mirror(\"REE650AV.mps\", val, { sensor: \"REE650AV\" }); break;\n  }\n  out[32] = out33;\n  return out;\n}\n\n// ---------- Energy meters ----------\n// SDM230 (LEM/REM): float32 in Input Registers (FC=4), MS-register first\nif (tag === \"LEM\" || tag === \"REM\") {\n  if (regs.length < 2) { node.error(`${tag} requires 2 registers`, msg); return null; }\n  const watts = round2(f32be(regs[0], regs[1]));   // Active Power (W)\n  if (tag === \"LEM\") { out[26] = { topic: \"LEM.W\", payload: watts }; mirror(\"LEM.W\", watts, { sensor: \"LEM\" }); }\n  else { out[27] = { topic: \"REM.W\", payload: watts }; mirror(\"REM.W\", watts, { sensor: \"REM\" }); }\n  out[32] = out33;\n  return out;\n}\n\n// ---------- PIDs: pass-through full 15-register variables block (addr 1..15) ----------\nif (tag === \"LPID\" || tag === \"RPID\") {\n  if (regs.length < 15) { node.error(`${tag} requires 15 registers (addr 1..15)`, msg); return null; }\n  const block = regs.slice(0, 15); // keep raw words; decode downstream\n\n  if (tag === \"LPID\") out[28] = { topic: \"LPID.block\", payload: block };\n  else out[29] = { topic: \"RPID.block\", payload: block };\n\n  // Not mirrored to metrics (block/array). Add if you want.\n  out[32] = out33;\n  return out;\n}\n\n// ---------- VFDs (6 regs pass-through to your splitter nodes) ----------\nif (tag === \"LVFD\" || tag === \"RVFD\") {\n  if (regs.length < 6) { node.error(`${tag} requires 6 registers`, msg); return null; }\n  const arr6 = regs.slice(0, 6);\n  if (tag === \"LVFD\") out[30] = { topic: \"LVFD\", payload: arr6 };\n  else out[31] = { topic: \"RVFD\", payload: arr6 };\n\n  // Not mirrored to metrics (array). Add if you want.\n  out[32] = out33;\n  return out;\n}\n\nnode.warn(`Decoder: unhandled tag \"${tag}\"`);\nout[32] = out33;\nreturn out;\n",
+        "outputs": 33,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -1532,6 +1532,9 @@
             ],
             [
                 "477223d0432c445c"
+            ],
+            [
+                "fn-single-to-csv-fixed-path"
             ]
         ]
     },
@@ -2354,7 +2357,9 @@
         "x": 1130,
         "y": 300,
         "wires": [
-            []
+            [
+                "25cbbd80adf204b3"
+            ]
         ]
     },
     {
@@ -4485,6 +4490,159 @@
             [
                 "b9cc117f0400f21f"
             ]
+        ]
+    },
+    {
+        "id": "25cbbd80adf204b3",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "add_timestamp",
+        "func": "let now = new Date().toISOString();\n\nmsg.payload = {\n    timestamp: now,\n    value: msg.payload\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 380,
+        "wires": [
+            [
+                "a6973a616f439c06",
+                "3c1598da96def3b5"
+            ]
+        ]
+    },
+    {
+        "id": "a6973a616f439c06",
+        "type": "csv",
+        "z": "f00a2f75f92239ad",
+        "name": "Create CSV",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\r\\n",
+        "temp": "timestamp,value",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1510,
+        "y": 380,
+        "wires": [
+            [
+                "84566b7d0ee33bd7"
+            ]
+        ]
+    },
+    {
+        "id": "84566b7d0ee33bd7",
+        "type": "file",
+        "z": "f00a2f75f92239ad",
+        "name": "Append → /home/pi/csvlogs2/CO2Rawtest.csv",
+        "filename": "/var/lib/revpi-nodered/csvlogs/output.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1810,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c1598da96def3b5",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "1e9ce4f4c56aa8c7",
+        "type": "csv",
+        "z": "f00a2f75f92239ad",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\r\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1350,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "414c2180a0bddc21",
+        "type": "debug",
+        "z": "f00a2f75f92239ad",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1560,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "fn-single-to-csv-fixed-path",
+        "type": "function",
+        "z": "f00a2f75f92239ad",
+        "name": "Single msg → CSV line",
+        "func": "'use strict';\n// Expects one point per message from 33rd output:\n//   msg.topic   (e.g., \"LD.RH.%\")\n//   msg.payload (number)\n// Emits CSV row: timestamp,topic,value,zone,sensor\\n\nconst ts = new Date().toISOString();\nconst topicRaw = msg.topic == null ? '' : String(msg.topic);\nconst valueNum = Number(msg.payload);\n\nif (!topicRaw || !Number.isFinite(valueNum)) {\n  node.status({fill:'yellow', shape:'ring', text:'skip (no topic/number)'});\n  return null;\n}\n\nlet zone = '';\nconst m = topicRaw.match(/^(LU|RU|LD|RD)\\b/i);\nif (m) zone = m[1].toLowerCase();\n\nlet sensor = '';\nif (/LEE650AV|REE650AV/i.test(topicRaw)) sensor = 'EE650AV';\nelse if (/LEE650T|REE650T/i.test(topicRaw)) sensor = 'EE650T';\nelse if (/\\bLEM\\.W\\b/i.test(topicRaw)) sensor = 'LEM';\nelse if (/\\bREM\\.W\\b/i.test(topicRaw)) sensor = 'REM';\n\nconst topic = topicRaw.replace(/,/g, ';');\nconst header = 'timestamp,topic,value,zone,sensor';\nlet out = `${ts},${topic},${valueNum},${zone},${sensor}\\n`;\nif (!flow.get('csv_header_written')) {\n  out = header + '\\n' + out;\n  flow.set('csv_header_written', true);\n}\n\nmsg.payload = out;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 1000,
+        "wires": [
+            [
+                "file-append-fixed",
+                "414c2180a0bddc21"
+            ]
+        ]
+    },
+    {
+        "id": "file-append-fixed",
+        "type": "file",
+        "z": "f00a2f75f92239ad",
+        "name": "/var/lib/revpi-nodered/csvlogs/sensors.csv",
+        "filename": "/var/lib/revpi-nodered/csvlogs/sensors.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1740,
+        "y": 1000,
+        "wires": [
+            []
         ]
     }
 ]
