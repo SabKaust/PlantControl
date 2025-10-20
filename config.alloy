@@ -1,0 +1,130 @@
+remotecfg {
+	url            = "https://fleet-management-prod-022.grafana.net"
+	id             = "RevPi144313"
+	poll_frequency = "60s"
+
+	basic_auth {
+		username = "1362314"
+		password = sys.env("GCLOUD_RW_API_KEY")
+	}
+}
+
+prometheus.remote_write "metrics_service" {
+	endpoint {
+		url = "https://prometheus-prod-53-prod-me-central-1.grafana.net/api/prom/push"
+
+		basic_auth {
+			username = "2648863"
+			password = sys.env("GCLOUD_RW_API_KEY")
+		}
+	}
+}
+
+loki.write "grafana_cloud_loki" {
+	endpoint {
+		url = "https://logs-prod-033.grafana.net/loki/api/v1/push"
+
+		basic_auth {
+			username = "1320108"
+			password = sys.env("GCLOUD_RW_API_KEY")
+		}
+	}
+}
+
+
+
+prometheus.exporter.unix "integrations_node_exporter" { }
+
+discovery.relabel "integrations_node_exporter" {
+        targets = prometheus.exporter.unix.integrations_node_exporter.targets
+
+        rule {
+                target_label = "instance"
+                replacement  = "RevPi144313"
+        }
+
+        rule {
+                target_label = "job"
+                replacement  = "integrations/raspberrypi-node"
+        }
+}
+
+prometheus.scrape "integrations_node_exporter" {
+        targets    = discovery.relabel.integrations_node_exporter.output
+        forward_to = [prometheus.remote_write.metrics_service.receiver]
+        job_name   = "integrations/node_exporter"
+}
+
+
+// Scrape Node-RED's Prometheus endpoint and forward to Grafana Cloud
+prometheus.scrape "nodered_metrics" {
+  targets = [{
+    "__address__"      = "127.0.0.1:41880",
+    "__metrics_path__" = "/metrics",
+    "__scheme__"       = "https",           
+  }]
+  job_name   = "nodered"
+
+  scrape_interval = "10s"
+  scrape_timeout  = "8s"
+
+
+ // TLS options
+  // Option A: local/self-signed cert (simple)
+  tls_config {
+    insecure_skip_verify = true
+  }
+
+  // Option B: verify TLS with system CAs (use if you have a valid cert)
+  // tls_config {
+  //   ca_file = "/etc/ssl/certs/ca-certificates.crt"
+  // }
+
+  // If Apache protects /metrics with Basic Auth, uncomment:
+  // basic_auth {
+  //   username = "USER"
+  //   password = "PASS"
+  // }
+
+
+  forward_to = [prometheus.remote_write.metrics_service.receiver]
+}
+
+
+
+// Logs from journald to Grafana Cloud Loki
+discovery.relabel "logs_integrations_integrations_node_exporter_journal_scrape" {
+  targets = []
+
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+
+  rule {
+    source_labels = ["__journal__boot_id"]
+    target_label  = "boot_id"
+  }
+
+  rule {
+    source_labels = ["__journal__transport"]
+    target_label  = "transport"
+  }
+
+  rule {
+    source_labels = ["__journal_priority_keyword"]
+    target_label  = "level"
+  }
+}
+
+loki.source.journal "logs_integrations_integrations_node_exporter_journal_scrape" {
+  max_age       = "24h0m0s"
+  relabel_rules = discovery.relabel.logs_integrations_integrations_node_exporter_journal_scrape.rules
+  forward_to    = [loki.write.grafana_cloud_loki.receiver]
+  labels = {
+    instance = "raspberrypi",
+    job      = "integrations/raspberrypi-node",
+  }
+}
+
+
