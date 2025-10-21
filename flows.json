@@ -426,6 +426,20 @@
         "groupType": "default"
     },
     {
+        "id": "e86ce08b06c0beb4",
+        "type": "ui-group",
+        "name": "Logging",
+        "page": "8aa6d6140cfde471",
+        "width": 6,
+        "height": 1,
+        "order": 15,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
         "id": "969f5026bd873d72",
         "type": "modbus-flex-getter",
         "z": "f00a2f75f92239ad",
@@ -2316,9 +2330,7 @@
         "x": 1130,
         "y": 260,
         "wires": [
-            [
-                "ea311686585c9f34"
-            ]
+            []
         ]
     },
     {
@@ -4494,38 +4506,18 @@
         ]
     },
     {
-        "id": "1e9ce4f4c56aa8c7",
-        "type": "csv",
-        "z": "f00a2f75f92239ad",
-        "name": "",
-        "spec": "rfc",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "none",
-        "multi": "mult",
-        "ret": "\\r\\n",
-        "temp": "",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 1350,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "inj-toggle-csv",
         "type": "inject",
         "z": "f00a2f75f92239ad",
         "name": "Toggle CSV logging",
         "props": [],
         "repeat": "",
+        "crontab": "",
         "once": false,
+        "onceDelay": "",
         "topic": "",
-        "x": 190,
-        "y": 100,
+        "x": 1390,
+        "y": 960,
         "wires": [
             [
                 "fn-toggle-csv"
@@ -4539,12 +4531,13 @@
         "name": "Toggle CSV logging (ON/OFF)",
         "func": "'use strict';\n// Toggles flow.csv_enabled each click\nlet enabled = flow.get('csv_enabled') === true;\n// Flip it\nenabled = !enabled;\nflow.set('csv_enabled', enabled);\n\nif (enabled) {\n  flow.set('csv_header_written', false); // force header next write\n  node.status({ fill: 'green', shape: 'dot', text: 'CSV logging ENABLED' });\n  node.warn('CSV logging ENABLED');\n} else {\n  node.status({ fill: 'red', shape: 'ring', text: 'CSV logging DISABLED' });\n  node.warn('CSV logging DISABLED');\n}\nreturn null;",
         "outputs": 0,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 100,
+        "x": 1650,
+        "y": 960,
         "wires": []
     },
     {
@@ -4552,7 +4545,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "CSV logging gate (flow.csv_enabled)",
-        "func": "'use strict';\nconst enabled = flow.get('csv_enabled') === true;\nif (enabled) {\n  node.status({ fill: 'grey', shape: 'ring', text: 'CSV logging OFF' });\n  return null;\n}\nnode.status({ fill: 'green', shape: 'dot', text: 'CSV logging ON' });\nreturn msg;",
+        "func": "'use strict';\nconst enabled = flow.get('csv_enabled') === true;\nif (!enabled) {\n  node.status({ fill: 'grey', shape: 'ring', text: 'CSV logging OFF' });\n  return null;\n}\nnode.status({ fill: 'green', shape: 'dot', text: 'CSV logging ON' });\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4572,7 +4565,7 @@
         "type": "function",
         "z": "f00a2f75f92239ad",
         "name": "Single msg → CSV line",
-        "func": "'use strict';\nconst ts = new Date().toISOString();\n//const ts = new Date().toLocaleString();\nconst topicRaw = msg.topic == null ? '' : String(msg.topic);\nconst valueNum = Number(msg.payload);\nif (!topicRaw || !Number.isFinite(valueNum)) {\n  node.status({ fill: 'yellow', shape: 'ring', text: 'skip invalid' });\n  return null;\n}\n\nlet zone = '';\nconst m = topicRaw.match(/^(LU|RU|LD|RD)\\b/i);\nif (m) zone = m[1].toLowerCase();\nlet sensor = '';\nif (/LEE650AV|REE650AV/i.test(topicRaw)) sensor = 'EE650AV';\nelse if (/LEE650T|REE650T/i.test(topicRaw)) sensor = 'EE650T';\nelse if (/\\bLEM\\.W\\b/i.test(topicRaw)) sensor = 'LEM';\nelse if (/\\bREM\\.W\\b/i.test(topicRaw)) sensor = 'REM';\n\nconst topic = topicRaw.replace(/,/g, ';');\nconst header = 'timestamp,topic,value,zone,sensor';\nlet out = `${ts},${topic},${valueNum},${zone},${sensor}\\n`;\nif (!flow.get('csv_header_written')) {\n  out = header + '\\n' + out;\n  flow.set('csv_header_written', true);\n}\n\nmsg.payload = out;\nreturn msg;",
+        "func": "'use strict';\n//const ts = new Date().toISOString();\nconst now = new Date();\nconst ts = now.toLocaleString('en-US', {\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n    second: '2-digit',\n    hour12: false\n});\n\nconst topicRaw = msg.topic == null ? '' : String(msg.topic);\nconst valueNum = Number(msg.payload);\nif (!topicRaw || !Number.isFinite(valueNum)) {\n  node.status({ fill: 'yellow', shape: 'ring', text: 'skip invalid' });\n  return null;\n}\n\nlet zone = '';\nconst m = topicRaw.match(/^(LU|RU|LD|RD)\\b/i);\nif (m) zone = m[1].toLowerCase();\nlet sensor = '';\nif (/LEE650AV|REE650AV/i.test(topicRaw)) sensor = 'EE650AV';\nelse if (/LEE650T|REE650T/i.test(topicRaw)) sensor = 'EE650T';\nelse if (/\\bLEM\\.W\\b/i.test(topicRaw)) sensor = 'LEM';\nelse if (/\\bREM\\.W\\b/i.test(topicRaw)) sensor = 'REM';\n\nconst topic = topicRaw.replace(/,/g, ';');\nconst header = 'timestamp,topic,value,zone,sensor';\nlet out = `${ts},${topic},${valueNum},${zone},${sensor}\\n`;\nif (!flow.get('csv_header_written')) {\n  out = header + '\\n' + out;\n  flow.set('csv_header_written', true);\n}\n\nmsg.payload = out;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4730,64 +4723,37 @@
         "wires": []
     },
     {
-        "id": "ea311686585c9f34",
-        "type": "function",
+        "id": "a1b7544bcf2cc64f",
+        "type": "ui-switch",
         "z": "f00a2f75f92239ad",
-        "name": "add_timestamp",
-        "func": "let now = new Date().toISOString();\n\nmsg.payload = {\n    timestamp: now,\n    value: msg.payload,\n};\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1340,
-        "y": 260,
+        "name": "",
+        "label": "Logging ON/OFF",
+        "group": "e86ce08b06c0beb4",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "decouple": false,
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 1370,
+        "y": 900,
         "wires": [
             [
-                "c11272d98064d267"
+                "fn-toggle-csv"
             ]
-        ]
-    },
-    {
-        "id": "c11272d98064d267",
-        "type": "csv",
-        "z": "f00a2f75f92239ad",
-        "name": "Create CSV",
-        "spec": "rfc",
-        "sep": ",",
-        "hdrin": "",
-        "hdrout": "once",
-        "multi": "mult",
-        "ret": "\\r\\n",
-        "temp": "timestamp,value",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": "",
-        "include_null_values": "",
-        "x": 1530,
-        "y": 260,
-        "wires": [
-            [
-                "a992fa2246618a4e"
-            ]
-        ]
-    },
-    {
-        "id": "a992fa2246618a4e",
-        "type": "file",
-        "z": "f00a2f75f92239ad",
-        "name": "Append CSV",
-        "filename": "/var/lib/revpi-nodered/csvlogs/LuCo2Avg.csv",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1710,
-        "y": 260,
-        "wires": [
-            []
         ]
     }
 ]
